@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Enum on shellthisbox</title>
+    <link>http://localhost:1313/tags/enum/</link>
+    <description>Recent content in Enum on shellthisbox</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 13 Jun 2025 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/enum/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>HTB Machine: Blue</title>
+      <link>http://localhost:1313/writeups/machine-1/</link>
+      <pubDate>Fri, 13 Jun 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/writeups/machine-1/</guid>
+      <description>&lt;p&gt;Sample writeup content for HTB Machine Blue.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>HTB Machine: Blue</title>
+      <link>http://localhost:1313/writeups/machine-2/</link>
+      <pubDate>Fri, 13 Jun 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/writeups/machine-2/</guid>
+      <description>&lt;p&gt;Sample writeup content for HTB Machine Blue.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>HTB Machine: Blue</title>
+      <link>http://localhost:1313/writeups/machine-3/</link>
+      <pubDate>Fri, 13 Jun 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/writeups/machine-3/</guid>
+      <description>&lt;p&gt;Sample writeup content for HTB Machine Blue.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>HTB Machine: Blue</title>
+      <link>http://localhost:1313/writeups/machine-4/</link>
+      <pubDate>Fri, 13 Jun 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/writeups/machine-4/</guid>
+      <description>&lt;p&gt;Sample writeup content for HTB Machine Blue.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>HTB Machine: Blue</title>
+      <link>http://localhost:1313/writeups/machine-5/</link>
+      <pubDate>Fri, 13 Jun 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/writeups/machine-5/</guid>
+      <description>&lt;p&gt;Sample writeup content for HTB Machine Blue.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>HTB Machine: Blue</title>
+      <link>http://localhost:1313/writeups/machine-6/</link>
+      <pubDate>Fri, 13 Jun 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/writeups/machine-6/</guid>
+      <description>&lt;p&gt;Sample writeup content for HTB Machine Blue.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>
