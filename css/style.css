@@ -248,6 +248,9 @@ h2.section-title {
   flex: 1 1 70%;
   font-family: monospace;
   color: #ddd;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  box-sizing: border-box;
 }
 
 .writeup-sidebar {
@@ -260,6 +263,7 @@ h2.section-title {
   padding: 1rem;
   font-size: 0.9rem;
   color: #999;
+  box-sizing: border-box;
 }
 
 .writeup-sidebar .sidebar-nav ul {
@@ -302,6 +306,7 @@ h2.section-title {
     width: 100%;
     padding-left: 1rem;
     padding-right: 1rem;
+    box-sizing: border-box;
   }
 }
 
