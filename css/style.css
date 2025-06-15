@@ -11,6 +11,7 @@ body {
   padding: 0.8rem 1.2rem;
   border-bottom: 1px solid #444;
 }
+
 .container {
   max-width: 1200px;
   margin: 0 auto;
@@ -19,21 +20,25 @@ body {
   justify-content: space-between;
   flex-wrap: wrap;
 }
+
 .site-branding {
   display: flex;
   align-items: center;
   gap: 0.5rem;
   text-decoration: none;
 }
+
 .site-branding img {
   height: 40px;
   width: 40px;
 }
+
 .site-title {
   font-size: 1.4rem;
   font-weight: bold;
   color: #f0f0f0;
 }
+
 .main-nav ul {
   list-style: none;
   display: flex;
@@ -41,11 +46,13 @@ body {
   margin: 0;
   padding: 0;
 }
+
 .main-nav a {
   color: #ccc;
   font-weight: 500;
   font-size: 1rem;
 }
+
 .main-nav a:hover {
   color: #fff;
 }
@@ -54,10 +61,12 @@ body {
 .content-section {
   padding: 2rem 0;
 }
+
 .section-inner {
   max-width: 1200px;
   margin: 0 auto;
 }
+
 .section-title {
   padding: 0 1rem;
   font-size: 1.5rem;
@@ -82,29 +91,35 @@ body {
   box-shadow: 0 0 10px #111;
   transition: transform 0.2s ease;
 }
+
 .writeup-card:hover {
   transform: translateY(-4px);
 }
+
 .writeup-thumb {
   width: 100%;
   height: auto;
   border-radius: 6px;
   margin-bottom: 0.5rem;
 }
+
 .writeup-card h3 {
   margin: 0.5rem 0;
   color: #fff;
 }
+
 .meta {
   font-size: 0.9rem;
   color: #aaa;
   margin-bottom: 0.5rem;
 }
+
 .tags {
   display: flex;
   gap: 0.5rem;
   flex-wrap: wrap;
 }
+
 .tag {
   background-color: #121212;
   border: 1px solid #00ff88;
@@ -113,6 +128,7 @@ body {
   font-size: 0.75rem;
   border-radius: 4px;
 }
+
 h2.section-title {
   padding-left: 1rem;
   padding-right: 1rem;
@@ -120,15 +136,18 @@ h2.section-title {
   margin-right: auto;
   max-width: 1200px;
 }
+
 .writeup-card a {
   color: #ffffff;
   text-decoration: underline;
 }
 
 .writeup-card a:hover {
-  color: #8ab4f8; /* albo inny, lekki niebieski hover */
+  color: #8ab4f8;
   text-decoration: underline;
 }
+
+/* === STOPKA === */
 .site-footer {
   padding: 2rem 1rem;
   background-color: #2a2a2a;
@@ -175,6 +194,8 @@ h2.section-title {
 .site-footer a:hover {
   text-decoration: underline;
 }
+
+/* === PAGINATION === */
 .pagination {
   margin-top: 2rem;
   text-align: center;
@@ -203,6 +224,8 @@ h2.section-title {
   color: #fff;
   border-color: #00ff88;
 }
+
+/* === WRITEUP LAYOUT (ARTYKUŁ + SIDEBAR) === */
 .writeup-layout {
   display: flex;
   gap: 2rem;
@@ -248,20 +271,24 @@ h2.section-title {
   text-decoration: underline;
 }
 
+/* === RESPONSYWNOŚĆ === */
 @media (max-width: 900px) {
   .writeup-layout {
     flex-direction: column;
   }
+
   .writeup-sidebar {
     position: static;
     border-left: none;
     border-top: 1px solid #333;
     margin-top: 2rem;
+    padding-top: 1rem;
   }
 }
+
 @media (max-width: 768px) {
   .card-grid {
-    grid-template-columns: repeat(1, 1fr);  /* Tylko jedna kolumna */
+    grid-template-columns: 1fr;
     padding: 0 0.5rem;
     gap: 1rem;
   }
