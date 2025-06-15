@@ -74,6 +74,14 @@ body {
   margin-bottom: 1.5rem;
 }
 
+h2.section-title {
+  padding-left: 1rem;
+  padding-right: 1rem;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 1200px;
+}
+
 /* === GRID === */
 .card-grid {
   display: grid;
@@ -127,14 +135,6 @@ body {
   padding: 2px 6px;
   font-size: 0.75rem;
   border-radius: 4px;
-}
-
-h2.section-title {
-  padding-left: 1rem;
-  padding-right: 1rem;
-  margin-left: auto;
-  margin-right: auto;
-  max-width: 1200px;
 }
 
 .writeup-card a {
@@ -271,6 +271,18 @@ h2.section-title {
   text-decoration: underline;
 }
 
+/* === KOD / PRE / ZAWIJANIE === */
+pre {
+  overflow-x: auto;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  font-family: monospace;
+  font-size: 0.95rem;
+  background-color: #1a1a1a;
+  padding: 1rem;
+  border-radius: 6px;
+}
+
 /* === RESPONSYWNOŚĆ === */
 @media (max-width: 900px) {
   .writeup-layout {
@@ -281,8 +293,14 @@ h2.section-title {
     position: static;
     border-left: none;
     border-top: 1px solid #333;
-    margin-top: 2rem;
-    padding-top: 1rem;
+    margin-bottom: 2rem;
+    padding: 1rem;
+    width: 100%;
+    background-color: #1a1a1a;
+  }
+
+  .writeup-content {
+    width: 100%;
   }
 }
 
@@ -303,7 +321,8 @@ h2.section-title {
     object-fit: cover;
   }
 
-  .section-title, h2 {
+  .section-title,
+  h2 {
     padding: 0 0.5rem;
     font-size: 1.2rem;
   }
@@ -326,15 +345,4 @@ h2.section-title {
   .site-title {
     font-size: 1.1rem;
   }
-}
-/* Naprawa overflow kodu */
-pre {
-  overflow-x: auto;
-  white-space: pre-wrap;      /* zawija linie */
-  word-wrap: break-word;      /* łamie słowa */
-  font-family: monospace;
-  font-size: 0.95rem;
-  background-color: #1a1a1a;
-  padding: 1rem;
-  border-radius: 6px;
 }
