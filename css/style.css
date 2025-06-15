@@ -235,7 +235,7 @@ h2.section-title {
   border-color: #00ff88;
 }
 
-/* === WRITEUP LAYOUT (ARTYKUŁ + SIDEBAR) === */
+/* === WRITEUP LAYOUT === */
 .writeup-layout {
   display: flex;
   gap: 2rem;
@@ -260,12 +260,11 @@ h2.section-title {
   padding: 1rem;
   font-size: 0.9rem;
   color: #999;
-  box-sizing: border-box;
 }
 
 .writeup-sidebar .sidebar-nav ul {
   list-style: none;
-  padding-left: 0;
+  padding-left: 1rem;
   margin-top: 1rem;
 }
 
@@ -286,31 +285,23 @@ h2.section-title {
 @media (max-width: 900px) {
   .writeup-layout {
     flex-direction: column;
-    padding: 0;
-    margin: 0;
   }
 
   .writeup-sidebar {
     position: static;
     border-left: none;
     border-top: 1px solid #333;
-    margin: 0;
-    padding: 1rem;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
     width: 100%;
+    padding: 1rem;
     box-sizing: border-box;
-    background-color: #1a1a1a;
   }
 
   .writeup-content {
     width: 100%;
-  }
-
-  .single-wrapper {
-    padding: 0;
-    margin: 0;
-    width: 100%;
-    max-width: 100%;
-    box-sizing: border-box;
+    padding-left: 1rem;
+    padding-right: 1rem;
   }
 }
 
