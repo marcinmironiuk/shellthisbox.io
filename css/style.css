@@ -264,15 +264,16 @@ pre {
     flex-direction: column;
   }
 
-  .writeup-sidebar {
-    position: static;
-    border-left: none;
-    border-top: 1px solid #333;
-    margin-top: 2rem;
-    padding: 1rem;
-    width: 100%;
-    background-color: #1a1a1a;
-  }
+ .writeup-sidebar {
+  position: static;
+  border-left: none;
+  border-top: 1px solid #333;
+  margin: 0;
+  padding: 1rem 0;
+  width: 100vw;
+  box-sizing: border-box;
+  background-color: #1a1a1a;
+}
 
   .writeup-content {
     width: 100%;
@@ -313,4 +314,12 @@ pre {
   .site-title {
     font-size: 1.1rem;
   }
+}
+.writeup-sidebar a {
+  color: #00ff88;
+  text-decoration: none;
+}
+
+.writeup-sidebar a:hover {
+  text-decoration: underline;
 }
