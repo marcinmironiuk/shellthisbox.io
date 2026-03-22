@@ -1,57 +1,64 @@
 ---
 title: About Me
-image: 'https://placehold.co/1200x900'
+image: 'images/aboutme.png'
 ---
 
-Hey, I’m Alex - part developer, part digital explorer, and full-time lover of all things tech. From crafting lines of code on Linux to unraveling the layers of cybersecurity, my passion for technology goes beyond just a career.
 
-{{< callout "note" >}}
-Even the most experienced developers don't know everything
-{{< /callout >}}
 
-Over the years, my curiosity only deepened. I became a coder, learning languages like Python, JavaScript, and C++, and fell in love with the sheer power of programming. For me, coding isn’t just a skill; it’s a language for bringing ideas to life. The thrill of debugging, the satisfaction of building something from scratch, and the endless potential of code keep me motivated every day. Coding lets me shape my vision into reality, one line at a time.
+Hi, I’m Marcin.
 
-> Curiosity fuels my code, Linux keeps me grounded, and every bug is just a puzzle waiting to be solved.
+I’m currently on a journey into cybersecurity, focused on building real, practical skills through hands-on experience. Most of my learning comes from platforms like Hack The Box, where I work through machines, practice enumeration, and try to understand how systems actually break.
 
-Linux was a turning point. Once I got into Linux, I realized how transformative open-source software could be. I started with Ubuntu, dabbled in Debian, and eventually moved on to Arch. Linux taught me how customizable, flexible, and free technology could truly be. It’s more than an operating system—it’s a philosophy that resonates with my love for exploration and problem-solving. My Linux setup is always evolving, whether I'm configuring a new window manager or experimenting with terminal commands. It’s like a puzzle I never get tired of solving.
+---
 
-{{< gallery columns="2" caption="Gallery / Unsplash" >}}
-  {{< img src="https://placehold.co/1200x900" alt="Keyboard" caption="The symphony of keys" >}}
-  {{< img src="https://placehold.co/1200x900" alt="Keyboard" caption="Where every keystroke brings ideas to life" >}}
-  {{< img src="https://placehold.co/1200x900" alt="Keyboard" caption="The quiet hum of creativity" >}}
-  {{< img src="https://placehold.co/1200x900" alt="Keyboard" caption="Ready to transform thoughts into text" >}}
-{{< /gallery >}}
+## Why this blog?
 
-Gaming is another integral part of my story. Growing up with video games, I’ve seen firsthand how gaming has evolved from simple pixelated platforms to immersive, narrative-driven experiences. My love for gaming goes beyond just playing; I enjoy analyzing game mechanics, studying character design, and understanding the technology behind these virtual worlds. Indie games hold a special place in my heart because they represent the creativity and innovation of small teams that pour their souls into making something unique.
+I created this blog as my personal knowledge base.
 
-```js
-  $('.top').click(function () {
-    $('html, body').stop().animate({ scrollTop: 0 }, 'slow', 'swing');
-  });
-  $(window).scroll(function () {
-    if ($(this).scrollTop() > $(window).height()) {
-      $('.top').addClass("top-active");
-    } else {
-      $('.top').removeClass("top-active");
-    };
-  });
-```
+Instead of keeping scattered notes, I document everything here:
+- techniques I learn  
+- tools I use  
+- mistakes I make  
+- and lessons that actually stick  
 
-When I’m not coding or gaming, I’m diving into the world of comics and sci-fi movies. Both are more than hobbies—they’re ways to explore the “what ifs” of life. Comics taught me that even fictional heroes have real struggles, and sci-fi movies sparked my imagination about the future.
+This helps me stay consistent and track my progress over time.
 
-## The Mind Behind the Keyboard
+---
 
-Building this blog has been a passion project. It’s a place where I can share my journey, document what I learn, and connect with people who have the same interests. I’ve written countless tutorials, tech tips, and reviews because I want to create a resource I wish I had when I was starting out. The tech world can be intimidating, but it doesn’t have to be. Thоrough this blog, I hope to make technology accessible, fun, and rewarding for people of all skill levels.
+## What I focus on
 
-![Keyboard](https://placehold.co/1200x900)
-*Photo by [Pablo Stanley](https://placehold.co/1200x900) on [Lummi](https://placehold.co/1200x900)*
+My main areas of interest include:
+- enumeration and reconnaissance  
+- system exploitation  
+- building a structured workflow  
+- understanding *why* things work, not just how  
 
-Looking back, I see that each step in my journey—whether it was installing my first Linux distro, debugging my first program, or exploring cybersecurity—has shaped me into who I am today.
+---
 
-The geek in me thrives on discovery, and as I explore new topics and skills, I’m reminded that there’s always more to learn. That’s the beauty of the tech world: no matter how much you know, there’s always a new challenge or a new horizon waiting.
+## My approach
 
-{{< callout "important" >}}
-Automate repetitive tasks. If you find yourself doing the same task multiple times, it's a sign you should automate it.
-{{< /callout >}}
+I believe in learning by doing.
 
-Thank you for being here and for sharing in this journey with me. This blog is more than just articles and posts; it’s a community of curious, passionate individuals who love technology, creativity, and the endless pursuit of knowledge. Whether you’re a fellow Linux enthusiast, a developer looking for new ideas, or just someone curious about the digital world, I’m excited to connect and share this space with you.
+This means:
+- breaking things  
+- fixing them  
+- repeating the process  
+
+I’m not here to present polished expertise — I’m here to improve, step by step.
+
+---
+
+## What you’ll find here
+
+On this blog, you’ll find:
+- Hack The Box write-ups  
+- notes and cheat sheets (like Nmap, workflows, etc.)  
+- thoughts and progress updates from my learning journey  
+
+---
+
+## Final note
+
+If you're on a similar path, feel free to follow along.
+
+This blog is as much for me as it is for anyone else trying to get better in cybersecurity.
