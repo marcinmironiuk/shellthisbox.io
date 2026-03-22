@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Posts on &gt;_ shell this box</title>
-    <link>http://localhost:1313/posts/</link>
-    <description>Recent content in Posts on &gt;_ shell this box</description>
+    <title>Blog on &gt;_ shell this box</title>
+    <link>http://localhost:1313/tags/blog/</link>
+    <description>Recent content in Blog on &gt;_ shell this box</description>
     <generator>Hugo</generator>
     <language>en-us</language>
     <lastBuildDate>Sun, 22 Mar 2026 15:01:35 +0300</lastBuildDate>
-    <atom:link href="http://localhost:1313/posts/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:1313/tags/blog/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Starting My Cybersecurity Journey</title>
       <link>http://localhost:1313/posts/starting-my-cybersecurity-journey/</link>

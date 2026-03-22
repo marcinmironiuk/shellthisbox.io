@@ -84,7 +84,7 @@ googleAnalytics = "" # Add your identifier. For example UA-99631805-1.
 # Blog Section
 [params.blog]
   enable = true
-  blog_title = "The Binary Journal"
+  blog_title = "The Shell Log"
 
 
 #-------------------------------
@@ -93,66 +93,11 @@ googleAnalytics = "" # Add your identifier. For example UA-99631805-1.
   pagerSize = 4
 
 
-#-------------------------------
-# Tags Section Settings
-[params.tags_section]
-  enable = true
-  tags_section_title = "Hacker’s Haven"
-
-  [[params.tags_section_tag]]
-    tag = "programming"
-    image = "https://placehold.co/1200x900"
-
-  [[params.tags_section_tag]]
-    tag = "linux"
-    image = "https://placehold.co/1200x900"
-
-  [[params.tags_section_tag]]
-    tag = "productivity"
-    image = "https://placehold.co/1200x900"
-
-  [[params.tags_section_tag]]
-    tag = "security"
-    image = "https://placehold.co/1200x900"
 
 
-#-------------------------------
-# Videos Section Settings
-[params.videos]
-  enable = true
-  videos_title = "Latest Videos"
 
 
-#-------------------------------
-# Gallery Section Settings
-[params.gallery]
-  enable = true
-  gallery_title = "Byte Frame"
 
-  [[params.gallery_image]]
-    alt = "Rest"
-    url = "https://placehold.co/1200x900"
-    caption = "Small steps lead to big results."
-
-  [[params.gallery_image]]
-    alt = "Lifestyle"
-    url = "https://placehold.co/1200x900"
-    caption = "A peaceful moment captured during a serene evening."
-
-  [[params.gallery_image]]
-    alt = "Hobby"
-    url = "https://placehold.co/1200x900"
-    caption = "True friends are like stars — they shine brightest when the world feels dark."
-
-  [[params.gallery_image]]
-    alt = "Computers"
-    url = "https://placehold.co/1200x900"
-    caption = "Every click opens a new chapter in an endless story."
-
-  [[params.gallery_image]]
-    alt = "Games"
-    url = "https://placehold.co/1200x900"
-    caption = "Every level is a new opportunity to test your limits."
 
 
 
@@ -161,7 +106,7 @@ googleAnalytics = "" # Add your identifier. For example UA-99631805-1.
 #-------------------------------
 # Footer Settings
 [params.footer]
-  footer_description = "Here, I share ideas, tools, and methods that help me balance productivity with creativity while keeping control over my digital world. Dive in, get inspired, and feel free to share your thoughts!"
+  footer_description = "A place where I learn, break things, and understand how they really work. This blog is my personal cybersecurity notebook — focused on Hack The Box, enumeration, and building real skills. Every post reflects what I’m learning right now, including mistakes, lessons, and better approaches."
 
 
 #-------------------------------
