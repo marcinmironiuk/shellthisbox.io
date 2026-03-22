@@ -74,22 +74,7 @@ googleAnalytics = "" # Add your identifier. For example UA-99631805-1.
   author_avatar = "https://placehold.co/120x120"
 
 
-#-------------------------------
-# Hero Settings
-[params.hero]
-  enable = true
-  hero_avatar = "https://placehold.co/120x120"
-  hero_title = "Hi! I’m Alex 👋"
-  hero_subtitle = "A digital explorer, coder, and Linux advocate"
-  hero_description = """
-  I’m a digital explorer, coder, and Linux advocate. This blog is my personal knowledge base on productivity, programming, and the freedom of information.
 
-  Here, I share ideas, tools, and methods that help me balance productivity with creativity while keeping control over my digital world. Dive in, get inspired, and feel free to share your thoughts!
-  """
-  hero_image = "https://placehold.co/1200x900"
-  hero_image_caption = "My creative space, where masterpieces are born"
-  hero_button_text = "Let’s Work Together"
-  hero_button_link = "/contact"
 
 
 
