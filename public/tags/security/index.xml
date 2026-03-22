@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Security on My New Hugo Project</title>
+    <link>http://localhost:1313/tags/security/</link>
+    <description>Recent content in Security on My New Hugo Project</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 03 Jan 2026 15:01:35 +0300</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/security/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Why Two-Factor Authentication Is a Must-Have Tool</title>
+      <link>http://localhost:1313/posts/why-two-factor-authentication-is-a-must-have-tool/</link>
+      <pubDate>Sat, 03 Jan 2026 15:01:35 +0300</pubDate>
+      <guid>http://localhost:1313/posts/why-two-factor-authentication-is-a-must-have-tool/</guid>
+      <description>&lt;p&gt;In our digital world, cybersecurity is more critical than ever. With new threats emerging daily, protecting your data and devices requires awareness and proactive measures. This guide covers essential cybersecurity practices to help you stay safe online, from password management to recognizing phishing scams.&lt;/p&gt;&#xA;&lt;h3 id=&#34;protecting-your-digital-life&#34;&gt;Protecting your digital life&lt;/h3&gt;&#xA;&lt;p&gt;In an era where data is currency, security is paramount. From personal information to national secrets, the need to protect digital assets has never been greater. Cybersecurity encompasses a range of practices, technologies, and strategies designed to defend against threats in an increasingly connected world. Threats like phishing, malware, and ransomware exploit human vulnerabilities as much as technical flaws.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Tips for Safeguarding Mobile Devices and Cloud Storage</title>
+      <link>http://localhost:1313/posts/tips-for-safeguarding-mobile-devices-and-cloud-storage/</link>
+      <pubDate>Fri, 12 Dec 2025 15:01:35 +0300</pubDate>
+      <guid>http://localhost:1313/posts/tips-for-safeguarding-mobile-devices-and-cloud-storage/</guid>
+      <description>&lt;p&gt;In our digital world, cybersecurity is more critical than ever. With new threats emerging daily, protecting your data and devices requires awareness and proactive measures. This guide covers essential cybersecurity practices to help you stay safe online, from password management to recognizing phishing scams.&lt;/p&gt;&#xA;&lt;h3 id=&#34;protecting-your-digital-life&#34;&gt;Protecting your digital life&lt;/h3&gt;&#xA;&lt;p&gt;In an era where data is currency, security is paramount. From personal information to national secrets, the need to protect digital assets has never been greater. Cybersecurity encompasses a range of practices, technologies, and strategies designed to defend against threats in an increasingly connected world. Threats like phishing, malware, and ransomware exploit human vulnerabilities as much as technical flaws.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Keeping Your Files and Messages Secure</title>
+      <link>http://localhost:1313/posts/keeping-your-files-and-messages-secure/</link>
+      <pubDate>Sun, 02 Nov 2025 15:01:35 +0300</pubDate>
+      <guid>http://localhost:1313/posts/keeping-your-files-and-messages-secure/</guid>
+      <description>&lt;p&gt;In our digital world, cybersecurity is more critical than ever. With new threats emerging daily, protecting your data and devices requires awareness and proactive measures. This guide covers essential cybersecurity practices to help you stay safe online, from password management to recognizing phishing scams.&lt;/p&gt;&#xA;&lt;h3 id=&#34;protecting-your-digital-life&#34;&gt;Protecting your digital life&lt;/h3&gt;&#xA;&lt;p&gt;In an era where data is currency, security is paramount. From personal information to national secrets, the need to protect digital assets has never been greater. Cybersecurity encompasses a range of practices, technologies, and strategies designed to defend against threats in an increasingly connected world. Threats like phishing, malware, and ransomware exploit human vulnerabilities as much as technical flaws.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

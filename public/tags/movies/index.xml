@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Movies on My New Hugo Project</title>
+    <link>http://localhost:1313/tags/movies/</link>
+    <description>Recent content in Movies on My New Hugo Project</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 18 Dec 2025 15:01:35 +0300</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/movies/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Sci-Fi Movies for Every Tech Geek</title>
+      <link>http://localhost:1313/posts/sci-fi-movies-for-every-tech-geek/</link>
+      <pubDate>Thu, 18 Dec 2025 15:01:35 +0300</pubDate>
+      <guid>http://localhost:1313/posts/sci-fi-movies-for-every-tech-geek/</guid>
+      <description>&lt;p&gt;Movies are an enduring testament to the power of storytelling. They capture the essence of human emotion, culture, and imagination, weaving narratives that resonate across generations. A single frame can evoke a memory, while a single line of dialogue can inspire reflection or change. From silent films of the early 20th century to today’s sprawling cinematic universes, movies have remained one of the most captivating forms of art and entertainment.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>The Future of Cinema and Interactive Storytelling</title>
+      <link>http://localhost:1313/posts/the-future-of-cinema-and-interactive-storytelling/</link>
+      <pubDate>Wed, 10 Dec 2025 18:05:55 +0300</pubDate>
+      <guid>http://localhost:1313/posts/the-future-of-cinema-and-interactive-storytelling/</guid>
+      <description>&lt;p&gt;Movies are an enduring testament to the power of storytelling. They capture the essence of human emotion, culture, and imagination, weaving narratives that resonate across generations. A single frame can evoke a memory, while a single line of dialogue can inspire reflection or change. From silent films of the early 20th century to today’s sprawling cinematic universes, movies have remained one of the most captivating forms of art and entertainment.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Notable Cyberpunk Movies and Their Tech Influences</title>
+      <link>http://localhost:1313/posts/notable-cyberpunk-movies-and-their-tech-influences/</link>
+      <pubDate>Tue, 28 Oct 2025 15:01:35 +0300</pubDate>
+      <guid>http://localhost:1313/posts/notable-cyberpunk-movies-and-their-tech-influences/</guid>
+      <description>&lt;p&gt;Movies are an enduring testament to the power of storytelling. They capture the essence of human emotion, culture, and imagination, weaving narratives that resonate across generations. A single frame can evoke a memory, while a single line of dialogue can inspire reflection or change. From silent films of the early 20th century to today’s sprawling cinematic universes, movies have remained one of the most captivating forms of art and entertainment.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How Hollywood Portrays Artificial Intelligence</title>
+      <link>http://localhost:1313/posts/how-hollywood-portrays-artificial-intelligence/</link>
+      <pubDate>Fri, 24 Oct 2025 15:01:35 +0300</pubDate>
+      <guid>http://localhost:1313/posts/how-hollywood-portrays-artificial-intelligence/</guid>
+      <description>&lt;p&gt;Movies are an enduring testament to the power of storytelling. They capture the essence of human emotion, culture, and imagination, weaving narratives that resonate across generations. A single frame can evoke a memory, while a single line of dialogue can inspire reflection or change. From silent films of the early 20th century to today’s sprawling cinematic universes, movies have remained one of the most captivating forms of art and entertainment.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

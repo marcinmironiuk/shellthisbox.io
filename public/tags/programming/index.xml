@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Programming on My New Hugo Project</title>
+    <link>http://localhost:1313/tags/programming/</link>
+    <description>Recent content in Programming on My New Hugo Project</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 05 Jan 2026 15:01:35 +0300</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/programming/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Avoiding Common JavaScript Mistakes and Writing Clean Code</title>
+      <link>http://localhost:1313/posts/avoiding-common-javascript-mistakes-and-writing-clean-code/</link>
+      <pubDate>Mon, 05 Jan 2026 15:01:35 +0300</pubDate>
+      <guid>http://localhost:1313/posts/avoiding-common-javascript-mistakes-and-writing-clean-code/</guid>
+      <description>&lt;p&gt;First, define your goals. If you’re interested in web development, JavaScript could be a great place to start, as it&amp;rsquo;s essential for creating dynamic web applications. For general-purpose coding or data science, Python is a favorite due to its readability and versatility. Ruby, though somewhat specialized, shines in web development, especially with the Rails framework.&lt;/p&gt;&#xA;&lt;h3 id=&#34;overview-of-popular-languages&#34;&gt;Overview of popular languages&lt;/h3&gt;&#xA;&lt;p&gt;Python is often recommended for beginners because of its readable syntax and broad applications in data science, machine learning, and backend development. Its growing popularity has led to a massive community, filled with tutorials, forums, and projects to explore. While Python’s simplicity is an advantage, it’s also highly powerful and can handle complex programming needs as you progress.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>My Top 10 Code Editors for Developers</title>
+      <link>http://localhost:1313/posts/my-top-10-code-editors-for-developers/</link>
+      <pubDate>Thu, 20 Nov 2025 15:01:35 +0300</pubDate>
+      <guid>http://localhost:1313/posts/my-top-10-code-editors-for-developers/</guid>
+      <description>&lt;p&gt;First, define your goals. If you’re interested in web development, JavaScript could be a great place to start, as it&amp;rsquo;s essential for creating dynamic web applications. For general-purpose coding or data science, Python is a favorite due to its readability and versatility. Ruby, though somewhat specialized, shines in web development, especially with the Rails framework.&lt;/p&gt;&#xA;&lt;h3 id=&#34;overview-of-popular-languages&#34;&gt;Overview of popular languages&lt;/h3&gt;&#xA;&lt;p&gt;Python is often recommended for beginners because of its readable syntax and broad applications in data science, machine learning, and backend development. Its growing popularity has led to a massive community, filled with tutorials, forums, and projects to explore. While Python’s simplicity is an advantage, it’s also highly powerful and can handle complex programming needs as you progress.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Automating Routine Tasks with Bash Scripts</title>
+      <link>http://localhost:1313/posts/automating-routine-tasks-with-bash-scripts/</link>
+      <pubDate>Sat, 15 Nov 2025 15:01:35 +0300</pubDate>
+      <guid>http://localhost:1313/posts/automating-routine-tasks-with-bash-scripts/</guid>
+      <description>&lt;p&gt;First, define your goals. If you’re interested in web development, JavaScript could be a great place to start, as it&amp;rsquo;s essential for creating dynamic web applications. For general-purpose coding or data science, Python is a favorite due to its readability and versatility. Ruby, though somewhat specialized, shines in web development, especially with the Rails framework.&lt;/p&gt;&#xA;&lt;h3 id=&#34;overview-of-popular-languages&#34;&gt;Overview of popular languages&lt;/h3&gt;&#xA;&lt;p&gt;Python is often recommended for beginners because of its readable syntax and broad applications in data science, machine learning, and backend development. Its growing popularity has led to a massive community, filled with tutorials, forums, and projects to explore. While Python’s simplicity is an advantage, it’s also highly powerful and can handle complex programming needs as you progress.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Choosing Your First Programming Language</title>
+      <link>http://localhost:1313/posts/choosing-your-first-programming-language/</link>
+      <pubDate>Sat, 08 Nov 2025 15:01:35 +0300</pubDate>
+      <guid>http://localhost:1313/posts/choosing-your-first-programming-language/</guid>
+      <description>&lt;p&gt;First, define your goals. If you’re interested in web development, JavaScript could be a great place to start, as it&amp;rsquo;s essential for creating dynamic web applications. For general-purpose coding or data science, Python is a favorite due to its readability and versatility. Ruby, though somewhat specialized, shines in web development, especially with the Rails framework.&lt;/p&gt;&#xA;&lt;h3 id=&#34;overview-of-popular-languages&#34;&gt;Overview of popular languages&lt;/h3&gt;&#xA;&lt;p&gt;Python is often recommended for beginners because of its readable syntax and broad applications in data science, machine learning, and backend development. Its growing popularity has led to a massive community, filled with tutorials, forums, and projects to explore. While Python’s simplicity is an advantage, it’s also highly powerful and can handle complex programming needs as you progress.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>
