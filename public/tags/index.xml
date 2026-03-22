@@ -2,52 +2,52 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Tags on &gt;_ shell this box</title>
-    <link>//localhost:1313/tags/</link>
+    <link>http://localhost:1313/tags/</link>
     <description>Recent content in Tags on &gt;_ shell this box</description>
     <generator>Hugo</generator>
     <language>en-us</language>
     <lastBuildDate>Mon, 05 Jan 2026 15:01:35 +0300</lastBuildDate>
-    <atom:link href="//localhost:1313/tags/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:1313/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Programming</title>
-      <link>//localhost:1313/tags/programming/</link>
+      <link>http://localhost:1313/tags/programming/</link>
       <pubDate>Mon, 05 Jan 2026 15:01:35 +0300</pubDate>
-      <guid>//localhost:1313/tags/programming/</guid>
+      <guid>http://localhost:1313/tags/programming/</guid>
       <description></description>
     </item>
     <item>
       <title>Linux</title>
-      <link>//localhost:1313/tags/linux/</link>
+      <link>http://localhost:1313/tags/linux/</link>
       <pubDate>Sun, 04 Jan 2026 15:01:35 +0300</pubDate>
-      <guid>//localhost:1313/tags/linux/</guid>
+      <guid>http://localhost:1313/tags/linux/</guid>
       <description></description>
     </item>
     <item>
       <title>Security</title>
-      <link>//localhost:1313/tags/security/</link>
+      <link>http://localhost:1313/tags/security/</link>
       <pubDate>Sat, 03 Jan 2026 15:01:35 +0300</pubDate>
-      <guid>//localhost:1313/tags/security/</guid>
+      <guid>http://localhost:1313/tags/security/</guid>
       <description></description>
     </item>
     <item>
       <title>Games</title>
-      <link>//localhost:1313/tags/games/</link>
+      <link>http://localhost:1313/tags/games/</link>
       <pubDate>Fri, 02 Jan 2026 15:01:35 +0300</pubDate>
-      <guid>//localhost:1313/tags/games/</guid>
+      <guid>http://localhost:1313/tags/games/</guid>
       <description></description>
     </item>
     <item>
       <title>Productivity</title>
-      <link>//localhost:1313/tags/productivity/</link>
+      <link>http://localhost:1313/tags/productivity/</link>
       <pubDate>Sat, 20 Dec 2025 15:01:35 +0300</pubDate>
-      <guid>//localhost:1313/tags/productivity/</guid>
+      <guid>http://localhost:1313/tags/productivity/</guid>
       <description></description>
     </item>
     <item>
       <title>Movies</title>
-      <link>//localhost:1313/tags/movies/</link>
+      <link>http://localhost:1313/tags/movies/</link>
       <pubDate>Thu, 18 Dec 2025 15:01:35 +0300</pubDate>
-      <guid>//localhost:1313/tags/movies/</guid>
+      <guid>http://localhost:1313/tags/movies/</guid>
       <description></description>
     </item>
   </channel>

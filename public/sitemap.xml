@@ -2,112 +2,112 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>//localhost:1313/</loc>
+    <loc>http://localhost:1313/</loc>
     <lastmod>2026-01-05T15:01:35+03:00</lastmod>
   </url><url>
-    <loc>//localhost:1313/posts/avoiding-common-javascript-mistakes-and-writing-clean-code/</loc>
+    <loc>http://localhost:1313/posts/avoiding-common-javascript-mistakes-and-writing-clean-code/</loc>
     <lastmod>2026-01-05T15:01:35+03:00</lastmod>
   </url><url>
-    <loc>//localhost:1313/posts/</loc>
+    <loc>http://localhost:1313/posts/</loc>
     <lastmod>2026-01-05T15:01:35+03:00</lastmod>
   </url><url>
-    <loc>//localhost:1313/tags/programming/</loc>
+    <loc>http://localhost:1313/tags/programming/</loc>
     <lastmod>2026-01-05T15:01:35+03:00</lastmod>
   </url><url>
-    <loc>//localhost:1313/tags/</loc>
+    <loc>http://localhost:1313/tags/</loc>
     <lastmod>2026-01-05T15:01:35+03:00</lastmod>
   </url><url>
-    <loc>//localhost:1313/tags/linux/</loc>
+    <loc>http://localhost:1313/tags/linux/</loc>
     <lastmod>2026-01-04T15:01:35+03:00</lastmod>
   </url><url>
-    <loc>//localhost:1313/posts/setting-up-the-perfect-programming-environment-on-ubuntu/</loc>
+    <loc>http://localhost:1313/posts/setting-up-the-perfect-programming-environment-on-ubuntu/</loc>
     <lastmod>2026-01-04T15:01:35+03:00</lastmod>
   </url><url>
-    <loc>//localhost:1313/tags/security/</loc>
+    <loc>http://localhost:1313/tags/security/</loc>
     <lastmod>2026-01-03T15:01:35+03:00</lastmod>
   </url><url>
-    <loc>//localhost:1313/posts/why-two-factor-authentication-is-a-must-have-tool/</loc>
+    <loc>http://localhost:1313/posts/why-two-factor-authentication-is-a-must-have-tool/</loc>
     <lastmod>2026-01-03T15:01:35+03:00</lastmod>
   </url><url>
-    <loc>//localhost:1313/tags/games/</loc>
+    <loc>http://localhost:1313/tags/games/</loc>
     <lastmod>2026-01-02T15:01:35+03:00</lastmod>
   </url><url>
-    <loc>//localhost:1313/posts/top-indie-games-every-geek-should-try/</loc>
+    <loc>http://localhost:1313/posts/top-indie-games-every-geek-should-try/</loc>
     <lastmod>2026-01-02T15:01:35+03:00</lastmod>
   </url><url>
-    <loc>//localhost:1313/tags/productivity/</loc>
+    <loc>http://localhost:1313/tags/productivity/</loc>
     <lastmod>2025-12-20T15:01:35+03:00</lastmod>
   </url><url>
-    <loc>//localhost:1313/posts/top-5-productivity-tools-i-use-daily/</loc>
+    <loc>http://localhost:1313/posts/top-5-productivity-tools-i-use-daily/</loc>
     <lastmod>2025-12-20T15:01:35+03:00</lastmod>
   </url><url>
-    <loc>//localhost:1313/tags/movies/</loc>
+    <loc>http://localhost:1313/tags/movies/</loc>
     <lastmod>2025-12-18T15:01:35+03:00</lastmod>
   </url><url>
-    <loc>//localhost:1313/posts/sci-fi-movies-for-every-tech-geek/</loc>
+    <loc>http://localhost:1313/posts/sci-fi-movies-for-every-tech-geek/</loc>
     <lastmod>2025-12-18T15:01:35+03:00</lastmod>
   </url><url>
-    <loc>//localhost:1313/posts/how-games-are-becoming-smarter-and-more-interactive/</loc>
+    <loc>http://localhost:1313/posts/how-games-are-becoming-smarter-and-more-interactive/</loc>
     <lastmod>2025-12-16T15:01:35+03:00</lastmod>
   </url><url>
-    <loc>//localhost:1313/posts/why-i-switched-to-arch-linux-and-never-looked-back/</loc>
+    <loc>http://localhost:1313/posts/why-i-switched-to-arch-linux-and-never-looked-back/</loc>
     <lastmod>2025-12-15T15:01:35+03:00</lastmod>
   </url><url>
-    <loc>//localhost:1313/posts/tips-for-safeguarding-mobile-devices-and-cloud-storage/</loc>
+    <loc>http://localhost:1313/posts/tips-for-safeguarding-mobile-devices-and-cloud-storage/</loc>
     <lastmod>2025-12-12T15:01:35+03:00</lastmod>
   </url><url>
-    <loc>//localhost:1313/posts/the-future-of-cinema-and-interactive-storytelling/</loc>
+    <loc>http://localhost:1313/posts/the-future-of-cinema-and-interactive-storytelling/</loc>
     <lastmod>2025-12-10T18:05:55+03:00</lastmod>
   </url><url>
-    <loc>//localhost:1313/posts/staying-focused-and-avoiding-burnout/</loc>
+    <loc>http://localhost:1313/posts/staying-focused-and-avoiding-burnout/</loc>
     <lastmod>2025-11-25T15:01:35+03:00</lastmod>
   </url><url>
-    <loc>//localhost:1313/posts/my-top-10-code-editors-for-developers/</loc>
+    <loc>http://localhost:1313/posts/my-top-10-code-editors-for-developers/</loc>
     <lastmod>2025-11-20T15:01:35+03:00</lastmod>
   </url><url>
-    <loc>//localhost:1313/posts/automating-routine-tasks-with-bash-scripts/</loc>
+    <loc>http://localhost:1313/posts/automating-routine-tasks-with-bash-scripts/</loc>
     <lastmod>2025-11-15T15:01:35+03:00</lastmod>
   </url><url>
-    <loc>//localhost:1313/posts/time-management-techniques-for-developers/</loc>
+    <loc>http://localhost:1313/posts/time-management-techniques-for-developers/</loc>
     <lastmod>2025-11-14T15:01:35+03:00</lastmod>
   </url><url>
-    <loc>//localhost:1313/posts/top-7-terminal-commands-every-linux-user-should-know/</loc>
+    <loc>http://localhost:1313/posts/top-7-terminal-commands-every-linux-user-should-know/</loc>
     <lastmod>2025-11-10T15:01:35+03:00</lastmod>
   </url><url>
-    <loc>//localhost:1313/posts/choosing-your-first-programming-language/</loc>
+    <loc>http://localhost:1313/posts/choosing-your-first-programming-language/</loc>
     <lastmod>2025-11-08T15:01:35+03:00</lastmod>
   </url><url>
-    <loc>//localhost:1313/posts/customizing-the-terminal-and-productivity-tools/</loc>
+    <loc>http://localhost:1313/posts/customizing-the-terminal-and-productivity-tools/</loc>
     <lastmod>2025-11-07T15:01:35+03:00</lastmod>
   </url><url>
-    <loc>//localhost:1313/posts/digital-minimalism-principles-for-it-professionals/</loc>
+    <loc>http://localhost:1313/posts/digital-minimalism-principles-for-it-professionals/</loc>
     <lastmod>2025-11-05T15:01:35+03:00</lastmod>
   </url><url>
-    <loc>//localhost:1313/posts/keeping-your-files-and-messages-secure/</loc>
+    <loc>http://localhost:1313/posts/keeping-your-files-and-messages-secure/</loc>
     <lastmod>2025-11-02T15:01:35+03:00</lastmod>
   </url><url>
-    <loc>//localhost:1313/posts/notable-cyberpunk-movies-and-their-tech-influences/</loc>
+    <loc>http://localhost:1313/posts/notable-cyberpunk-movies-and-their-tech-influences/</loc>
     <lastmod>2025-10-28T15:01:35+03:00</lastmod>
   </url><url>
-    <loc>//localhost:1313/posts/how-hollywood-portrays-artificial-intelligence/</loc>
+    <loc>http://localhost:1313/posts/how-hollywood-portrays-artificial-intelligence/</loc>
     <lastmod>2025-10-24T15:01:35+03:00</lastmod>
   </url><url>
-    <loc>//localhost:1313/posts/why-indie-games-are-important-for-creativity-in-gaming/</loc>
+    <loc>http://localhost:1313/posts/why-indie-games-are-important-for-creativity-in-gaming/</loc>
     <lastmod>2025-10-21T15:01:35+03:00</lastmod>
   </url><url>
-    <loc>//localhost:1313/posts/how-games-keep-players-engaged-and-motivated/</loc>
+    <loc>http://localhost:1313/posts/how-games-keep-players-engaged-and-motivated/</loc>
     <lastmod>2025-10-19T15:01:35+03:00</lastmod>
   </url><url>
-    <loc>//localhost:1313/about/</loc>
+    <loc>http://localhost:1313/about/</loc>
   </url><url>
-    <loc>//localhost:1313/archive/</loc>
+    <loc>http://localhost:1313/archive/</loc>
   </url><url>
-    <loc>//localhost:1313/categories/</loc>
+    <loc>http://localhost:1313/categories/</loc>
   </url><url>
-    <loc>//localhost:1313/elements/</loc>
+    <loc>http://localhost:1313/elements/</loc>
   </url><url>
-    <loc>//localhost:1313/contact/</loc>
+    <loc>http://localhost:1313/contact/</loc>
   </url><url>
-    <loc>//localhost:1313/videos/</loc>
+    <loc>http://localhost:1313/videos/</loc>
   </url>
 </urlset>
