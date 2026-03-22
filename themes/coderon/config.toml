@@ -33,10 +33,6 @@ googleAnalytics = "" # Add your identifier. For example UA-99631805-1.
     url = "/"
     weight = 1
 
-  [[menu.main]]
-    name = "Videos"
-    url = "/videos/"
-    weight = 2
 
   [[menu.main]]
     name = "Archive"
