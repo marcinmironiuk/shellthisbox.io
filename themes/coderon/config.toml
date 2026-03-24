@@ -3,7 +3,7 @@
 baseURL = "http://example.org/"
 languageCode = "en-us"
 title = "Coderon"
-googleAnalytics = "388401991" # Add your identifier. For example UA-99631805-1.
+googleAnalytics = "G-R9NLR3W4VG" # Add your identifier. For example UA-99631805-1.
 
 
 [params]
