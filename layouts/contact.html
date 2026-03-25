@@ -32,7 +32,7 @@
           {{ end }}
         </div>
         <form class="form"
-          action="{{ if .Site.Params.contact.form_id }}https://formspree.io/f/{{ .Site.Params.contact.form_id }}{{ else }}#{{ end }}" method="POST">
+          action="{{ if .Site.Params.contact.form_id }}https://formspree.io/f/meerbodr/{{ .Site.Params.contact.form_id }}{{ else }}#{{ end }}" method="POST">
           <div class="form__group">
             <label class="form__label screen-reader-text" for="form-name">Your Name</label>
             <input class="form__input" id="form-name" type="text" name="name" placeholder="Your name" required>
