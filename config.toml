@@ -146,7 +146,7 @@ googleAnalytics = "G-R9NLR3W4VG" # Add your identifier. For example UA-99631805-
 #-------------------------------
 # Contact Settings
 [params.contact]
-  form_id = "https://formspree.io/f/meerbodr" # Add your form_id
+  form_id = "marcin@mironiuk.pl" # Add your form_id
   button_text = "Send Now"
 
   # NOTE
