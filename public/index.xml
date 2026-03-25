@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>&gt;_ shell this box</title>
+    <link>http://localhost:1313/</link>
+    <description>Recent content on &gt;_ shell this box</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 22 Mar 2026 15:01:35 +0300</lastBuildDate>
+    <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Starting My Cybersecurity Journey</title>
+      <link>http://localhost:1313/posts/starting-my-cybersecurity-journey/</link>
+      <pubDate>Sun, 22 Mar 2026 15:01:35 +0300</pubDate>
+      <guid>http://localhost:1313/posts/starting-my-cybersecurity-journey/</guid>
+      <description>&lt;h2 id=&#34;hi-im-marcin-&#34;&gt;Hi, I&amp;rsquo;m Marcin 👋&lt;/h2&gt;&#xA;&lt;p&gt;Welcome to my blog.&lt;/p&gt;&#xA;&lt;p&gt;This space is where I document my journey into cybersecurity — from the basics to more advanced topics over time. I&amp;rsquo;m not an expert (yet), but I strongly believe that sharing the process is just as valuable as sharing the results.&lt;/p&gt;&#xA;&lt;hr&gt;&#xA;&lt;h2 id=&#34;why-this-blog&#34;&gt;Why this blog?&lt;/h2&gt;&#xA;&lt;p&gt;I created this blog mainly for two reasons:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;To &lt;strong&gt;track my own progress&lt;/strong&gt;&lt;/li&gt;&#xA;&lt;li&gt;To &lt;strong&gt;build a personal knowledge base&lt;/strong&gt;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;Instead of scattered notes, I want everything in one place — structured, searchable, and useful both for me and anyone who might be on a similar path.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>About Me</title>
+      <link>http://localhost:1313/about/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/about/</guid>
+      <description>&lt;p&gt;Hi, I’m Marcin.&lt;/p&gt;&#xA;&lt;p&gt;I’m currently on a journey into cybersecurity, focused on building real, practical skills through hands-on experience. Most of my learning comes from platforms like Hack The Box, where I work through machines, practice enumeration, and try to understand how systems actually break.&lt;/p&gt;&#xA;&lt;hr&gt;&#xA;&lt;h2 id=&#34;why-this-blog&#34;&gt;Why this blog?&lt;/h2&gt;&#xA;&lt;p&gt;I created this blog as my personal knowledge base.&lt;/p&gt;&#xA;&lt;p&gt;Instead of keeping scattered notes, I document everything here:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;techniques I learn&lt;/li&gt;&#xA;&lt;li&gt;tools I use&lt;/li&gt;&#xA;&lt;li&gt;mistakes I make&lt;/li&gt;&#xA;&lt;li&gt;and lessons that actually stick&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;This helps me stay consistent and track my progress over time.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Archive</title>
+      <link>http://localhost:1313/archive/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/archive/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Elements</title>
+      <link>http://localhost:1313/elements/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/elements/</guid>
+      <description>&lt;p&gt;A paragraph looks like this — Globally incubate standards compliant channels before scalable benefits. Quickly disseminate superior deliverables whereas web-enabled applications. Quickly drive clicks-and-mortar catalysts for change before vertical architectures. Credibly reintermediate backend ideas for cross-platform models. Continually reintermediate integrated processes through technically sound intellectual capital. Holistically foster superior methodologies.&lt;/p&gt;&#xA;&lt;hr&gt;&#xA;&lt;h2 id=&#34;headings-by-default&#34;&gt;Headings by default:&lt;/h2&gt;&#xA;&lt;h1 id=&#34;h1-default-styles-for-headings&#34;&gt;H1 Default styles for headings&lt;/h1&gt;&#xA;&lt;h2 id=&#34;h2-default-styles-for-headings&#34;&gt;H2 Default styles for headings&lt;/h2&gt;&#xA;&lt;h3 id=&#34;h3-default-styles-for-headings&#34;&gt;H3 Default styles for headings&lt;/h3&gt;&#xA;&lt;h4 id=&#34;h4-default-styles-for-headings&#34;&gt;H4 Default styles for headings&lt;/h4&gt;&#xA;&lt;h5 id=&#34;h5-default-styles-for-headings&#34;&gt;H5 Default styles for headings&lt;/h5&gt;&#xA;&lt;h6 id=&#34;h6-default-styles-for-headings&#34;&gt;H6 Default styles for headings&lt;/h6&gt;&#xA;&lt;hr&gt;&#xA;&lt;h2 id=&#34;lists&#34;&gt;Lists&lt;/h2&gt;&#xA;&lt;h3 id=&#34;ordered-list-example&#34;&gt;Ordered list example:&lt;/h3&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;Poutine drinking vinegar bitters.&lt;/li&gt;&#xA;&lt;li&gt;Coloring book distillery fanny pack.&lt;/li&gt;&#xA;&lt;li&gt;Venmo biodiesel gentrify enamel pin meditation.&lt;/li&gt;&#xA;&lt;li&gt;Jean shorts shaman listicle pickled portland.&lt;/li&gt;&#xA;&lt;li&gt;Salvia mumblecore brunch iPhone migas.&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;hr&gt;&#xA;&lt;h3 id=&#34;unordered-list-example&#34;&gt;Unordered list example:&lt;/h3&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Bitters semiotics vice thundercats synth.&lt;/li&gt;&#xA;&lt;li&gt;Literally cred narwhal bitters wayfarers.&lt;/li&gt;&#xA;&lt;li&gt;Kale chips chartreuse paleo tbh street art marfa.&lt;/li&gt;&#xA;&lt;li&gt;Mlkshk polaroid sriracha brooklyn.&lt;/li&gt;&#xA;&lt;li&gt;Pug you probably haven&amp;rsquo;t heard of them air plant man bun.&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;hr&gt;&#xA;&lt;h2 id=&#34;table&#34;&gt;Table&lt;/h2&gt;&#xA;&lt;div class=&#34;table-container&#34;&gt;&#xA;  &lt;table&gt;&#xA;    &lt;tr&gt;&lt;th&gt;Header 1&lt;/th&gt;&lt;th&gt;Header 2&lt;/th&gt;&lt;th&gt;Header 3&lt;/th&gt;&lt;th&gt;Header 4&lt;/th&gt;&lt;th&gt;Header 5&lt;/th&gt;&lt;/tr&gt;&#xA;    &lt;tr&gt;&lt;td&gt;Row:1 Cell:1&lt;/td&gt;&lt;td&gt;Row:1 Cell:2&lt;/td&gt;&lt;td&gt;Row:1 Cell:3&lt;/td&gt;&lt;td&gt;Row:1 Cell:4&lt;/td&gt;&lt;td&gt;Row:1 Cell:5&lt;/td&gt;&lt;/tr&gt;&#xA;    &lt;tr&gt;&lt;td&gt;Row:2 Cell:1&lt;/td&gt;&lt;td&gt;Row:2 Cell:2&lt;/td&gt;&lt;td&gt;Row:2 Cell:3&lt;/td&gt;&lt;td&gt;Row:2 Cell:4&lt;/td&gt;&lt;td&gt;Row:2 Cell:5&lt;/td&gt;&lt;/tr&gt;&#xA;    &lt;tr&gt;&lt;td&gt;Row:3 Cell:1&lt;/td&gt;&lt;td&gt;Row:3 Cell:2&lt;/td&gt;&lt;td&gt;Row:3 Cell:3&lt;/td&gt;&lt;td&gt;Row:3 Cell:4&lt;/td&gt;&lt;td&gt;Row:3 Cell:5&lt;/td&gt;&lt;/tr&gt;&#xA;    &lt;tr&gt;&lt;td&gt;Row:4 Cell:1&lt;/td&gt;&lt;td&gt;Row:4 Cell:2&lt;/td&gt;&lt;td&gt;Row:4 Cell:3&lt;/td&gt;&lt;td&gt;Row:4 Cell:4&lt;/td&gt;&lt;td&gt;Row:4 Cell:5&lt;/td&gt;&lt;/tr&gt;&#xA;    &lt;tr&gt;&lt;td&gt;Row:5 Cell:1&lt;/td&gt;&lt;td&gt;Row:5 Cell:2&lt;/td&gt;&lt;td&gt;Row:5 Cell:3&lt;/td&gt;&lt;td&gt;Row:5 Cell:4&lt;/td&gt;&lt;td&gt;Row:5 Cell:5&lt;/td&gt;&lt;/tr&gt;&#xA;    &lt;tr&gt;&lt;td&gt;Row:6 Cell:1&lt;/td&gt;&lt;td&gt;Row:6 Cell:2&lt;/td&gt;&lt;td&gt;Row:6 Cell:3&lt;/td&gt;&lt;td&gt;Row:6 Cell:4&lt;/td&gt;&lt;td&gt;Row:6 Cell:5&lt;/td&gt;&lt;/tr&gt;&#xA;  &lt;/table&gt;&#xA;&lt;/div&gt;&#xA;&lt;hr&gt;&#xA;&lt;h2 id=&#34;quotes&#34;&gt;Quotes&lt;/h2&gt;&#xA;&lt;h4 id=&#34;a-quote-looks-like-this&#34;&gt;A quote looks like this:&lt;/h4&gt;&#xA;&lt;blockquote&gt;&#xA;&lt;p&gt;Design is not just what it looks like and feels like. Design is how it works.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Get In Touch</title>
+      <link>http://localhost:1313/contact/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/contact/</guid>
+      <description></description>
+    </item>
+  </channel>
+</rss>

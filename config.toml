@@ -85,15 +85,6 @@ googleAnalytics = "G-R9NLR3W4VG" # Add your identifier. For example UA-99631805-
 
 
 
-#-------------------------------
-# Videos Section Settings
-[params.videos]
-  enable = true
-  videos_title = "Latest Videos"
-
-
-
-
 
 
 
