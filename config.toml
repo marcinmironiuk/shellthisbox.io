@@ -70,7 +70,7 @@ googleAnalytics = "G-R9NLR3W4VG" # Add your identifier. For example UA-99631805-
 #-------------------------------
 # Author Settings
 [params.author]
-  author_name = "Alex Dias"
+  author_name = "Marcin"
   author_avatar = "https://placehold.co/120x120"
 
 
@@ -82,7 +82,7 @@ googleAnalytics = "G-R9NLR3W4VG" # Add your identifier. For example UA-99631805-
 # Blog Section
 [params.blog]
   enable = true
-  blog_title = "The Binary Journal"
+  blog_title = "The Shell Log"
 
 
 #-------------------------------
@@ -117,8 +117,7 @@ googleAnalytics = "G-R9NLR3W4VG" # Add your identifier. For example UA-99631805-
 #-------------------------------
 # Footer Settings
 [params.footer]
-  footer_description = "Here, I share ideas, tools, and methods that help me balance productivity with creativity while keeping control over my digital world. Dive in, get inspired, and feel free to share your thoughts!"
-
+  footer_description = "A place where I learn, break things, and understand how they really work. This blog is my personal cybersecurity notebook — focused on Hack The Box, enumeration, and building real skills. Every post reflects what I’m learning right now, including mistakes, lessons, and better approaches."
 
 #-------------------------------
 # Social Settings
