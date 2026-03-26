@@ -1,6 +1,6 @@
 ---
 title: Editor (Hack The Box) Full Write-Up
-description: This space is where I document my journey into cybersecurity — from the basics to more advanced topics over time. I’m not an expert (yet), but I strongly believe that sharing the process is just as valuable as sharing the results.
+description: TMy first Hack The Box write-up — breaking down the Editor machine step by step, from initial enumeration to full compromise. Let’s get into it.
 date: 2026-03-24 15:01:35 +0300
 image: 'images/posts/HTB-Editor-write-up.png'
 tags: [write-up]
