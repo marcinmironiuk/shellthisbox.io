@@ -1,7 +1,7 @@
 ---
 title: Editor (Hack The Box) Full Write-Up
 description: TMy first Hack The Box write-up — breaking down the Editor machine step by step, from initial enumeration to full compromise. Let’s get into it.
-date: 2026-03-26 15:01:35 +0300
+date: 2026-03-26 12:01:35 +0300
 image: 'images/posts/HTB-Editor-write-up.png'
 tags: [write-up]
 tags_color: '#df1b1b'
