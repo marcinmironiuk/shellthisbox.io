@@ -8,19 +8,19 @@
   <link rel="icon" type="image/x-icon" href="/favicon.ico">
 
   <title>Editor (Hack The Box) Full Write-Up | &gt;_ shell this box</title>
-  <meta name="description" content="This space is where I document my journey into cybersecurity — from the basics to more advanced topics over time. I’m not an expert (yet), but I strongly believe that sharing the process is just as valuable as sharing the results.">
+  <meta name="description" content="My first Hack The Box write-up — breaking down the Editor machine step by step, from initial enumeration to full compromise. Let’s get into it.">
 
   
 
   
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Editor (Hack The Box) Full Write-Up | &gt;_ shell this box">
-  <meta name="twitter:description" content="This space is where I document my journey into cybersecurity — from the basics to more advanced topics over time. I’m not an expert (yet), but I strongly believe that sharing the process is just as valuable as sharing the results.">
+  <meta name="twitter:description" content="My first Hack The Box write-up — breaking down the Editor machine step by step, from initial enumeration to full compromise. Let’s get into it.">
   <meta name="twitter:image" content="http://localhost:1313/images/posts/HTB-Editor-write-up.png">
 
   
   <meta property="og:title" content="Editor (Hack The Box) Full Write-Up | &gt;_ shell this box">
-  <meta property="og:description" content="This space is where I document my journey into cybersecurity — from the basics to more advanced topics over time. I’m not an expert (yet), but I strongly believe that sharing the process is just as valuable as sharing the results.">
+  <meta property="og:description" content="My first Hack The Box write-up — breaking down the Editor machine step by step, from initial enumeration to full compromise. Let’s get into it.">
   <meta property="og:image" content="http://localhost:1313/images/posts/HTB-Editor-write-up.png">
 
   
@@ -276,7 +276,7 @@
             <div class="post-meta__content">
               <a class="post-meta__author" href="/about/">Marcin</a>
               <div class="post-meta__bottom">
-                <time class="post-date" datetime=" 2026-03-24T15:01:35&#43;03:00">24 Mar, 2026</time> –
+                <time class="post-date" datetime=" 2026-03-26T12:01:35&#43;03:00">26 Mar, 2026</time> –
                 <span class="post-minutes">8 min read</span>
               </div>
             </div>
@@ -596,7 +596,7 @@
     </li>
 
     <li class="share__item">
-      <a class="share__link share__linkedin" href="https://www.linkedin.com/shareArticle?mini=true&url=http%3a%2f%2flocalhost%3a1313%2fposts%2fhtb-machine-editor%2f&title=Editor%20%28Hack%20The%20Box%29%20Full%20Write-Up&summary=This%20space%20is%20where%20I%20document%20my%20journey%20into%20cybersecurity%20%e2%80%94%20from%20the%20basics%20to%20more%20advanced%20topics%20over%20time.%20I%e2%80%99m%20not%20an%20expert%20%28yet%29%2c%20but%20I%20strongly%20believe%20that%20sharing%20the%20process%20is%20just%20as%20valuable%20as%20sharing%20the%20results.&source=Editor%20%28Hack%20The%20Box%29%20Full%20Write-Up"
+      <a class="share__link share__linkedin" href="https://www.linkedin.com/shareArticle?mini=true&url=http%3a%2f%2flocalhost%3a1313%2fposts%2fhtb-machine-editor%2f&title=Editor%20%28Hack%20The%20Box%29%20Full%20Write-Up&summary=My%20first%20Hack%20The%20Box%20write-up%20%e2%80%94%20breaking%20down%20the%20Editor%20machine%20step%20by%20step%2c%20from%20initial%20enumeration%20to%20full%20compromise.%20Let%e2%80%99s%20get%20into%20it.&source=Editor%20%28Hack%20The%20Box%29%20Full%20Write-Up"
       onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn" rel="nofollow"><i class="fa-brands fa-linkedin-in"></i></a>
     </li>
   </ul>
@@ -621,6 +621,22 @@
   </div>
   
 
+  
+  <div class="post__next">
+    <div class="next__box">
+      <span class="post__nav__next">Newer post</span>
+      <h2 class="post__nav__title"><a href="http://localhost:1313/posts/htb-machine-lame/">Lame (Hack The Box) Full Write-Up</a></h2>
+    </div>
+    
+    
+    <a href="http://localhost:1313/posts/htb-machine-lame/" class="next__image">
+      
+      
+      <img class="lazy" data-src="http://localhost:1313/images/posts/HTB-Lame-write-up.png" alt="Lame (Hack The Box) Full Write-Up">
+      
+    </a>
+    
+  </div>
   
 </div>
 
@@ -666,6 +682,64 @@
 
       
       
+
+
+<div class="related-posts">
+  <div class="section__info">
+    <div class="section__head">
+      <h2 class="section__title">Related</h2>
+    </div>
+  </div>
+  <div class="view-list">
+    <div class="row grid">
+      
+        <div class="article col col-6 col-t-12 grid__post animate">
+  <div class="article__inner">
+
+    
+    
+    <div class="article__head">
+      
+
+      <a class="article__image" href="/posts/htb-machine-lame/">
+      
+        <img class="lazy" data-src="http://localhost:1313/images/posts/HTB-Lame-write-up.png" alt="Lame (Hack The Box) Full Write-Up">
+      
+      </a>
+    </div>
+    
+
+    <div class="article__content">
+
+      
+      <div class="article__tags">
+        
+        <a href="http://localhost:1313/tags/write-up/" class="article__tag" style="background: #df1b1b;">Write-Up</a>
+        
+      </div>
+      
+
+      <h2 class="article__title">
+        <a href="/posts/htb-machine-lame/">Lame (Hack The Box) Full Write-Up</a>
+      </h2>
+
+      <p class="article__excerpt">In this second Hack The Box write-up, I walk through Lame step by step, from enumeration to full compromise, with a stronger focus on manual exploitation.</p>
+
+      <div class="article__meta">
+        <time class="article__date" datetime=" 2026-03-31T12:01:35&#43;03:00">31 Mar, 2026</time>
+        <div class="article__minutes">
+          9 min read
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+      
+    </div>
+  </div>
+</div>
+
 
     </div>
 
@@ -737,6 +811,10 @@
     
       
         
+        
+          
+            
+          
         
           
             
@@ -825,6 +903,23 @@
             <div class="footer__recent-content">
               
               
+              <a href="/posts/htb-machine-lame/" class="footer__recent-image">
+                
+                
+                <img class="lazy" data-src="http://localhost:1313/images/posts/HTB-Lame-write-up.png" alt="Lame (Hack The Box) Full Write-Up">
+                
+              </a>
+              
+              <div class="footer__recent-meta">
+                <h3 class="footer__recent-title"><a href="/posts/htb-machine-lame/">Lame (Hack The Box) Full Write-Up</a></h3>
+                <time class="footer__recent-date" datetime=" 2026-03-31T12:01:35&#43;03:00">31 Mar, 2026</time>
+              </div>
+            </div>
+            
+            
+            <div class="footer__recent-content">
+              
+              
               <a href="/posts/htb-machine-editor/" class="footer__recent-image">
                 
                 
@@ -834,7 +929,7 @@
               
               <div class="footer__recent-meta">
                 <h3 class="footer__recent-title"><a href="/posts/htb-machine-editor/">Editor (Hack The Box) Full Write-Up</a></h3>
-                <time class="footer__recent-date" datetime=" 2026-03-24T15:01:35&#43;03:00">24 Mar, 2026</time>
+                <time class="footer__recent-date" datetime=" 2026-03-26T12:01:35&#43;03:00">26 Mar, 2026</time>
               </div>
             </div>
             

