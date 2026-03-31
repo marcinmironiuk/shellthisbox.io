@@ -2,7 +2,7 @@
 title: Lame (Hack The Box) Full Write-Up
 description: In this second Hack The Box write-up, I walk through Lame step by step, from enumeration to full compromise, with a stronger focus on manual exploitation.
 date: 2026-03-31 12:01:35 +0300
-image: 'images/posts/HTB-Lame-write-up.png'
+image: 'images/posts/HTB-Lame-write-up.jpg'
 tags: [write-up]
 tags_color: '#df1b1b'
 ---
