@@ -1,17 +1,1 @@
-{{ define "main" }}
-
-<!-- begin page -->
-<div class="container">
-  <div class="row">
-    <div class="col col-12">
-      <div class="error">
-        <h2 class="error__title">404</h2>
-        <p class="error__text">The requested page could not be found.</p>
-        <a class="button button--primary" href="/">Back to homepage</a>
-      </div>
-    </div>
-  </div>
-</div>
-<!-- end page -->
-
-{{ end }}
+{{ define "main" }}<section class="wrap listing"><div class="sectionnum">// NOT FOUND</div><h1>Page not found<span class="green">.</span></h1><p>That path doesn't lead anywhere.</p><a class="button" href="{{ site.Home.RelPermalink }}">Back to home ↗</a></section>{{ end }}

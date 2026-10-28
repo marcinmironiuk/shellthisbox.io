@@ -1,2 +1,1 @@
-<!-- Redirect to homepage -->
-<script>window.location.replace("{{ site.BaseURL | relLangURL }}");</script>
+{{ define "main" }}<section class="wrap listing"><div class="sectionnum">// THE FIELD NOTES</div><h1>{{ .Title }}<span class="green">.</span></h1>{{ with .Description }}<p>{{ . }}</p>{{ end }}{{ range .Pages.ByDate.Reverse }}<article class="entry"><div class="tag">{{ .Date.Format "02 Jan 2006" }} &nbsp; / &nbsp; {{ .ReadingTime }} MIN READ</div><h2><a href="{{ .RelPermalink }}">{{ .Title }} ↗</a></h2><p>{{ .Description }}</p></article>{{ end }}</section>{{ end }}
