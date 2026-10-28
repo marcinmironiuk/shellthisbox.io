@@ -1,14 +1,1 @@
-{{ .Scratch.Add "index" slice }}
-{{ range (where .Site.RegularPages "Type" "posts") }}
-  {{ $image := .Params.Image }}
-
-  {{ $bundleImage := .Resources.GetMatch $image }}
-  {{ if not $bundleImage }}
-    {{ $image = .Params.Image | absURL }}
-  {{ else }}
-    {{ $image = $bundleImage.RelPermalink }}
-  {{ end }}
-
-  {{ $.Scratch.Add "index" (dict "title" .Title "content" (.Summary | plainify) "date" (.Date | dateFormat "02 Jan, 2006") "permalink" .Permalink "image" $image) }}
-{{ end }}
-{{ $.Scratch.Get "index" | jsonify }}
+{{ $index := slice }}{{ range where site.RegularPages "Section" "in" (slice "posts" "tools") }}{{ $index = $index | append (dict "title" .Title "content" (.Plain | plainify) "description" .Description "date" (.Date.Format "02 Jan 2006") "permalink" .RelPermalink) }}{{ end }}{{ $index | jsonify }}

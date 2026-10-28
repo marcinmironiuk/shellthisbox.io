@@ -1,6 +1,6 @@
 #-------------------------------
 # General Site Settings
-baseURL = 'http://shellthisbox.io'
+baseURL = 'https://shellthisbox.io/'
 languageCode = "en-us"
 title = '>_ shell this box'
 googleAnalytics = "G-R9NLR3W4VG" # Add your identifier. For example UA-99631805-1.
@@ -9,7 +9,8 @@ googleAnalytics = "G-R9NLR3W4VG" # Add your identifier. For example UA-99631805-
 [params]
   logo = "" # You can add own logo. For example "/images/logo.png".
   logo_dark = ""
-  description = "Coderon is a super modern and unique Hugo blog theme"
+  description = "Cybersecurity writeups, practical notes, and lessons learned along the way."
+  x_url = "" # Add your X profile URL when ready.
 
 
 #-------------------------------
@@ -137,7 +138,7 @@ googleAnalytics = "G-R9NLR3W4VG" # Add your identifier. For example UA-99631805-
 #-------------------------------
 # Contact Settings
 [params.contact]
-  form_id = "marcin@mironiuk.pl" # Add your form_id
+  form_id = "marcin@shellthisbox.io" # Add your form_id
   button_text = "Send Now"
 
   # NOTE
@@ -146,7 +147,7 @@ googleAnalytics = "G-R9NLR3W4VG" # Add your identifier. For example UA-99631805-
 #-------------------------------
 # Comment Section (Disqus)
 [params.disqus]
-  enable = true
+  enable = false
   disqusShortname = "anvod-studio-test" # Add your shortname for Disqus Comment. For example anvod-studio-test
   disqus_title = "Start the conversation"
   disqus_button_text = "Show Comments"

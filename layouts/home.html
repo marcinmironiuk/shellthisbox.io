@@ -1,15 +1,1 @@
-{{ define "main" }}
-
-{{ partial "hero.html" . }}
-
-{{ partial "logos.html" . }}
-
-{{ partial "section-blog.html" . }}
-
-{{ partial "section-tags.html" . }}
-
-{{ partial "section-videos.html" . }}
-
-{{ partial "section-gallery.html" . }}
-
-{{ end }}
+{{ define "main" }}<section class="wrap hero"><div><div class="eyebrow">A cybersecurity field journal</div><h1>Every shell<br>has its <span>story.</span></h1><p>Writeups, practical notes, and the things learned along the way. For the curious minds who like to understand how things work.</p><div class="actions"><a class="button" href="{{ "tags/write-up/" | relURL }}">Explore writeups &nbsp; ↗</a><a class="textlink" href="{{ "archive/" | relURL }}">Browse the archive &nbsp; ↓</a></div></div><div class="terminal" aria-label="Illustration of a terminal"><div class="termbar"><span class="dots">● ● ●</span><span>shellthisbox — ~/field-notes</span></div><div class="termbody"><span class="line"><span class="green">visitor@shellthisbox</span>:~$ ls</span><span class="line"><strong>writeups/ &nbsp; notes/ &nbsp; tools/</strong></span><br><span class="line"><span class="green">visitor@shellthisbox</span>:~$ cat welcome.txt</span><span class="line">Learn by doing. Document the journey.</span><span class="line">Stay curious, keep digging.</span><br><span class="line"><span class="green">visitor@shellthisbox</span>:~$ <span class="cursor"></span></span></div></div></section><div class="strip"><div class="wrap"><span>◆ &nbsp; THE FIELD NOTES</span><span>WRITEUPS &nbsp; / &nbsp; NOTES &nbsp; / &nbsp; TOOLS</span><span>BUILT FOR THE CURIOUS</span></div></div>{{ $writeups := where site.RegularPages "Params.tags" "intersect" (slice "write-up") }}{{ with index ($writeups.ByDate.Reverse) 0 }}<section class="section wrap" id="writeups"><div class="sectionhead"><div><div class="sectionnum">01 / THE BREAKDOWN</div><h2>Featured writeup.</h2></div><p>Follow the process, understand the decisions, and take something useful into your next lab.</p></div><article class="feature"><div class="feature-art" aria-hidden="true"><div class="grid"></div><div class="box">[ _ ]</div></div><div class="feature-copy"><div class="tag">HACK THE BOX &nbsp; / &nbsp; WRITEUP</div><h3>{{ .Title }}</h3><p>{{ .Description }}</p><div class="meta">{{ .Date.Format "02 Jan 2006" }} &nbsp; · &nbsp; WRITEUP</div><a class="textlink" href="{{ .RelPermalink }}">Read the writeup &nbsp; ↗</a></div></article></section>{{ end }}<section class="section wrap" style="padding-top:0"><div class="sectionhead"><div><div class="sectionnum">02 / THE FIELD NOTES</div><h2>Latest stories.</h2></div><p>Experiments, lessons, and useful discoveries from the journey.</p></div><div class="cards">{{ range first 3 (where site.RegularPages "Section" "posts").ByDate.Reverse }}<article class="card"><div class="tag">{{ .Date.Format "02 Jan 2006" }}</div><h3>{{ .Title }}</h3><p>{{ .Description }}</p><a href="{{ .RelPermalink }}">Read article ↗</a></article>{{ end }}</div></section><section class="lower"><div class="wrap"><div><div class="label">03 / KEEP EXPLORING</div><h2>Curiosity is the best tool.</h2><p>There's always another path to follow, another command to understand, another story to tell.</p></div><a href="{{ "archive/" | relURL }}">Explore the archive ↗</a></div></section>{{ end }}
