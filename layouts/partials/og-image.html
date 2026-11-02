@@ -1,0 +1,141 @@
+
+{{- $background := resources.Get "images/og/background.png" -}}
+{{- $font := resources.Get "fonts/JetBrainsMono-Bold.ttf" -}}
+
+{{- if not $background -}}
+  {{- errorf "Open Graph background not found" -}}
+{{- end -}}
+{{- if not $font -}}
+  {{- errorf "Open Graph font not found" -}}
+{{- end -}}
+
+{{- $image := $background.Fill "1200x630 Center" -}}
+
+{{- /* TITLE: wrap text and add ellipsis when needed */ -}}
+{{- $title := .Title | plainify | strings.TrimSpace -}}
+{{- $titleWords := split $title " " -}}
+{{- $titleLines := slice -}}
+{{- $current := "" -}}
+{{- $maxTitleChars := 28 -}}
+
+{{- range $titleWords -}}
+  {{- $candidate := . -}}
+  {{- if $current -}}
+    {{- $candidate = printf "%s %s" $current . -}}
+  {{- end -}}
+
+  {{- if and (gt (len $candidate) $maxTitleChars) $current -}}
+    {{- $titleLines = append $current $titleLines -}}
+    {{- $current = . -}}
+  {{- else -}}
+    {{- $current = $candidate -}}
+  {{- end -}}
+{{- end -}}
+
+{{- if $current -}}
+  {{- $titleLines = append $current $titleLines -}}
+{{- end -}}
+
+{{- $titleOverflow := gt (len $titleLines) 3 -}}
+{{- $titleLines = first 3 $titleLines -}}
+
+{{- if $titleOverflow -}}
+  {{- $lastIndex := sub (len $titleLines) 1 -}}
+  {{- $lastLine := index $titleLines $lastIndex -}}
+  {{- $lastLine = printf "%s…" (strings.TrimSpace $lastLine) -}}
+  {{- $titleLines = first $lastIndex $titleLines | append $lastLine -}}
+{{- end -}}
+
+{{- $titleY := 200 -}}
+{{- range $titleLines -}}
+  {{- $overlay := images.Text . (dict
+    "font" $font
+    "size" 30
+    "color" "#F1F5F0"
+    "x" 45
+    "y" $titleY
+  ) -}}
+  {{- $image = $image.Filter $overlay -}}
+  {{- $titleY = add $titleY 43 -}}
+{{- end -}}
+
+{{- /* DESCRIPTION: maximum 2 lines with ellipsis */ -}}
+{{- $description := .Description | default .Summary | plainify -}}
+{{- $description = replaceRE "\\s+" " " $description | strings.TrimSpace -}}
+
+{{- $descWords := split $description " " -}}
+{{- $descLines := slice -}}
+{{- $descCurrent := "" -}}
+{{- $maxDescChars := 45 -}}
+
+{{- range $descWords -}}
+  {{- $candidate := . -}}
+  {{- if $descCurrent -}}
+    {{- $candidate = printf "%s %s" $descCurrent . -}}
+  {{- end -}}
+
+  {{- if and (gt (len $candidate) $maxDescChars) $descCurrent -}}
+    {{- $descLines = append $descCurrent $descLines -}}
+    {{- $descCurrent = . -}}
+  {{- else -}}
+    {{- $descCurrent = $candidate -}}
+  {{- end -}}
+{{- end -}}
+
+{{- if $descCurrent -}}
+  {{- $descLines = append $descCurrent $descLines -}}
+{{- end -}}
+
+{{- $descOverflow := gt (len $descLines) 2 -}}
+{{- $descLines = first 2 $descLines -}}
+
+{{- if $descOverflow -}}
+  {{- $lastIndex := sub (len $descLines) 1 -}}
+  {{- $lastLine := index $descLines $lastIndex -}}
+  {{- $lastLine = printf "%s…" (strings.TrimSpace $lastLine) -}}
+  {{- $descLines = first $lastIndex $descLines | append $lastLine -}}
+{{- end -}}
+
+{{- $descY := 355 -}}
+{{- range $descLines -}}
+  {{- $overlay := images.Text . (dict
+    "font" $font
+    "size" 17
+    "color" "#AAB7AD"
+    "x" 45
+    "y" $descY
+  ) -}}
+  {{- $image = $image.Filter $overlay -}}
+  {{- $descY = add $descY 28 -}}
+{{- end -}}
+
+{{- /* TAGS: use up to 3 tags from front matter */ -}}
+{{- $tags := slice -}}
+
+{{- with .Params.tags -}}
+  {{- range first 3 . -}}
+    {{- $tags = append (upper (printf "%v" .)) $tags -}}
+  {{- end -}}
+{{- end -}}
+
+{{- if not $tags -}}
+  {{- $tags = slice (upper .Section) -}}
+{{- end -}}
+
+{{- $tagText := delimit $tags " / " -}}
+
+{{- if gt (len $tagText) 40 -}}
+  {{- $tagText = printf "%s…" (substr $tagText 0 39) -}}
+{{- end -}}
+
+{{- $tagOverlay := images.Text $tagText (dict
+  "font" $font
+  "size" 16
+  "color" "#B5F47F"
+  "x" 45
+  "y" 475
+) -}}
+
+{{- $image = $image.Filter $tagOverlay -}}
+
+{{- return $image -}}

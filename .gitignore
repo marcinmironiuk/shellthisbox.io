@@ -1,2 +1,10 @@
-
+# Hugo build output
 /public/
+/resources/_gen/
+
+# Local backups
+*.bak
+
+# Operating system files
+.DS_Store
+Thumbs.db

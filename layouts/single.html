@@ -1,1 +1,145 @@
-{{ define "main" }}<div class="wrap"><div class="crumb"><a href="{{ site.Home.RelPermalink }}">Home</a> &nbsp; / &nbsp; {{ if eq .Section "posts" }}<a href="{{ "archive/" | relURL }}">Archive</a> &nbsp; / &nbsp;{{ end }} {{ .Title }}</div><div class="intro"><div><div class="tag">● &nbsp; {{ if eq .Section "posts" }}{{ with .Params.tags }}{{ delimit . " / " }}{{ else }}FIELD NOTES{{ end }}{{ else }}SHELLTHISBOX{{ end }}</div><h1>{{ .Title }}<span class="green">.</span></h1>{{ with .Description }}<p class="subtitle">{{ . }}</p>{{ end }}{{ if eq .Section "posts" }}<div class="meta"><span>BY {{ site.Params.author.author_name }}</span><span>{{ .Date.Format "02 Jan 2006" }}</span><span>{{ .ReadingTime }} MIN READ</span></div>{{ end }}</div></div><div class="layout">{{ if and (in (slice "posts" "tools") .Section) (gt (len .Fragments.Headings) 0) }}<aside class="toc"><div class="toc-title">// ON THIS PAGE</div>{{ .TableOfContents }}</aside>{{ else }}<aside class="toc"><a href="{{ site.Home.RelPermalink }}">← Back to home</a></aside>{{ end }}<article class="post">{{ .Content }}{{ if eq .RelPermalink ("about/" | relURL) }}<div class="end"><a href="{{ "contact/" | relURL }}">Get in touch ↗</a></div>{{ end }}<div class="end"><a href="{{ "archive/" | relURL }}">← Back to the archive</a></div></article></div></div>{{ end }}
+
+{{ define "main" }}
+
+<div class="wrap">
+
+  <div class="crumb">
+    <a href="{{ site.Home.RelPermalink }}">Home</a>
+    &nbsp; / &nbsp;
+    {{ if eq .Section "posts" }}
+      <a href="{{ "archive/" | relURL }}">Archive</a>
+      &nbsp; / &nbsp;
+    {{ end }}
+    {{ .Title }}
+  </div>
+
+  <div class="intro">
+    <div>
+      <div class="tag">
+        ● &nbsp;
+        {{ if eq .Section "posts" }}
+          {{ with .Params.tags }}
+            {{ delimit . " / " }}
+          {{ else }}
+            FIELD NOTES
+          {{ end }}
+        {{ else }}
+          SHELLTHISBOX
+        {{ end }}
+      </div>
+
+      <h1>{{ .Title }}<span class="green">.</span></h1>
+
+      {{ with .Description }}
+        <p class="subtitle">{{ . }}</p>
+      {{ end }}
+
+      {{ if eq .Section "posts" }}
+        <div class="meta">
+          <span>BY {{ site.Params.author.author_name }}</span>
+          <span>{{ .Date.Format "02 Jan 2006" }}</span>
+          <span>{{ .ReadingTime }} MIN READ</span>
+        </div>
+      {{ end }}
+    </div>
+  </div>
+
+  <div class="layout">
+
+    {{ if and (in (slice "posts" "tools") .Section) (gt (len .Fragments.Headings) 0) }}
+      <aside class="toc">
+        <div class="toc-title">// ON THIS PAGE</div>
+        {{ .TableOfContents }}
+      </aside>
+    {{ else }}
+      <aside class="toc">
+        <a href="{{ site.Home.RelPermalink }}">← Back to home</a>
+      </aside>
+    {{ end }}
+
+    <article class="post">
+
+      {{ .Content }}
+
+      {{ if in (slice "posts" "tools") .Section }}
+
+        {{ $shareURL := printf "https://shellthisbox.io%s" .RelPermalink }}
+
+        <details class="article-share">
+          <summary class="article-share-toggle">
+            <span>↗ Share this article</span>
+            <span class="article-share-chevron">⌄</span>
+          </summary>
+
+          <div class="article-share-menu">
+
+            <button
+              type="button"
+              class="article-share-link"
+              data-share-copy="{{ $shareURL }}">
+              Copy link
+            </button>
+
+            <a
+              class="article-share-link"
+              href="https://www.reddit.com/submit?url={{ $shareURL | urlquery }}&amp;title={{ .Title | urlquery }}"
+              target="_blank"
+              rel="noopener noreferrer">
+              Reddit ↗
+            </a>
+
+            <a
+              class="article-share-link"
+              href="https://twitter.com/intent/tweet?url={{ $shareURL | urlquery }}&amp;text={{ .Title | urlquery }}"
+              target="_blank"
+              rel="noopener noreferrer">
+              X / Twitter ↗
+            </a>
+
+          </div>
+        </details>
+
+      {{ end }}
+
+      {{ if eq .RelPermalink ("about/" | relURL) }}
+        <div class="end">
+          <a href="{{ "contact/" | relURL }}">Get in touch ↗</a>
+        </div>
+      {{ end }}
+
+      <div class="end">
+        <a href="{{ "archive/" | relURL }}">← Back to the archive</a>
+      </div>
+
+    </article>
+  </div>
+</div>
+
+<script>
+document.addEventListener("click", async function (event) {
+  const button = event.target.closest("[data-share-copy]");
+  if (!button) return;
+
+  const url = button.dataset.shareCopy;
+  const originalText = button.textContent;
+
+  try {
+    await navigator.clipboard.writeText(url);
+
+    button.textContent = "✓ Link copied!";
+
+    setTimeout(function () {
+      button.textContent = originalText;
+    }, 2000);
+
+  } catch (error) {
+    button.textContent = "Copy failed";
+
+    setTimeout(function () {
+      button.textContent = originalText;
+    }, 2000);
+  }
+});
+</script>
+
+{{ end }}

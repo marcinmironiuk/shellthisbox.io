@@ -15,3 +15,78 @@
 .toc ol ol {
     padding-left: 12px;
 }
+
+/* ShellThisBox — Article Share */
+
+.article-share {
+  margin: 36px 0 28px;
+  max-width: 360px;
+  font-size: 14px;
+}
+
+.article-share-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 12px 16px;
+  color: #b9f78a;
+  background: #152019;
+  border: 1px solid #3b5742;
+  border-radius: 6px;
+  cursor: pointer;
+  list-style: none;
+  font-weight: 600;
+}
+
+.article-share-toggle::-webkit-details-marker {
+  display: none;
+}
+
+.article-share-toggle::marker {
+  content: "";
+}
+
+.article-share-toggle:hover {
+  background: #1c2c21;
+  border-color: #b9f78a;
+}
+
+.article-share-chevron {
+  transition: transform 0.2s ease;
+}
+
+.article-share[open] .article-share-chevron {
+  transform: rotate(180deg);
+}
+
+.article-share-menu {
+  display: flex;
+  flex-direction: column;
+  margin-top: 6px;
+  padding: 6px;
+  background: #111a15;
+  border: 1px solid #3b5742;
+  border-radius: 6px;
+}
+
+.article-share-link {
+  display: block;
+  width: 100%;
+  padding: 11px 12px;
+  background: transparent;
+  color: #d8e8d9;
+  border: 0;
+  border-radius: 4px;
+  text-align: left;
+  text-decoration: none;
+  font: inherit;
+  cursor: pointer;
+  box-sizing: border-box;
+}
+
+.article-share-link:hover {
+  background: #233628;
+  color: #b9f78a;
+  text-decoration: none;
+}
