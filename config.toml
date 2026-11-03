@@ -10,7 +10,7 @@ googleAnalytics = "G-R9NLR3W4VG" # Add your identifier. For example UA-99631805-
   logo = "" # You can add own logo. For example "/images/logo.png".
   logo_dark = ""
   description = "Cybersecurity writeups, practical notes, and lessons learned along the way."
-  x_url = "" # Add your X profile URL when ready.
+  x_url = "https://x.com/shellthisbox"
 
 
 #-------------------------------

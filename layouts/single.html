@@ -101,6 +101,18 @@
 
       {{ end }}
 
+      {{ if in (slice "posts" "tools") .Section }}
+        {{ with site.Params.x_url }}
+        <aside class="article-follow" aria-label="Follow ShellThisBox on X">
+          <div>
+            <strong>Keep following the journey.</strong>
+            <p>More cybersecurity notes and new writeups from ShellThisBox.</p>
+          </div>
+          <a class="article-follow-link" href="{{ . }}" rel="me noopener">Follow on X ↗</a>
+        </aside>
+        {{ end }}
+      {{ end }}
+
       {{ if eq .RelPermalink ("about/" | relURL) }}
         <div class="end">
           <a href="{{ "contact/" | relURL }}">Get in touch ↗</a>

@@ -90,3 +90,46 @@
   color: #b9f78a;
   text-decoration: none;
 }
+
+/* A quiet follow invitation after the article and sharing controls. */
+.article-follow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  margin: 32px 0;
+  padding: 24px;
+  border: 1px solid #303a32;
+  border-left: 2px solid #b8f77c;
+  background: #191f1b;
+}
+.article-follow strong {
+  color: #e9eee8;
+  font-size: 17px;
+  font-weight: 500;
+}
+.article-follow p {
+  margin: 6px 0 0;
+  color: #aab6ab;
+  font-size: 14px;
+  line-height: 1.6;
+}
+.post .article-follow-link {
+  flex-shrink: 0;
+  padding: 10px 0;
+  font-size: 14px;
+}
+.footer nav {
+  flex-wrap: wrap;
+}
+.footer nav a:hover {
+  color: #b8f77c;
+}
+@media (max-width: 600px) {
+  .article-follow {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 20px;
+  }
+}
