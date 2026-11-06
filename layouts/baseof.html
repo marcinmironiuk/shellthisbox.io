@@ -26,7 +26,11 @@
   {{ if or (eq .Layout "search") (eq .Kind "404") }}<meta name="robots" content="noindex, follow">{{ end }}
   <meta name="description" content="{{ $description }}">
   <link rel="canonical" href="{{ .Permalink }}">
-  <link rel="icon" href="{{ "favicon.ico" | relURL }}">
+  <link rel="icon" type="image/x-icon" sizes="16x16 32x32 48x48" href="{{ "favicon.ico" | relURL }}?v=stb-terminal-large-3">
+  <link rel="icon" type="image/png" sizes="16x16" href="{{ "favicon-16.png" | relURL }}?v=large-3">
+  <link rel="icon" type="image/png" sizes="32x32" href="{{ "favicon-32.png" | relURL }}?v=large-3">
+  <link rel="icon" type="image/png" sizes="48x48" href="{{ "favicon-48.png" | relURL }}?v=large-3">
+  <link rel="apple-touch-icon" sizes="180x180" href="{{ "apple-touch-icon.png" | relURL }}?v=large-3">
   {{ $cssVersion := readFile "static/css/shellthisbox.css" | sha256 }}
   <link rel="stylesheet" href="{{ "css/shellthisbox.css" | relURL }}?v={{ $cssVersion }}">
 
