@@ -93,12 +93,30 @@
   </dl>
 
   <div class="writeup-badges">
+    {{ if .Params.show_all_header_tags }}
+      {{ range .Params.area_of_interest }}
+        <span class="writeup-badge badge-technology">{{ . }}</span>
+      {{ end }}
+      {{ range .Params.vulnerability }}
+        <a class="writeup-badge badge-vulnerability" href="{{ "writeups/" | relURL }}?vulnerability={{ . | urlquery }}">{{ . }}</a>
+      {{ end }}
+      {{ range .Params.language }}
+        <a class="writeup-badge badge-technology" href="{{ "writeups/" | relURL }}?language={{ . | urlquery }}">{{ . }}</a>
+      {{ end }}
+      {{ range .Params.technology }}
+        <a class="writeup-badge badge-technology" href="{{ "writeups/" | relURL }}?technology={{ . | urlquery }}">{{ . }}</a>
+      {{ end }}
+      {{ range .Params.technique }}
+        <a class="writeup-badge badge-technique" href="{{ "writeups/" | relURL }}?technique={{ . | urlquery }}">{{ . }}</a>
+      {{ end }}
+    {{ else }}
     {{ range .Params.vulnerability }}
       <a class="writeup-badge badge-vulnerability" href="{{ "writeups/" | relURL }}?vulnerability={{ . | urlquery }}">{{ . }}</a>
     {{ end }}
 
     {{ range .Params.technology }}
       <a class="writeup-badge badge-technology" href="{{ "writeups/" | relURL }}?technology={{ . | urlquery }}">{{ . }}</a>
+    {{ end }}
     {{ end }}
   </div>
 </div>

@@ -31,6 +31,13 @@
           Difficulty
           <select name="difficulty">
             <option value="">All</option>
+            {{ $values := slice }}
+            {{ range where site.RegularPages "Section" "writeups" }}
+              {{ with .Params.difficulty }}{{ $values = $values | append . }}{{ end }}
+            {{ end }}
+            {{ range sort (uniq $values) }}
+              <option value="{{ . }}">{{ . }}</option>
+            {{ end }}
           </select>
         </label>
 
@@ -38,6 +45,13 @@
           OS
           <select name="os">
             <option value="">All</option>
+            {{ $values := slice }}
+            {{ range where site.RegularPages "Section" "writeups" }}
+              {{ with .Params.os }}{{ $values = $values | append . }}{{ end }}
+            {{ end }}
+            {{ range sort (uniq $values) }}
+              <option value="{{ . }}">{{ . }}</option>
+            {{ end }}
           </select>
         </label>
 
@@ -45,6 +59,13 @@
           Approach
           <select name="approach">
             <option value="">All</option>
+            {{ $values := slice }}
+            {{ range where site.RegularPages "Section" "writeups" }}
+              {{ with .Params.approach }}{{ $values = $values | append . }}{{ end }}
+            {{ end }}
+            {{ range sort (uniq $values) }}
+              <option value="{{ . }}">{{ . }}</option>
+            {{ end }}
           </select>
         </label>
 
@@ -52,6 +73,13 @@
           Vulnerability
           <select name="vulnerability">
             <option value="">All</option>
+            {{ $values := slice }}
+            {{ range where site.RegularPages "Section" "writeups" }}
+              {{ range .Params.vulnerability }}{{ $values = $values | append . }}{{ end }}
+            {{ end }}
+            {{ range sort (uniq $values) }}
+              <option value="{{ . }}">{{ . }}</option>
+            {{ end }}
           </select>
         </label>
 
@@ -59,7 +87,36 @@
           Technology
           <select name="technology">
             <option value="">All</option>
+            {{ $values := slice }}
+            {{ range where site.RegularPages "Section" "writeups" }}
+              {{ range .Params.technology }}{{ $values = $values | append . }}{{ end }}
+            {{ end }}
+            {{ range sort (uniq $values) }}
+              <option value="{{ . }}">{{ . }}</option>
+            {{ end }}
           </select>
+        </label>
+        <label>
+          Language
+          <select name="language"><option value="">All</option>
+            {{ $values := slice }}
+            {{ range where site.RegularPages "Section" "writeups" }}
+              {{ range .Params.language }}{{ $values = $values | append . }}{{ end }}
+            {{ end }}
+            {{ range sort (uniq $values) }}
+              <option value="{{ . }}">{{ . }}</option>
+            {{ end }}</select>
+        </label>
+        <label>
+          Technique
+          <select name="technique"><option value="">All</option>
+            {{ $values := slice }}
+            {{ range where site.RegularPages "Section" "writeups" }}
+              {{ range .Params.technique }}{{ $values = $values | append . }}{{ end }}
+            {{ end }}
+            {{ range sort (uniq $values) }}
+              <option value="{{ . }}">{{ . }}</option>
+            {{ end }}</select>
         </label>
       </div>
     </div>
@@ -95,6 +152,8 @@
         data-approach="{{ .Params.approach | default "" }}"
         data-vulnerability="{{ .Params.vulnerability | default (slice) | jsonify }}"
         data-technology="{{ .Params.technology | default (slice) | jsonify }}"
+        data-language="{{ .Params.language | default (slice) | jsonify }}"
+        data-technique="{{ .Params.technique | default (slice) | jsonify }}"
         data-published="{{ .Date.Unix }}"
         data-released="{{ with .Params.htb_release_date }}{{ (time.AsTime .).Unix }}{{ end }}"
       >
@@ -164,12 +223,30 @@
   </dl>
 
   <div class="writeup-badges">
+    {{ if .Params.show_all_header_tags }}
+      {{ range .Params.area_of_interest }}
+        <span class="writeup-badge badge-technology">{{ . }}</span>
+      {{ end }}
+      {{ range .Params.vulnerability }}
+        <a class="writeup-badge badge-vulnerability" href="{{ "writeups/" | relURL }}?vulnerability={{ . | urlquery }}">{{ . }}</a>
+      {{ end }}
+      {{ range .Params.language }}
+        <a class="writeup-badge badge-technology" href="{{ "writeups/" | relURL }}?language={{ . | urlquery }}">{{ . }}</a>
+      {{ end }}
+      {{ range .Params.technology }}
+        <a class="writeup-badge badge-technology" href="{{ "writeups/" | relURL }}?technology={{ . | urlquery }}">{{ . }}</a>
+      {{ end }}
+      {{ range .Params.technique }}
+        <a class="writeup-badge badge-technique" href="{{ "writeups/" | relURL }}?technique={{ . | urlquery }}">{{ . }}</a>
+      {{ end }}
+    {{ else }}
     {{ range .Params.vulnerability }}
       <a class="writeup-badge badge-vulnerability" href="{{ "writeups/" | relURL }}?vulnerability={{ . | urlquery }}">{{ . }}</a>
     {{ end }}
 
     {{ range .Params.technology }}
       <a class="writeup-badge badge-technology" href="{{ "writeups/" | relURL }}?technology={{ . | urlquery }}">{{ . }}</a>
+    {{ end }}
     {{ end }}
   </div>
   <div class="wu-list-open"><span>visitor@shellthisbox:~$</span><a href="{{ .RelPermalink }}">
@@ -186,5 +263,5 @@
   </div>
 </section>
 
-<script src="{{ "js/writeups.js" | relURL }}" defer></script>
+<script src="{{ "js/writeups.js" | relURL }}?v={{ readFile "static/js/writeups.js" | sha256 }}" defer></script>
 {{ end }}

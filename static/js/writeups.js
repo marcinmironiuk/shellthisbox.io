@@ -5,7 +5,7 @@
   const status = document.querySelector("#writeups-status");
   const entries = [...document.querySelectorAll(".writeup-entry")];
   const fields = [
-    "difficulty", "os", "approach", "vulnerability", "technology"
+    "difficulty", "os", "approach", "vulnerability", "technology", "language", "technique"
   ];
   const normalize = value => String(value).trim().toLowerCase();
 
@@ -21,7 +21,9 @@
       os: data.os ? [data.os] : [],
       approach: data.approach ? [data.approach] : [],
       vulnerability: JSON.parse(data.vulnerability),
-      technology: JSON.parse(data.technology)
+      technology: JSON.parse(data.technology),
+      language: JSON.parse(data.language || "[]"),
+      technique: JSON.parse(data.technique || "[]")
     };
   });
 
@@ -30,7 +32,11 @@
     const values = [...new Set(items.flatMap(item => item[field]))]
       .sort((a, b) => a.localeCompare(b, "en"));
 
-    values.forEach(value => select.add(new Option(value, value)));
+    values.forEach(value => {
+      if (![...select.options].some(option => option.value === value)) {
+        select.add(new Option(value, value));
+      }
+    });
   });
 
   function readLocation() {

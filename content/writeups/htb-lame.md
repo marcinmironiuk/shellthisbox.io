@@ -1,6 +1,6 @@
 ---
 aliases: ["/posts/htb-machine-lame/"]
-title: "Lame (Hack The Box) Full Write-Up"
+title: "HTB Lame — From Samba RCE to Root Shell"
 machine_name: "Lame"
 platform: "Hack The Box"
 description: "A beginner-friendly Hack The Box Lame writeup covering Nmap enumeration, Samba exploitation, CVE-2007-2447, and lessons learned on the path to root."
@@ -15,24 +15,16 @@ os: "Linux"
 approach: "Guided"
 htb_release_date: 2017-03-14
 
-area_of_interest:
-  - "Enterprise Network"
-  - "Vulnerability Assessment"
-  - "Common Services"
-  - "Software & OS Exploitation"
-  - "Security Tools"
 
 vulnerability:
   - "Remote Code Execution"
 
 technology:
-  - "Samba"
+  - "SAMBA"
 
 technique:
-  - "Service Enumeration"
-  - "Vulnerability Research"
-  - "Command Injection"
   - "Reverse Shell"
+show_all_header_tags: true
 ---
 
 # Hack The Box — Lame | A Beginner's Journey
