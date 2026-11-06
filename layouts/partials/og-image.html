@@ -1,5 +1,5 @@
 
-{{- $background := resources.Get "images/og/background.png" -}}
+{{- $background := resources.Get "images/og/entry-background.png" -}}
 {{- $font := resources.Get "fonts/JetBrainsMono-Bold.ttf" -}}
 
 {{- if not $background -}}
@@ -13,10 +13,11 @@
 
 {{- /* TITLE: wrap text and add ellipsis when needed */ -}}
 {{- $title := .Title | plainify | strings.TrimSpace -}}
+{{- $title = replaceRE "(Part) ([0-9]+:)" "$1 $2" $title -}}
 {{- $titleWords := split $title " " -}}
 {{- $titleLines := slice -}}
 {{- $current := "" -}}
-{{- $maxTitleChars := 28 -}}
+{{- $maxTitleChars := 32 -}}
 
 {{- range $titleWords -}}
   {{- $candidate := . -}}
@@ -50,7 +51,7 @@
 {{- range $titleLines -}}
   {{- $overlay := images.Text . (dict
     "font" $font
-    "size" 30
+    "size" 28
     "color" "#F1F5F0"
     "x" 45
     "y" $titleY
@@ -109,24 +110,7 @@
   {{- $descY = add $descY 28 -}}
 {{- end -}}
 
-{{- /* TAGS: use up to 3 tags from front matter */ -}}
-{{- $tags := slice -}}
-
-{{- with .Params.tags -}}
-  {{- range first 3 . -}}
-    {{- $tags = append (upper (printf "%v" .)) $tags -}}
-  {{- end -}}
-{{- end -}}
-
-{{- if not $tags -}}
-  {{- $tags = slice (upper .Section) -}}
-{{- end -}}
-
-{{- $tagText := delimit $tags " / " -}}
-
-{{- if gt (len $tagText) 40 -}}
-  {{- $tagText = printf "%s…" (substr $tagText 0 39) -}}
-{{- end -}}
+{{- $tagText := upper .Section -}}
 
 {{- $tagOverlay := images.Text $tagText (dict
   "font" $font

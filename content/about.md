@@ -1,64 +1,25 @@
 ---
 title: About Me
+layout: about
+description: "I'm Marcin. ShellThisBox is where I document my return to pentesting, the labs I work through, and the things I learn along the way."
 image: 'images/aboutme.png'
 ---
+## Hey, I'm Marcin.
 
+I spend some of my free time learning penetration testing, working through labs, and trying to understand why a system behaves the way it does. Sometimes that ends with a shell. Sometimes it ends with me realising I missed something obvious two hours ago.
 
+Cybersecurity has interested me for years. I made a couple of attempts at pursuing it more seriously, then work and other opportunities took priority. Eventually, I came back with a simpler idea: I can enjoy this as a hobby without turning it into another career plan.
 
-Hi, I’m Marcin.
+If you'd like the longer version, including how a Jimmy Carr stand-up show fits into all this, it's in [my first blog post](/blog/welcome/).
 
-I’m currently on a journey into cybersecurity, focused on building real, practical skills through hands-on experience. Most of my learning comes from platforms like Hack The Box, where I work through machines, practice enumeration, and try to understand how systems actually break.
+## About ShellThisBox
 
----
+This is my place to keep useful notes and explain what I've learned. Most of my practice happens on Hack The Box and in training labs, with a particular interest in Linux, enumeration, and following the clues that connect an initial foothold to the next step.
 
-## Why this blog?
+In [Writeups](/writeups/), I document machines, the reasoning behind my decisions, and the wrong turns along the way. [Notes](/notes/) is for techniques, tools, and workflows I want to find again. The [Blog](/blog/) has room for the more personal side of learning.
 
-I created this blog as my personal knowledge base.
+I test the techniques I describe, credit the sources I use, and say when I needed help. Writing it down is also a useful check: if I can't explain a step clearly, I probably need to spend more time with it.
 
-Instead of keeping scattered notes, I document everything here:
-- techniques I learn  
-- tools I use  
-- mistakes I make  
-- and lessons that actually stick  
+## Say Hello
 
-This helps me stay consistent and track my progress over time.
-
----
-
-## What I focus on
-
-My main areas of interest include:
-- enumeration and reconnaissance  
-- system exploitation  
-- building a structured workflow  
-- understanding *why* things work, not just how  
-
----
-
-## My approach
-
-I believe in learning by doing.
-
-This means:
-- breaking things  
-- fixing them  
-- repeating the process  
-
-I’m not here to present polished expertise — I’m here to improve, step by step.
-
----
-
-## What you’ll find here
-
-On this blog, you’ll find:
-- Hack The Box write-ups  
-- notes and cheat sheets (like Nmap, workflows, etc.)  
-- thoughts and progress updates from my learning journey  
-
----
-
-## Final note
-
-If you're on a similar path, feel free to follow along.
-
-This blog is as much for me as it is for anyone else trying to get better in cybersecurity.
+If you're learning too, have a question, or spot something I should revisit, come say hello on [X (@shellthisbox)](https://x.com/shellthisbox). You can follow me there for new posts, or tell me what you're working on. I'm always happy to compare notes.

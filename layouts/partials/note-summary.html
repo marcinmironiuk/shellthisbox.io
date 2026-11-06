@@ -1,0 +1,17 @@
+{{ $page := .page }}
+<div class="note-summary">
+  {{ if .article }}<p class="note-summary-command">visitor@shellthisbox:~$ less ~{{ strings.TrimSuffix "/" $page.RelPermalink }}.md</p>{{ end }}
+  {{ if .article }}<h1 class="note-summary-title">Title: {{ $page.Title }}</h1>{{ else }}<h2 class="note-summary-title">Title: {{ $page.Title }}</h2>{{ end }}
+  <div class="note-summary-details">
+    <dl class="note-summary-fields">
+      {{ with $page.Params.note_type }}<div><dt>type</dt><dd><span class="note-tag note-kind">{{ . }}</span></dd></div>{{ end }}
+      {{ with $page.Params.note_area }}<div><dt>area</dt><dd>{{ . }}</dd></div>{{ end }}
+      {{ with $page.Params.note_platform }}<div><dt>platform</dt><dd>{{ . }}</dd></div>{{ end }}
+      <div><dt>published</dt><dd><time datetime="{{ $page.Date.Format "2006-01-02" }}">{{ $page.Date.Format "02 Jan 2006" }}</time></dd></div>
+      <div><dt>read time</dt><dd>{{ $page.ReadingTime }} min</dd></div>
+      {{ with $page.Params.series_order }}<div><dt>series</dt><dd>Part {{ . }}</dd></div>{{ end }}
+    </dl>
+    {{ with $page.Description }}<p class="note-summary-description">{{ . }}</p>{{ end }}
+  </div>
+  <div class="note-summary-topics">{{ range $page.Params.note_topics }}<span class="note-tag note-topic">{{ . }}</span>{{ end }}</div>
+</div>

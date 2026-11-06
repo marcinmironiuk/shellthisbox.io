@@ -3,6 +3,7 @@
 
 <div class="wrap">
 
+  {{ if not (in (slice "writeups" "blog" "notes") .Section) }}
   <div class="crumb">
     <a href="{{ site.Home.RelPermalink }}">Home</a>
     &nbsp; / &nbsp;
@@ -12,7 +13,117 @@
     {{ end }}
     {{ .Title }}
   </div>
+  {{ end }}
 
+  {{ if eq .Section "writeups" }}
+    {{ $current := . }}
+    {{ $index := 0 }}
+    {{ range $i, $entry := .CurrentSection.RegularPages.ByDate.Reverse }}
+      {{ if eq $entry.RelPermalink $current.RelPermalink }}
+        {{ $index = $i }}
+      {{ end }}
+    {{ end }}
+    <div class="writeups-list">
+      <div class="entry writeup-entry">
+<div class="wu-entry-content wu-list-table">
+  <div class="wu-machine-info">
+  {{ $machine := .Params.machine_name | default .File.ContentBaseName }}
+
+  <h2>
+    <span class="green">visitor@shellthisbox:~$ less ~/writeups/htb/{{ $machine | urlize }}.md</span>
+  </h2>
+  <p class="wu-list-title">Title: {{ .Title }}</p>
+
+
+  <dl class="wu-info-fields wu-info-overview">
+
+    {{ with .Params.difficulty }}
+      <div>
+        <dt>level</dt>
+        <dd><a class="writeup-badge badge-difficulty" href="{{ "writeups/" | relURL }}?difficulty={{ . | urlquery }}">{{ . }}</a></dd>
+      </div>
+    {{ end }}
+
+    {{ with .Params.os }}
+      <div>
+        <dt>system</dt>
+        <dd><a class="writeup-badge badge-os" href="{{ "writeups/" | relURL }}?os={{ . | urlquery }}">{{ . }}</a></dd>
+      </div>
+    {{ end }}
+
+    {{ with .Params.approach }}
+      <div>
+        <dt>approach</dt>
+        <dd><a class="writeup-badge badge-approach" href="{{ "writeups/" | relURL }}?approach={{ . | urlquery }}">{{ . }}</a></dd>
+      </div>
+    {{ end }}
+  
+    <div class="wu-date-released">
+      <dt>released</dt>
+      <dd>
+        {{ with .Params.htb_release_date }}
+          {{ $released := time.AsTime . }}
+          <time datetime="{{ $released.Format "2006-01-02" }}">
+            {{ $released.Format "02 Jan 2006" }}
+          </time>
+        {{ else }}
+          Not provided
+        {{ end }}
+      </dd>
+    </div>
+
+    <div class="wu-date-published">
+      <dt>published</dt>
+      <dd>
+        <time datetime="{{ .Date.Format "2006-01-02" }}">
+          {{ .Date.Format "02 Jan 2006" }}
+        </time>
+      </dd>
+    </div>
+    <div class="wu-read-time">
+      <dt>read time</dt>
+      <dd>{{ .ReadingTime }} min</dd>
+    </div>
+    {{ with .Description }}
+      <div class="wu-table-description">
+        <dt class="wu-visually-hidden">description</dt>
+        <dd>{{ . }}</dd>
+      </div>
+    {{ end }}
+  </dl>
+
+  <div class="writeup-badges">
+    {{ range .Params.vulnerability }}
+      <a class="writeup-badge badge-vulnerability" href="{{ "writeups/" | relURL }}?vulnerability={{ . | urlquery }}">{{ . }}</a>
+    {{ end }}
+
+    {{ range .Params.technology }}
+      <a class="writeup-badge badge-technology" href="{{ "writeups/" | relURL }}?technology={{ . | urlquery }}">{{ . }}</a>
+    {{ end }}
+  </div>
+</div>
+
+</div>
+
+      </div>
+    </div>
+  {{ else if eq .Section "notes" }}
+  <section class="notes-article-header" aria-label="Note information">
+    {{ partial "note-summary.html" (dict "page" . "article" true) }}
+  </section>
+  {{ else if eq .Section "blog" }}
+  <section class="blog-article-header" aria-label="Article information">
+    <p class="blog-article-command">visitor@shellthisbox:~$ less ~{{ strings.TrimSuffix "/" .RelPermalink }}.md</p>
+    <p class="blog-article-title">Title: {{ .Title }}{{ if not (hasSuffix .Title ".") }}.{{ end }}</p>
+    <div class="blog-article-details">
+      <dl>
+        <div><dt>published</dt><dd><time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "02 Jan 2006" }}</time></dd></div>
+        <div><dt>read time</dt><dd>{{ .ReadingTime }} min</dd></div>
+      </dl>
+      {{ with .Description }}<p>{{ . }}</p>{{ end }}
+    </div>
+  </section>
+  {{ else }}
   <div class="intro">
     <div>
       <div class="tag">
@@ -44,9 +155,11 @@
     </div>
   </div>
 
-  <div class="layout">
+  {{ end }}
 
-    {{ if and (in (slice "posts" "tools") .Section) (gt (len .Fragments.Headings) 0) }}
+  <div class="layout{{ if in (slice "blog" "notes") .Section }} blog-article-layout{{ end }}">
+
+    {{ if and (in (slice "posts" "tools" "writeups" "blog" "notes") .Section) (gt (len .Fragments.Headings) 0) }}
       <aside class="toc">
         <div class="toc-title">// ON THIS PAGE</div>
         {{ .TableOfContents }}
@@ -120,7 +233,17 @@
       {{ end }}
 
       <div class="end">
-        <a href="{{ "archive/" | relURL }}">← Back to the archive</a>
+        {{ if eq .Section "writeups" }}
+          <a class="terminal-return" href="{{ "writeups/" | relURL }}"><span>visitor@shellthisbox:~$ cd ~/writeups/</span></a>
+        {{ else if eq .Section "notes" }}
+          <a class="blog-return" href="{{ "notes/" | relURL }}"><span>visitor@shellthisbox:~$ cd ~/notes/</span></a>
+        {{ else }}
+          {{ if eq .Section "blog" }}
+          <a class="blog-return" href="{{ "blog/" | relURL }}"><span>visitor@shellthisbox:~$ cd ~/blog/</span></a>
+          {{ else }}
+          <a href="{{ "archive/" | relURL }}">← Back to the archive</a>
+          {{ end }}
+        {{ end }}
       </div>
 
     </article>

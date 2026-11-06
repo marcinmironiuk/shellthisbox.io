@@ -1,0 +1,27 @@
+{{ define "main" }}
+<section class="wrap notes-list">
+  <h1 class="notes-sr">{{ .Title }}</h1>
+  <p class="notes-intro">// THE TOOLKIT // {{ .Description }}</p>
+  <form class="notes-console" hidden>
+    <div class="notes-search"><label for="notes-query">visitor@shellthisbox:~/notes $</label><input id="notes-query" type="search" placeholder="Search notes…" autocomplete="off"></div>
+    <div class="notes-filters">
+      <label>AREA<select name="note_area"><option value="">All areas</option></select></label>
+      <label>TYPE<select name="note_type"><option value="">All types</option></select></label>
+      <label>PLATFORM<select name="note_platform"><option value="">All platforms</option></select></label>
+    </div>
+    <div class="notes-bottom"><span id="notes-count" role="status" aria-live="polite"></span><div class="notes-actions"><label>sort: <select name="sort"><option value="series">Series order ↑</option><option value="newest">Published ↓</option><option value="oldest">Published ↑</option><option value="title">Title A–Z</option></select></label><button type="reset">reset filters</button></div></div>
+  </form>
+  <div class="notes-results">
+    {{ range .RegularPages.ByWeight }}
+    <article class="note-entry" data-title="{{ .Title }}" data-date="{{ .Date.Format "2006-01-02" }}" data-series="{{ .Params.series }}" data-order="{{ .Params.series_order | default 0 }}" data-note_type="{{ .Params.note_type }}" data-note_area="{{ .Params.note_area }}" data-note_topics="{{ .Params.note_topics | jsonify }}" data-note_platform="{{ .Params.note_platform }}">
+
+      <div class="note-copy">{{ partial "note-summary.html" (dict "page" . "article" false) }}
+        <div class="note-open"><span>visitor@shellthisbox:~$</span><a href="{{ .RelPermalink }}">cat ~{{ strings.TrimSuffix "/" .RelPermalink }}.md</a></div>
+      </div>
+    </article>
+    {{ end }}
+  </div>
+  <p class="notes-empty" hidden>No matching notes. Try another filter or reset the console.</p>
+</section>
+<script src="{{ "js/notes.js" | relURL }}" defer></script>
+{{ end }}

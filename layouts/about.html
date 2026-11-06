@@ -1,0 +1,15 @@
+{{ define "main" }}
+<section class="wrap about-page">
+  <div class="about-terminal-header">
+    <p>// WHO'S BEHIND THE SHELL // A little about me and ShellThisBox.</p>
+  </div>
+  <div class="about-terminal-command">visitor@shellthisbox:~$ cat ~/about.md</div>
+  <h1 class="about-page-title">Title: {{ .Title }}</h1>
+  <div class="layout blog-article-layout about-layout">
+    <aside class="toc"><div class="toc-title">// ON THIS PAGE</div>{{ .TableOfContents }}</aside>
+    <article class="post about-copy">{{ .Content }}
+      <div class="end"><a class="terminal-return" href="{{ site.Home.RelPermalink }}"><span>visitor@shellthisbox:~$ cd ~</span></a></div>
+    </article>
+  </div>
+</section>
+{{ end }}

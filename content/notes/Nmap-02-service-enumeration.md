@@ -1,4 +1,9 @@
 ---
+aliases: ["/tools/nmap/02-service-enumeration/"]
+note_type: "guide"
+note_area: "Enumeration"
+note_topics: ["Nmap"]
+note_platform: "Cross-platform"
 title: "Nmap for Pentesters — Part 2: Service Enumeration, NSE & UDP"
 linkTitle: "Service Enumeration, NSE & UDP"
 description: "Identifying services, checking versions, and using Nmap scripts during enumeration."
@@ -11,7 +16,7 @@ series_order: 2
 weight: 2
 ---
 
-In [Part 1]({{< relref "01-host-discovery-tcp.md" >}}), we found the target and checked its TCP ports. Now comes the part that matters: **turning a list of open ports into a plan.**
+In [Part 1]({{< relref "/notes/Nmap-01-host-discovery-tcp.md" >}}), we found the target and checked its TCP ports. Now comes the part that matters: **turning a list of open ports into a plan.**
 
 A port number is a clue. It isn't a service inventory, and it definitely isn't proof of a vulnerability.
 
@@ -160,6 +165,6 @@ This can help clarify some ambiguous results, but a silent service may remain `o
 
 By the end of this stage, I want to know which services I can meaningfully investigate—not just which ports responded. Each follow-up should answer a specific question, and untested services should stay on my list rather than quietly disappearing from my notes.
 
-**Next:** [Part 3 — Practical Workflow & Cheat Sheet]({{< relref "03-practical-workflow.md" >}})
+**Next:** [Part 3 — Practical Workflow & Cheat Sheet]({{< relref "/notes/Nmap-03-practical-workflow.md" >}})
 
-**Series navigation:** [Part 1: Discovery & TCP]({{< relref "01-host-discovery-tcp.md" >}}) · Part 2: Services & NSE · [Part 3: Practical Workflow & Cheat Sheet]({{< relref "03-practical-workflow.md" >}})
+**Series navigation:** [Part 1: Discovery & TCP]({{< relref "/notes/Nmap-01-host-discovery-tcp.md" >}}) · Part 2: Services & NSE · [Part 3: Practical Workflow & Cheat Sheet]({{< relref "/notes/Nmap-03-practical-workflow.md" >}})

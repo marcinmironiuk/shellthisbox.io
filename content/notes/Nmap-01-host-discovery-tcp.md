@@ -1,4 +1,10 @@
 ---
+aliases: ["/tools/nmap/01-host-discovery-tcp/"]
+linkTitle: "Host Discovery & TCP Scanning"
+note_type: "guide"
+note_area: "Enumeration"
+note_topics: ["Nmap"]
+note_platform: "Cross-platform"
 title: "Nmap for Pentesters — Part 1: Host Discovery & TCP Scanning"
 date: 2026-11-01
 draft: false
@@ -30,7 +36,7 @@ At the beginning of an assessment, I want answers to four questions:
 3. What's running behind them?
 4. What should I check next?
 
-We'll tackle the first two here. The other questions are covered in [Part 2: Service Enumeration, NSE & UDP]({{< relref "tools/nmap/02-service-enumeration.md" >}}).
+We'll tackle the first two here. The other questions are covered in [Part 2: Service Enumeration, NSE & UDP]({{< relref "/notes/Nmap-02-service-enumeration.md" >}}).
 
 ## Understanding port states
 
@@ -146,6 +152,6 @@ sudo nmap -sS -p- -n -oA scans/tcp-full 10.10.10.10
 
 At this point, I should have a list of discovered TCP ports and saved scan output. I don't need to guess at vulnerabilities yet. The next job is to work out what the services actually are and which ones deserve attention.
 
-**Next:** [Part 2 — Service Enumeration, NSE & UDP]({{< relref "tools/nmap/02-service-enumeration.md" >}}).
+**Next:** [Part 2 — Service Enumeration, NSE & UDP]({{< relref "/notes/Nmap-02-service-enumeration.md" >}}).
 
-**Series navigation:** Part 1: Discovery & TCP · [Part 2: Services & NSE]({{< relref "tools/nmap/02-service-enumeration.md" >}}) · [Part 3: Workflow & Cheat Sheet]({{< relref "tools/nmap/03-practical-workflow.md" >}})
+**Series navigation:** Part 1: Discovery & TCP · [Part 2: Services & NSE]({{< relref "/notes/Nmap-02-service-enumeration.md" >}}) · [Part 3: Workflow & Cheat Sheet]({{< relref "/notes/Nmap-03-practical-workflow.md" >}})

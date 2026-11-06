@@ -1,1 +1,34 @@
-{{ define "main" }}<section class="wrap listing"><div class="sectionnum">// FIND A STORY</div><h1>Search<span class="green">.</span></h1><p>Find a writeup or guide by topic, tool, or keyword.</p><form id="site-search" class="search-form" role="search"><label for="search-query">Search the blog</label><input id="search-query" type="search" placeholder="Try Nmap, Samba, or Lame" autocomplete="off"><button class="button" type="submit">Search</button></form><p id="search-status" role="status" aria-live="polite">Start typing to search.</p><div id="search-results" data-index="{{ "index.json" | relURL }}"></div><noscript>Search requires JavaScript. You can also browse the <a href="{{ "archive/" | relURL }}">archive</a>.</noscript></section>{{ end }}
+{{ define "main" }}
+<section class="wrap terminal-search">
+  <h1 class="notes-sr">Search</h1>
+  <p class="search-intro">// FIND A STORY // Search writeups, notes, and stories by topic, tool, or keyword.</p>
+  <form id="terminal-search-form" class="terminal-search-console" role="search">
+    <label for="search-query">visitor@shellthisbox:~$ grep -Ri</label>
+    <input id="search-query" type="search" placeholder="Try Nmap, Samba, or Lame…" autocomplete="off">
+    <button type="submit">Search</button>
+  </form>
+  <p id="search-status" role="status" aria-live="polite">Start typing to search across Blog, Notes, and Writeups.</p>
+  <div class="search-idle" aria-label="A Space Invaders alien waiting for a search">
+    <pre aria-hidden="true">      ##              ##
+      ##              ##
+        ##          ##
+        ##          ##
+      ##################
+      ##################
+    ####  ########  ####
+    ####  ########  ####
+  ########################
+  ########################
+  ##  ################  ##
+  ##  ##            ##  ##
+      ####        ####
+      ####        ####</pre>
+    <p>// searching for signs of intelligence</p>
+    <span>Try a keyword. Earth has a few good notes.</span>
+  </div>
+
+  <div id="search-results" data-index="{{ "index.json" | relURL }}"></div>
+  <noscript>Search requires JavaScript. Browse <a href="{{ "notes/" | relURL }}">Notes</a>, <a href="{{ "writeups/" | relURL }}">Writeups</a>, or the <a href="{{ "blog/" | relURL }}">Blog</a>.</noscript>
+</section>
+<script src="{{ "js/site-search.js" | relURL }}" defer></script>
+{{ end }}

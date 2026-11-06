@@ -1,1 +1,6 @@
-{{ $index := slice }}{{ range where site.RegularPages "Section" "in" (slice "posts" "tools") }}{{ $index = $index | append (dict "title" .Title "content" (.Plain | plainify) "description" .Description "date" (.Date.Format "02 Jan 2006") "permalink" .RelPermalink) }}{{ end }}{{ $index | jsonify }}
+{{- $index := slice -}}
+{{- range where site.RegularPages "Section" "in" (slice "blog" "notes" "writeups" "posts") -}}
+  {{- $keywords := printf "%v %v %v %v %v %v %v %v" .Params.tags .Params.note_topics .Params.note_area .Params.note_type .Params.technology .Params.vulnerability .Params.machine_name .Params.series -}}
+  {{- $index = $index | append (dict "title" .Title "content" .Plain "description" .Description "date" (.Date.Format "02 Jan 2006") "section" .Section "readingTime" .ReadingTime "keywords" $keywords "permalink" .RelPermalink) -}}
+{{- end -}}
+{{- $index | jsonify -}}

@@ -1,0 +1,190 @@
+{{ define "main" }}
+<section class="wrap listing writeups-list">
+<h1 class="wu-visually-hidden">{{ .Title }}</h1>
+
+<div class="wu-section-intro">
+  <p>// THE BREAKDOWN{{ with .Description }} // {{ . }}{{ end }}</p>
+</div>
+
+  <form class="writeups-controls" id="writeups-controls" hidden>
+<div class="wu-bar">
+  <span class="wu-dots" aria-hidden="true">
+    <i></i><i></i><i></i>
+  </span>
+  <span>shellthisbox — ~/writeups</span>
+  <span class="wu-console-label">FILTER CONSOLE</span>
+</div>
+
+    <div class="wu-body">
+      <label class="wu-search">
+        <span>visitor@shellthisbox:~/writeups $</span>
+        <input
+          type="search"
+          name="query"
+          aria-label="Search machines"
+          placeholder="Search machines…"
+        >
+      </label>
+
+      <div class="wu-filters">
+        <label>
+          Difficulty
+          <select name="difficulty">
+            <option value="">All</option>
+          </select>
+        </label>
+
+        <label>
+          OS
+          <select name="os">
+            <option value="">All</option>
+          </select>
+        </label>
+
+        <label>
+          Approach
+          <select name="approach">
+            <option value="">All</option>
+          </select>
+        </label>
+
+        <label>
+          Vulnerability
+          <select name="vulnerability">
+            <option value="">All</option>
+          </select>
+        </label>
+
+        <label>
+          Technology
+          <select name="technology">
+            <option value="">All</option>
+          </select>
+        </label>
+      </div>
+    </div>
+
+    <div class="wu-bottom">
+    <div class="wu-console-status">
+  <span>FILTER CONSOLE:</span>
+  <span id="writeups-status" role="status" aria-live="polite"></span>
+</div>
+
+      <div class="wu-actions">
+        <label class="wu-sort">
+          <span>sort:</span>
+          <select name="sort">
+            <option value="published">Published ↓</option>
+            <option value="released">HTB Released ↓</option>
+            <option value="title">Name A–Z</option>
+          </select>
+        </label>
+
+        <button type="reset">reset filters</button>
+      </div>
+    </div>
+  </form>
+
+  <div class="wu-results">
+    {{ range $index, $page := .RegularPages.ByDate.Reverse }}
+      <article
+        class="entry writeup-entry"
+        data-title="{{ .Title }}"
+        data-difficulty="{{ .Params.difficulty | default "" }}"
+        data-os="{{ .Params.os | default "" }}"
+        data-approach="{{ .Params.approach | default "" }}"
+        data-vulnerability="{{ .Params.vulnerability | default (slice) | jsonify }}"
+        data-technology="{{ .Params.technology | default (slice) | jsonify }}"
+        data-published="{{ .Date.Unix }}"
+        data-released="{{ with .Params.htb_release_date }}{{ (time.AsTime .).Unix }}{{ end }}"
+      >
+
+        <div class="wu-entry-content wu-list-table">
+  <div class="wu-machine-info">
+  {{ $machine := .Params.machine_name | default .File.ContentBaseName }}
+
+  <p class="wu-list-title">Title: {{ .Title }}</p>
+
+
+  <dl class="wu-info-fields wu-info-overview">
+
+    {{ with .Params.difficulty }}
+      <div>
+        <dt>level</dt>
+        <dd><a class="writeup-badge badge-difficulty" href="{{ "writeups/" | relURL }}?difficulty={{ . | urlquery }}">{{ . }}</a></dd>
+      </div>
+    {{ end }}
+
+    {{ with .Params.os }}
+      <div>
+        <dt>system</dt>
+        <dd><a class="writeup-badge badge-os" href="{{ "writeups/" | relURL }}?os={{ . | urlquery }}">{{ . }}</a></dd>
+      </div>
+    {{ end }}
+
+    {{ with .Params.approach }}
+      <div>
+        <dt>approach</dt>
+        <dd><a class="writeup-badge badge-approach" href="{{ "writeups/" | relURL }}?approach={{ . | urlquery }}">{{ . }}</a></dd>
+      </div>
+    {{ end }}
+  
+    <div class="wu-date-released">
+      <dt>released</dt>
+      <dd>
+        {{ with .Params.htb_release_date }}
+          {{ $released := time.AsTime . }}
+          <time datetime="{{ $released.Format "2006-01-02" }}">
+            {{ $released.Format "02 Jan 2006" }}
+          </time>
+        {{ else }}
+          Not provided
+        {{ end }}
+      </dd>
+    </div>
+
+    <div class="wu-date-published">
+      <dt>published</dt>
+      <dd>
+        <time datetime="{{ .Date.Format "2006-01-02" }}">
+          {{ .Date.Format "02 Jan 2006" }}
+        </time>
+      </dd>
+    </div>
+    <div class="wu-read-time">
+      <dt>read time</dt>
+      <dd>{{ .ReadingTime }} min</dd>
+    </div>
+    {{ with .Description }}
+      <div class="wu-table-description">
+        <dt class="wu-visually-hidden">description</dt>
+        <dd>{{ . }}</dd>
+      </div>
+    {{ end }}
+  </dl>
+
+  <div class="writeup-badges">
+    {{ range .Params.vulnerability }}
+      <a class="writeup-badge badge-vulnerability" href="{{ "writeups/" | relURL }}?vulnerability={{ . | urlquery }}">{{ . }}</a>
+    {{ end }}
+
+    {{ range .Params.technology }}
+      <a class="writeup-badge badge-technology" href="{{ "writeups/" | relURL }}?technology={{ . | urlquery }}">{{ . }}</a>
+    {{ end }}
+  </div>
+  <div class="wu-list-open"><span>visitor@shellthisbox:~$</span><a href="{{ .RelPermalink }}">
+    cat ~/writeups/htb/{{ $machine | urlize }}.md</a>
+    
+  </div>
+</div>
+
+</div>
+</article>
+    {{ else }}
+      <p>Writeups are coming soon.</p>
+    {{ end }}
+  </div>
+</section>
+
+<script src="{{ "js/writeups.js" | relURL }}" defer></script>
+{{ end }}

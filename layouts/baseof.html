@@ -9,7 +9,9 @@
   {{- $description := .Description | default site.Params.description -}}
   {{- $socialImage := "" -}}
 
-  {{- if and .IsPage (in (slice "posts" "tools") .Section) -}}
+  {{- if .IsHome -}}
+    {{- $socialImage = "images/og/home-card.png" | absURL -}}
+  {{- else if and .IsPage (in (slice "posts" "tools" "writeups" "notes" "blog") .Section) -}}
     {{- $generatedImage := partial "og-image.html" . -}}
     {{- $socialImage = $generatedImage.Permalink -}}
   {{- else -}}
@@ -18,11 +20,15 @@
     {{- end -}}
   {{- end -}}
 
-  <title>{{ if not .IsHome }}{{ .Title }} | {{ end }}{{ site.Title }}</title>
+  {{- $seoTitle := printf "%s | ShellThisBox" .Title -}}
+  {{- if .IsHome -}}{{- $seoTitle = "ShellThisBox — Pentesting Writeups & Practical Notes" -}}{{- end -}}
+  <title>{{ $seoTitle }}</title>
+  {{ if or (eq .Layout "search") (eq .Kind "404") }}<meta name="robots" content="noindex, follow">{{ end }}
   <meta name="description" content="{{ $description }}">
   <link rel="canonical" href="{{ .Permalink }}">
   <link rel="icon" href="{{ "favicon.ico" | relURL }}">
-  <link rel="stylesheet" href="{{ "css/shellthisbox.css" | relURL }}">
+  {{ $cssVersion := readFile "static/css/shellthisbox.css" | sha256 }}
+  <link rel="stylesheet" href="{{ "css/shellthisbox.css" | relURL }}?v={{ $cssVersion }}">
 
   {{- with .OutputFormats.Get "rss" }}
   <link rel="alternate" type="application/rss+xml" href="{{ .Permalink }}" title="{{ site.Title }}">
@@ -30,7 +36,7 @@
 
   <meta property="og:type" content="{{ if .IsPage }}article{{ else }}website{{ end }}">
   <meta property="og:url" content="{{ .Permalink }}">
-  <meta property="og:title" content="{{ .Title }}">
+  <meta property="og:title" content="{{ $seoTitle }}">
   <meta property="og:description" content="{{ $description }}">
 
   {{- with $socialImage }}
@@ -40,25 +46,27 @@
   {{- end }}
 
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="{{ .Title }}">
+  <meta name="twitter:title" content="{{ $seoTitle }}">
   <meta name="twitter:description" content="{{ $description }}">
 
   {{- with $socialImage }}
   <meta name="twitter:image" content="{{ . }}">
   {{- end }}
+  {{ partial "structured-data.html" (dict "page" . "description" $description "image" $socialImage) }}
 </head>
-<body>
+<body id="page-top"{{ if eq .Layout "search" }} class="search-page"{{ end }}>
   {{ template "_internal/google_analytics.html" . }}
 
   <header>
     <div class="wrap nav">
-      <a class="brand" href="{{ site.Home.RelPermalink }}"><b>_&gt;</b> shellthisbox<span class="green">.</span></a>
+      <a class="brand" href="{{ site.Home.RelPermalink }}"><b aria-hidden="true">[&gt;_]</b> shellthisbox<span class="green">.io</span></a>
 
       <nav class="navlinks" aria-label="Main navigation">
-        <a href="{{ "tags/write-up/" | relURL }}">Writeups</a>
-        <a href="{{ "tools/" | relURL }}">Tools &amp; Guides</a>
-        <a href="{{ "search/" | relURL }}">Search</a>
-        <a class="about" href="{{ "about/" | relURL }}">About ↗</a>
+        <a href="{{ "blog/" | relURL }}">blog</a>
+        <a href="{{ "writeups/" | relURL }}">writeups</a>
+        <a href="{{ "notes/" | relURL }}">notes</a>
+        <a href="{{ "search/" | relURL }}">search</a>
+        <a class="about" href="{{ "about/" | relURL }}">about ↗</a>
       </nav>
     </div>
   </header>
@@ -67,26 +75,34 @@
     {{ block "main" . }}{{ end }}
   </main>
 
-  <footer>
-    <div class="wrap footer">
-      <div>
-        <a href="{{ site.Home.RelPermalink }}" class="brand footbrand"><b>_&gt;</b> shellthisbox<span class="green">.</span></a>
-        <p>Every shell has its story.</p>
+  <footer class="site-footer">
+    <div class="wrap footer footer-index">
+      <div class="footer-identity">
+        <a href="{{ site.Home.RelPermalink }}" class="brand footbrand"><b aria-hidden="true">[&gt;_]</b> shellthisbox<span class="green">.io</span></a>
+        
       </div>
-
-      <nav aria-label="Footer navigation">
-        <a href="{{ "tags/write-up/" | relURL }}">Writeups</a>
-        <a href="{{ "archive/" | relURL }}">Archive</a>
-        {{ with site.Params.x_url }}
-        <a href="{{ . }}" rel="me noopener">X ↗</a>
-        {{ end }}
-        <a href="{{ "index.xml" | relURL }}">RSS ↗</a>
+      <nav class="footer-explore" aria-label="Explore the site">
+        <span class="footer-inline-label">Explore //</span>
+        <a href="{{ "blog/" | relURL }}">blog<span class="green">/</span></a>
+        <a href="{{ "writeups/" | relURL }}">writeups<span class="green">/</span></a>
+        <a href="{{ "notes/" | relURL }}">notes<span class="green">/</span></a>
+        <a href="{{ "about/" | relURL }}">about<span class="green">/</span></a>
       </nav>
-
-      <span>© {{ now.Year }} shellthisbox</span>
+      <nav class="footer-follow" aria-label="Follow ShellThisBox">
+        <span class="footer-inline-label">Follow //</span>
+        {{ with site.Params.x_url }}
+          <a href="{{ . }}" rel="me noopener">X <span class="green">↗</span></a>
+        {{ end }}
+        <a href="{{ "index.xml" | relURL }}">RSS <span class="green">↗</span></a>
+      </nav>
+      <div class="footer-bottom">
+        <span>© {{ now.Year }} shellthisbox.io <span class="footer-tagline">// Every shell has its story.</span></span>
+        <a href="#page-top" class="footer-top">↑ back to top</a>
+      </div>
     </div>
   </footer>
 
   <script src="{{ "js/shellthisbox.js" | relURL }}" defer></script>
 </body>
 </html>
+

@@ -1,4 +1,9 @@
 ---
+aliases: ["/tools/nmap/03-practical-workflow/"]
+note_type: "cheat sheet"
+note_area: "Enumeration"
+note_topics: ["Nmap"]
+note_platform: "Cross-platform"
 title: "Nmap for Pentesters — Part 3: Practical Workflow & Cheat Sheet"
 linkTitle: "Practical Workflow & Cheat Sheet"
 description: "A repeatable OSCP-style Nmap workflow: save scans, prioritize services, troubleshoot results, tune speed, and use a practical cheat sheet."
@@ -13,7 +18,7 @@ weight: 3
 
 Knowing Nmap commands is useful. Having a **repeatable enumeration workflow** is better.
 
-In [Part 1]({{< relref "01-host-discovery-tcp.md" >}}) we covered host discovery and TCP scanning. In [Part 2]({{< relref "02-service-enumeration.md" >}}) we identified services, used NSE, and checked UDP. This final part puts those pieces together into something I can use on every HTB-style target.
+In [Part 1]({{< relref "/notes/Nmap-01-host-discovery-tcp.md" >}}) we covered host discovery and TCP scanning. In [Part 2]({{< relref "/notes/Nmap-02-service-enumeration.md" >}}) we identified services, used NSE, and checked UDP. This final part puts those pieces together into something I can use on every HTB-style target.
 
 > **Lab scope:** Run these commands only on authorized targets. The host `10.10.10.10` and the sample results are fictional.
 
@@ -196,7 +201,7 @@ I don't want to memorize every Nmap flag. I want a method I can repeat reliably:
 
 Finding open ports is easy. Knowing what to do with them is the skill worth developing.
 
-**Series navigation:** [Part 1: Discovery & TCP]({{< relref "01-host-discovery-tcp.md" >}}) · [Part 2: Services & NSE]({{< relref "02-service-enumeration.md" >}}) · Part 3: Workflow & Cheat Sheet
+**Series navigation:** [Part 1: Discovery & TCP]({{< relref "/notes/Nmap-01-host-discovery-tcp.md" >}}) · [Part 2: Services & NSE]({{< relref "/notes/Nmap-02-service-enumeration.md" >}}) · Part 3: Workflow & Cheat Sheet
 
 ## Further reading
 

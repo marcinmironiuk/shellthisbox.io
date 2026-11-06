@@ -1,0 +1,38 @@
+{{ define "main" }}
+<section class="wrap listing blog-list" aria-labelledby="blog-title">
+  <div class="blog-intro">
+    <p class="blog-terminal-intro">// THE FIELD NOTES //{{ with .Description }} {{ . }}{{ end }}</p>
+    <p class="listing-command">visitor@shellthisbox:~$ ls -l <a class="blog-directory-link" href="{{ "blog/" | relURL }}">~/<span>blog</span>/</a></p>
+    <h1 id="blog-title" class="wu-visually-hidden">{{ .Title }}</h1>
+  </div>
+  {{ $paginator := .Paginate .RegularPages.ByDate.Reverse 5 }}
+  <div class="blog-entries">
+    {{ range $paginator.Pages }}
+    <article class="blog-entry">
+
+      <div class="blog-copy">
+        {{ $terminalPath := printf "~%s.md" (strings.TrimSuffix "/" .RelPermalink) }}
+        <h2 class="blog-field-title">Title: {{ .Title }}{{ if not (hasSuffix .Title ".") }}.{{ end }}</h2>
+        <div class="blog-card-details">
+          <dl class="blog-card-fields">
+            <div><dt>published</dt><dd><time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "02 Jan 2006" }}</time></dd></div>
+            <div><dt>read time</dt><dd>{{ .ReadingTime }} min</dd></div>
+          </dl>
+          {{ with .Description }}<p class="blog-card-description">{{ . }}</p>{{ end }}
+        </div>
+        <div class="blog-cat"><span>visitor@shellthisbox:~$</span><a href="{{ .RelPermalink }}">cat {{ $terminalPath }}</a></div>
+      </div>
+    </article>
+    {{ end }}
+  </div>
+  {{ if gt $paginator.TotalPages 1 }}
+  <nav class="blog-pagination" aria-label="Blog pagination">
+    {{ if $paginator.HasPrev }}<a href="{{ $paginator.Prev.URL }}">← Previous</a>{{ end }}
+    {{ range $paginator.Pagers }}
+      <a href="{{ .URL }}" {{ if eq .PageNumber $paginator.PageNumber }}aria-current="page"{{ end }}>{{ .PageNumber }}</a>
+    {{ end }}
+    {{ if $paginator.HasNext }}<a href="{{ $paginator.Next.URL }}">Next →</a>{{ end }}
+  </nav>
+  {{ end }}
+</section>
+{{ end }}
