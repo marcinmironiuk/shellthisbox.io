@@ -174,7 +174,7 @@
 
       {{ .Content }}
 
-      {{ if in (slice "posts" "tools") .Section }}
+      {{ if and .IsPage (ne .RelPermalink ("about/" | relURL)) }}
 
         {{ $shareURL := printf "https://shellthisbox.io%s" .RelPermalink }}
 
@@ -189,7 +189,7 @@
             <button
               type="button"
               class="article-share-link"
-              data-share-copy="{{ $shareURL }}">
+              data-share-copy="{{ $shareURL }}" aria-live="polite">
               Copy link
             </button>
 
@@ -256,7 +256,9 @@ document.addEventListener("click", async function (event) {
   if (!button) return;
 
   const url = button.dataset.shareCopy;
+  if (button.disabled) return;
   const originalText = button.textContent;
+  button.disabled = true;
 
   try {
     await navigator.clipboard.writeText(url);
@@ -265,6 +267,7 @@ document.addEventListener("click", async function (event) {
 
     setTimeout(function () {
       button.textContent = originalText;
+      button.disabled = false;
     }, 2000);
 
   } catch (error) {
@@ -272,6 +275,7 @@ document.addEventListener("click", async function (event) {
 
     setTimeout(function () {
       button.textContent = originalText;
+      button.disabled = false;
     }, 2000);
   }
 });
